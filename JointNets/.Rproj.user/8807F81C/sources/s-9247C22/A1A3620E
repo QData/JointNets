@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1531415074650.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "2|3|27|0|\n105|3|209|0|\n",
+    "hash" : "0",
+    "id" : "A1A3620E",
+    "lastKnownWriteTime" : 1531513738,
+    "last_content_update" : 1531513738926,
+    "path" : "E:/Github/JointNets/JointNets/R/simule.R",
+    "project_path" : "R/simule.R",
+    "properties" : {
+        "cursorPosition" : "95,20",
+        "scrollLine" : "76"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

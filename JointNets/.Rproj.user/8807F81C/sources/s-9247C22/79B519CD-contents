@@ -1,0 +1,66 @@
+plot.test <-
+  function(x,
+           ...){
+    plot("1", main = "title", sub = "sub", ...)
+
+  }
+
+#a = NA
+#class(a) = "test"
+#plot.test(a,7,8,9)
+
+
+plot.simule <-
+  function(x,
+           type = "task",
+           neighbouroption = "task",
+           subID = NULL,
+           index = NULL,
+           ...)
+  {
+    subID = unique(subID)
+    index = unique(index)
+
+    gadj = returngraph(
+      x,
+      type = type,
+      neighbouroption = neighbouroption,
+      subID = subID,
+      index = index
+    )
+
+    title = .maketitle(
+      type = type,
+      subID = subID,
+      index = index,
+      graphlabel = graphlabel,
+      neighbouroption = neighbouroption
+    )
+
+    #layout
+    #vertex.label
+    plot.igraph(
+      gadj,
+      vertex.label.font = 2,
+      vertex.shape = "none",
+      vertex.label.color = "gray40",
+      vertex.label.cex = .7,
+      vertex.frame.color = "white",
+      vertex.size = 10 ,
+      main = title,
+      ...
+    )
+
+    legend(
+      "topleft" ,
+      legend = c(paste("task", c(
+        1:length(x)
+      ), "specific"), "share"),
+      col = rainbow(length(x) + 1),
+      pch = 16
+    )
+
+  }
+
+#data(nip_37_data)
+#result = JointNets::jeek(X = nip_37_data, 0.12, covType = "kendall", parallel = FALSE)

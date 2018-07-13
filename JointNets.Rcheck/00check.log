@@ -1,0 +1,119 @@
+* using log directory 'E:/Github/JointNets/JointNets.Rcheck'
+* using R version 3.4.3 (2017-11-30)
+* using platform: x86_64-w64-mingw32 (64-bit)
+* using session charset: ISO8859-1
+* using options '--no-manual --as-cran'
+* checking for file 'JointNets/DESCRIPTION' ... OK
+* this is package 'JointNets' version '1.0.0'
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for executable files ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking whether package 'JointNets' can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... WARNING
+Demos with missing or empty index information:
+  S3methodtest
+See sections 'The INDEX file' and 'Package subdirectories' in the
+'Writing R Extensions' manual.
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+.jointplot: no visible global function definition for 'hasArg'
+diffee: possible error in .backwardMap(covX, thre): unused argument
+  (thre)
+diffee: possible error in .backwardMap(covY, thre): unused argument
+  (thre)
+jeek : f: possible error in .linprogSPar(x, weight, B, lambda): unused
+  argument (lambda)
+returngraph: possible error in UseMethod("returngraph", x, type,
+  neighbouroption, subID, index): unused arguments (type,
+  neighbouroption, subID, index)
+Undefined global functions or variables:
+  hasArg
+Consider adding
+  importFrom("methods", "hasArg")
+to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
+contains 'methods').
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd line widths ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... WARNING
+Undocumented data sets:
+  'cancer' 'exampleData' 'exampleData500' 'exampleDataGraph'
+  'nip_37_data'
+All user-level objects in a package should have documentation entries.
+See chapter 'Writing R documentation files' in the 'Writing R
+Extensions' manual.
+* checking for code/documentation mismatches ... WARNING
+Codoc mismatches from documentation object 'plot.diffee':
+plot.jeek
+  Code: function(x, type = "task", neighbouroption = "task", subID =
+                 NULL, index = NULL, hastitle = TRUE, haslegend = TRUE,
+                 ...)
+  Docs: function(x, graphlabel = NULL, type = "task", index = NULL,
+                 graphlayout = NULL, ...)
+  Argument names in code not in docs:
+    neighbouroption subID hastitle haslegend
+  Argument names in docs not in code:
+    graphlabel graphlayout
+  Mismatches in argument names (first 3):
+    Position: 2 Code: type Docs: graphlabel
+    Position: 3 Code: neighbouroption Docs: type
+    Position: 4 Code: subID Docs: index
+
+* checking Rd \usage sections ... WARNING
+Undocumented arguments in documentation object 'plot.diffee'
+  'graphlabel' 'graphlayout'
+Documented arguments not in \usage in documentation object 'plot.diffee':
+  'neighbouroption' 'subID' 'hastitle' 'haslegend'
+Objects in \usage without \alias in documentation object 'plot.diffee':
+  'plot.jeek'
+
+Objects in \usage without \alias in documentation object 'plot.fasjem':
+  'plot.jeek'
+
+Objects in \usage without \alias in documentation object 'plot.simule':
+  'plot.jeek'
+
+Objects in \usage without \alias in documentation object 'plot.wsimule':
+  'plot.jeek'
+
+Undocumented arguments in documentation object 'returngraph'
+  'x' 'type' 'neighbouroption' 'subID' 'index'
+
+Documented arguments not in \usage in documentation object 'returngraph.diffee':
+  'neighbouroption' 'subID'
+
+Functions with \usage entries need to have the appropriate \alias
+entries, and all their arguments documented.
+The \usage entries must correspond to syntactically valid R code.
+See chapter 'Writing R documentation files' in the 'Writing R
+Extensions' manual.
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of 'data' directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking examples ... OK
+* DONE
+Status: 4 WARNINGs, 1 NOTE

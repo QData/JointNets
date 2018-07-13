@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1531415075416.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "1|47|26|0|\n108|82|212|0|\n",
+    "hash" : "0",
+    "id" : "3F71C471",
+    "lastKnownWriteTime" : 1531512686,
+    "last_content_update" : 1531512686393,
+    "path" : "E:/Github/JointNets/JointNets/R/wsimule.R",
+    "project_path" : "R/wsimule.R",
+    "properties" : {
+        "cursorPosition" : "107,4",
+        "scrollLine" : "78"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

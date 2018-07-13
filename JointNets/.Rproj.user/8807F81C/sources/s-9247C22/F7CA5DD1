@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1531415843788.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "0|37|3|0|\n5|36|16|0|\n19|36|37|0|\n40|42|54|0|\n129|72|203|0|\n",
+    "hash" : "0",
+    "id" : "F7CA5DD1",
+    "lastKnownWriteTime" : 1531512950,
+    "last_content_update" : 1531512950967,
+    "path" : "E:/Github/JointNets/JointNets/R/jeek.R",
+    "project_path" : "R/jeek.R",
+    "properties" : {
+        "cursorPosition" : "127,15",
+        "scrollLine" : "99"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
