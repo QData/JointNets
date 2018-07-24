@@ -52,7 +52,14 @@ plot.jeek <-
            haslegend = TRUE,
            ...)
   {
-    jointplot(x,type,neighbouroption,subID,index,hastitle,haslegend,...)
+    jointplot(x,
+              type,
+              neighbouroption,
+              subID,
+              index,
+              hastitle,
+              haslegend,
+              ...)
   }
 
 
@@ -111,7 +118,14 @@ plot.simule <-
            haslegend = TRUE,
            ...)
   {
-    jointplot(x,type,neighbouroption,subID,index,hastitle,haslegend,...)
+    jointplot(x,
+              type,
+              neighbouroption,
+              subID,
+              index,
+              hastitle,
+              haslegend,
+              ...)
   }
 
 #' Plot wsimule result specified by user input
@@ -169,7 +183,14 @@ plot.wsimule <-
            haslegend = TRUE,
            ...)
   {
-    jointplot(x,type,neighbouroption,subID,index,hastitle,haslegend,...)
+    jointplot(x,
+              type,
+              neighbouroption,
+              subID,
+              index,
+              hastitle,
+              haslegend,
+              ...)
   }
 
 #' Plot fasjem result specified by user input
@@ -226,7 +247,14 @@ plot.fasjem <-
            haslegend = TRUE,
            ...)
   {
-    jointplot(x,type,neighbouroption,subID,index,hastitle,haslegend,...)
+    jointplot(x,
+              type,
+              neighbouroption,
+              subID,
+              index,
+              hastitle,
+              haslegend,
+              ...)
   }
 
 
@@ -266,7 +294,7 @@ plot.diffee <-
            hastitle = TRUE,
            ...)
   {
-    jointplot(x,type, "task", NULL,index,hastitle,FALSE,...)
+    jointplot(x, type, "task", NULL, index, hastitle, FALSE, ...)
   }
 
 #' core function for plotting jeek, simule, fasjem and wsimule
@@ -319,9 +347,17 @@ jointplot <-
       gadj,
       vertex.label.font = ifelse(hasArg('vertex.label.font'), args$vertex.label.font, 2),
       vertex.shape =  ifelse(hasArg('vertex.shape'), args$vertex.shape, "none"),
-      vertex.label.color = ifelse(hasArg('vertex.label.color'), args$vertex.label.color, "gray40"),
+      vertex.label.color = ifelse(
+        hasArg('vertex.label.color'),
+        args$vertex.label.color,
+        "gray40"
+      ),
       vertex.label.cex = ifelse(hasArg('vertex.label.cex'), args$vertex.label.cex, .7),
-      vertex.frame.color = ifelse(hasArg('vertex.frame.color'), args$vertex.frame.color, "white"),
+      vertex.frame.color = ifelse(
+        hasArg('vertex.frame.color'),
+        args$vertex.frame.color,
+        "white"
+      ),
       vertex.size = ifelse(hasArg('vertex.size'), args$vertex.size, 10),
       main = ifelse(hasArg('main'), args$main, title),
       ...
@@ -332,17 +368,16 @@ jointplot <-
     #not providing the option to specify different legends since there are overlapping argumens with plot.igraph
     #user can specify further using the function graphics::legend
     #user can specify their own legend
-    if(haslegend) {
-      glegend = c(paste("task", c(1:length(x)), "specific"), "share")
+    if (haslegend) {
+      glegend = c(paste("task", c(1:length(x$graphs)), "specific"), "share")
       if (hasArg('legend')) {
         glegend = args$legend
       }
       graphics::legend(
         "topleft" ,
         legend = glegend,
-        col = grDevices::rainbow(length(x) + 1),
+        col = grDevices::rainbow(length(x$graphs) + 1),
         pch = 16
       )
     }
   }
-

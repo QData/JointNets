@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1532458242923.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "30|55|41|0|\n43|54|52|0|\n54|52|63|0|\n",
+    "hash" : "2027382491",
+    "id" : "DA9D774E",
+    "lastKnownWriteTime" : 1532459136,
+    "last_content_update" : 1532459136074,
+    "path" : "E:/Github/JointNets/JointNets/R/add_name_to_out.R",
+    "project_path" : "R/add_name_to_out.R",
+    "properties" : {
+        "cursorPosition" : "4,41",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -8,15 +8,15 @@
     "hash" : "0",
     "id" : "1F73E1FD",
     "lastKnownWriteTime" : 1532454633,
-    "last_content_update" : 1532454633187,
+    "last_content_update" : 1532461043550,
     "path" : "E:/Github/JointNets/JointNets/R/make_title.R",
     "project_path" : "R/make_title.R",
     "properties" : {
-        "cursorPosition" : "11,16",
-        "scrollLine" : "0",
+        "cursorPosition" : "49,40",
+        "scrollLine" : "31",
         "tempName" : "Untitled1"
     },
-    "relative_order" : 8,
+    "relative_order" : 2,
     "source_on_save" : false,
     "source_window" : "",
     "type" : "r_source"

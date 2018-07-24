@@ -5,6 +5,7 @@ make_adj_matrix <- function(x,...) {
 }
 
 make_adj_matrix.diffee <- function(x,separate = FALSE,...){
+
   return(make_adj_matrix_difference(x,separate))
 }
 
@@ -27,6 +28,7 @@ make_adj_matrix.fasjem <- function(x,separate = FALSE,...){
 make_adj_matrix_joint <-
   function(x, separate=FALSE)
   {
+    x = x$graphs
     K = length(x)
     adj = list()
     if(separate)
@@ -49,6 +51,7 @@ make_adj_matrix_joint <-
 
 make_adj_matrix_difference<-
   function(x,separate=FALSE){
+    x = x$difference
     adj = list()
     if(separate)
     {

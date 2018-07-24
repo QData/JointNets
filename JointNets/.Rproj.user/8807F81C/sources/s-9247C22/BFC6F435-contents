@@ -64,7 +64,8 @@ returngraph.jeek <-
            subID = NULL,
            index = NULL,
            ...) {
-    return(returngraph_jointnets(x,type,neighbouroption,subID,index))
+    gadj_K = return_graph_K_joint(x)
+    return(returngraph_jointnets(gadj_K$gadj,gadj_K$K,type,neighbouroption,subID,index))
 }
 
 #' return igraph object from simule result specified by user input
@@ -109,7 +110,8 @@ returngraph.simule <-
            neighbouroption = "task",
            subID = NULL,
            index = NULL) {
-    return(returngraph_jointnets(x,type,neighbouroption,subID,index))
+    gadj_K = return_graph_K_joint(x)
+    return(returngraph_jointnets(gadj_K$gadj,gadj_K$K,type,neighbouroption,subID,index))
   }
 
 #' return igraph object from wsimule result specified by user input
@@ -155,7 +157,8 @@ returngraph.wsimule <-
            neighbouroption = "task",
            subID = NULL,
            index = NULL) {
-    return(returngraph_jointnets(x,type,neighbouroption,subID,index))
+    gadj_K = return_graph_K_joint(x)
+    return(returngraph_jointnets(gadj_K$gadj,gadj_K$K,type,neighbouroption,subID,index))
 }
 
 #' return igraph object from fasjem result specified by user input
@@ -200,7 +203,20 @@ returngraph.fasjem <-
            neighbouroption = "task",
            subID = NULL,
            index = NULL) {
-    return(returngraph_jointnets(x,type,neighbouroption,subID,index))
+    gadj_K = return_graph_K_joint(x)
+    return(returngraph_jointnets(gadj_K$gadj,gadj_K$K,type,neighbouroption,subID,index))
+}
+
+#' function to return gadj and K (number of tasks)
+return_graph_K_joint<-function(x){
+  adj = make_adj_matrix(x)
+  diag(adj) = 0
+  gadj = graph.adjacency(adj, mode = "upper", weighted = TRUE)
+  if (!is.null(colnames(x$graphs[[1]]))){
+    V(gadj)$label = colnames(x$graphs[[1]])
+  }
+  K = length(x$graphs)
+  return(list(gadj=gadj,K=K))
 }
 
 
@@ -238,26 +254,30 @@ returngraph.diffee <-
            index = NULL) {
     ### diffee only has difference graph
     if (!(type == "task" | type == "neighbour")) {stop("please specify a correct type")}
-    return(returngraph_jointnets(x,type,"task",NULL,index))
+
+
+    adj = make_adj_matrix(x)
+    diag(adj) = 0
+    gadj = graph.adjacency(adj, mode = "upper", weighted = TRUE)
+
+    if (!is.null(colnames(x$difference))){
+      V(gadj)$label = colnames(x$difference)
+    }
+    K = 0
+
+
+    return(returngraph_jointnets(gadj,K,type,"task",NULL,index))
 }
 
 #' core function to return graph from jointnets result
 #' @import igraph
 returngraph_jointnets <-
-  function(x,
+  function(gadj,
+           K,
            type = "task",
            neighbouroption = "task",
            subID = NULL,
            index = NULL) {
-
-    adj = make_adj_matrix(x)
-    diag(adj) = 0
-    gadj = graph.adjacency(adj, mode = "upper", weighted = TRUE)
-    K = length(x)
-
-    if (!is.null(colnames(x[[1]]))){
-    V(gadj)$label = colnames(x[[1]])
-    }
 
     if (!is.null(E(gadj)$weight)) {E(gadj)$color = grDevices::rainbow(K+1)[E(gadj)$weight]}
     ### ignore subID and index
