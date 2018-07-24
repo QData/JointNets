@@ -4,18 +4,18 @@
     "created" : 1531415498294.000,
     "dirty" : false,
     "encoding" : "UTF-8",
-    "folds" : "5|24|8|0|\n10|31|13|0|\n15|24|18|0|\n20|31|23|0|\n25|30|28|0|\n30|37|33|0|\n35|64|55|0|\n57|64|77|0|\n79|38|82|0|\n84|37|95|0|\n187|26|224|2|\n",
-    "hash" : "3150869810",
+    "folds" : "5|24|8|0|\n10|31|13|0|\n15|24|18|0|\n20|31|23|0|\n25|30|28|0|\n30|37|33|0|\n35|64|55|0|\n57|64|77|0|\n79|44|82|0|\n84|43|95|0|\n188|26|227|2|\n",
+    "hash" : "701785280",
     "id" : "662C7AA6",
-    "lastKnownWriteTime" : 1531512878,
-    "last_content_update" : 1531512878674,
+    "lastKnownWriteTime" : 1532442884,
+    "last_content_update" : 1532442886427,
     "path" : "E:/Github/JointNets/JointNets/R/fasjem.R",
     "project_path" : "R/fasjem.R",
     "properties" : {
-        "cursorPosition" : "180,9",
-        "scrollLine" : "157"
+        "cursorPosition" : "219,19",
+        "scrollLine" : "197"
     },
-    "relative_order" : 3,
+    "relative_order" : 2,
     "source_on_save" : false,
     "source_window" : "",
     "type" : "r_source"

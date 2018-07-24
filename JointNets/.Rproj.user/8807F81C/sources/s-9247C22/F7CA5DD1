@@ -4,18 +4,18 @@
     "created" : 1531415843788.000,
     "dirty" : false,
     "encoding" : "UTF-8",
-    "folds" : "0|37|3|0|\n5|36|16|0|\n19|36|37|0|\n40|42|54|0|\n129|72|203|0|\n",
-    "hash" : "0",
+    "folds" : "0|41|3|0|\n5|40|16|0|\n19|40|37|0|\n40|46|54|0|\n130|72|205|0|\n",
+    "hash" : "1582284652",
     "id" : "F7CA5DD1",
-    "lastKnownWriteTime" : 1531512950,
-    "last_content_update" : 1531512950967,
+    "lastKnownWriteTime" : 1532443038,
+    "last_content_update" : 1532443096138,
     "path" : "E:/Github/JointNets/JointNets/R/jeek.R",
     "project_path" : "R/jeek.R",
     "properties" : {
-        "cursorPosition" : "127,15",
-        "scrollLine" : "99"
+        "cursorPosition" : "41,10",
+        "scrollLine" : "30"
     },
-    "relative_order" : 4,
+    "relative_order" : 3,
     "source_on_save" : false,
     "source_window" : "",
     "type" : "r_source"

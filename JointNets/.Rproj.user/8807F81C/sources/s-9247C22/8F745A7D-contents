@@ -10,7 +10,7 @@
     return(x)
 }
 
-.backwardMap <-function(covMatrix, thre = "soft"){
+diffee.backwardMap <-function(covMatrix, thre = "soft"){
     niuList = 0.001 * (0:1000) * max(covMatrix)
     bestDet = det(.softThre(covMatrix, 0.001))
     bestniu = 0.001
@@ -91,6 +91,7 @@
 #' Model Structure. <arXiv:1710.11223>
 #' @export
 #' @import pcaPP
+#' @details if labels are provided in the datalist as column names, result will contain labels (to be plotted)
 #' @examples
 #' \dontrun{
 #' library(JointNets)
@@ -140,11 +141,12 @@ diffee <- function(C, D, lambda = 0.05, covType = "cov", thre = "soft"){
     }
 
 
-    backX = .backwardMap(covX, thre)
-    backY = .backwardMap(covY, thre)
+    backX = diffee.backwardMap(covX, thre)
+    backY = diffee.backwardMap(covY, thre)
     diffNet = .softThre((backY - backX), lambda)
     ### change to just a simple list output
     out = diffNet
+    out = add_name_to_out(out,C)
     class(out) = "diffee"
     return(out)
 }

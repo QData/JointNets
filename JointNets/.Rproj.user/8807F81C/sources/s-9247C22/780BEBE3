@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1531703827527.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "53|3|55|2|\n112|3|114|2|\n170|3|172|2|\n227|3|229|2|\n",
+    "hash" : "0",
+    "id" : "780BEBE3",
+    "lastKnownWriteTime" : 1532378669,
+    "last_content_update" : 1532444333233,
+    "path" : "E:/Github/JointNets/JointNets/R/plot.R",
+    "project_path" : "R/plot.R",
+    "properties" : {
+        "cursorPosition" : "288,4",
+        "scrollLine" : "281",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 9,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

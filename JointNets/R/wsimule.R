@@ -1,5 +1,5 @@
 #A simplex solver for linear programming problem in (W)SIMULE
-.wlinprogSPar <- function(i, Sigma, W, lambda){
+wsimule.wlinprogSPar <- function(i, Sigma, W, lambda){
   # num of p * N
   # pTimesN = nrow(Sigma)
   # num of p * (N + 1)
@@ -98,6 +98,7 @@
 #' @import lpSolve
 #' @import parallel
 #' @import pcaPP
+#' @details if labels are provided in the datalist as column names, result will contain labels (to be plotted)
 #' @examples
 #' \dontrun{
 #' library(JointNets)
@@ -160,7 +161,7 @@ wsimule <- function(X, lambda, epsilon = 1, W, covType = "cov",parallel = FALSE 
     A = rbind(A, temp)
   }
   # define the function f for parallelization
-  f = function(x) .wlinprogSPar(x, A, W, lambda)
+  f = function(x) wsimule.wlinprogSPar(x, A, W, lambda)
 
   if(parallel == TRUE){ # parallel version
     # number of cores to collect,
@@ -208,6 +209,7 @@ wsimule <- function(X, lambda, epsilon = 1, W, covType = "cov",parallel = FALSE 
   }
 
   out = Graphs
+  out = add_name_to_out(out,X)
   class(out) = "wsimule"
   return(out)
 }

@@ -2,53 +2,48 @@
 % Please edit documentation in R/returngraph.R
 \name{returngraph.diffee}
 \alias{returngraph.diffee}
-\title{return graph from diffee result}
+\title{return igraph object from diffee result specified by user input}
 \usage{
-\method{returngraph}{diffee}(x, type = "task", index = NULL)
+\method{returngraph}{diffee}(x, type = "task", neighbouroption = "task",
+  subID = NULL, index = NULL)
 }
 \arguments{
-\item{x}{output generated from simule function (simule class)}
+\item{x}{output generated from diffee function (diffee class)}
 
-\item{type}{type of graph, there are four options:
-(1) "task" (graph for each task (including shared part) specified further by subID (task number))
-(2) "share" (shared graph for all tasks)
-(3) "taskspecific" (graph for each task specific (excluding shared part)
-specified further by subID (task number) )
-(4) "neighbour" (zoom into nodes in the graph specified further by neighbouroptoin, subID (task number)
-and index (node id))}
+\item{type}{type of graph. There are two options:
+\itemize{
+\item "task" (difference graph)
+\item "neighbour" (zoom into nodes in the difference graph specified further by parameter
+\strong{"index"} (node id)
+}}
 
-\item{index}{determines which node(s) to zoom into when parameter type is "neighbour"
-could either be an integer or vector of integers representing node ids
+\item{neighbouroption}{unused}
+
+\item{subID}{unused}
+
+\item{index}{determines which node(s) to zoom into when parameter \strong{"type"} is \strong{"neighbour"}.
+This parameter could either be an integer or vector of integers representing node ids
 (zoom into one node or multiple nodes)}
 
-\item{neighbouroption}{determines what type of graph to zoom into when parameter type is "neighbour"
-There are two options:
-(1) "task" (zoom into graph for each task (including shared part))
-(2) "taskspecific" (zoom into graph for each task specific (excluding shared part))}
-
-\item{subID}{selects which task to display
-(1) 0 (only allowed when type is task or type is neighbour and neighbouroption is task) (selecting share graph)
-(2) positive task number (selects a task number)
-(3) a vector of task number (selects multiple tasks)
-(4) NULL (selects all tasks (all graphs))}
+\item{...}{unused}
 }
 \value{
-an igraph object of graph / subgraph from simule result specified by user input
+an igraph object of graph / subgraph from diffee result specified by user input
 }
 \description{
-This function can return an igraph object from simule result for user to work with directly
+This function can return an igraph object from diffee result for user to work with directly
 }
 \details{
-the function aims to provide users the flexibility to explore and visualize the graph on their own
-generated from simule
+the function aims to provide users the flexibility to explore and visualize the graph own their own
+generated from diffee
 }
 \examples{
 \dontrun{
 data(exampleData)
-result = simule(X = exampleData , lambda = 0.1, epsilon = 0.45, covType = "cov", FALSE)
-returngraph.simule(result)
+result = diffee(exampleData[[1]], exampleData[[2]], 0.45)
+graph = returngraph.diffee(result)
 }
 }
 \author{
-Beilun Wang, Zhaoyang Wang (Author), Zhaoyang Wang (maintainer)
+Beilun Wang, Zhaoyang Wang (Author), Zhaoyang Wang (maintainer) \email{zw4dn@virginia.edu}
 }

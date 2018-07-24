@@ -1,34 +1,0 @@
-[0m[0KMicrosoft Windows [Version 10.0.17134.48][0K[?25l
-(c) 2018 Microsoft Corporation. All rights reserved.[0K
-[0K
-E:\Github\JointNets\JointNets>[0K[?25h^V[0K[?25lE:\Github\JointNets\JointNets>[0K[?25hR CMD Rd2pdf JointNets[0K]0;  - R  CMD Rd2pdf JointNets[?25l
-[0K[?25hConverting Rd files to LaTeX ...[0K[?25l
-[0K[?25h]0;   JointNets[0K[?25l
-Warning in file(con, "r") :[0K
-  cannot open file 'JointNets': No such file or directory[0K
-Error in file(con, "r") : cannot open the connection[0K
-[0K
-E:\Github\JointNets\JointNets>[0K[?25hsystem("R CMD Rd2pdf .")[0K[?25l
-'system' is not recognized as an internal or external command,[0K
-operable program or batch file.[0K
-[0K
-E:\Github\JointNets\JointNets>[0K[?25hR[0K[33G[?25lE:\Github\JointNets\JointNets>R C[0K[?25hM[0KD[0K[37G[?25lE:\Github\JointNets\JointNets>R CMD R[0K[?25hd[0K2[0Kp[0Kd[0Kf[0K]0;  - R  CMD Rd2pdf[?25l
-[0K[?25hno inputs[0K[?25l
-[0K[?25h]0; [?25l
-E:\Github\JointNets\JointNets>[0K[?25hR CMD Rd2pdf[0K[44G[?25lE:\Github\JointNets\JointNets>R CMD Rd2pdf J[0K[?25ho[0Ki[0Kn[0Kt[0KN[0Ke[0Kt[0Ks[0K[?25l
-[0K[?25h]0;  - R  CMD Rd2pdf JointNetsConverting Rd files to LaTeX ...[0K[?25l
-[0K[?25h  JointNets[0K[?25l
-Warning in file(con, "r") :[0K
-  cannot open file 'JointNets': No such file or directory[0K
-Error in file(con, "r") : cannot open the connection[0K
-[0K[?25h]0; [?25l
-E:\Github\JointNets\JointNets>[0K[?25hR CMD Rd2pdf JointNets[0Km[0K[?25lE:\Github\JointNets\JointNets>R CMD Rd2pdf JointNets[0K[?25h[?25lE:\Github\JointNets\JointNets>R CMD Rd2pdf JointNet[0K[?25h[?25lE:\Github\JointNets\JointNets>R CMD Rd2pdf JointNe[0K[?25h[?25lE:\Github\JointNets\JointNets>R CMD Rd2pdf JointN[0K[?25h[?25lE:\Github\JointNets\JointNets>R CMD Rd2pdf Joint[0K[?25h[?25lE:\Github\JointNets\JointNets>R CMD Rd2pdf Join[0K[?25h[?25lE:\Github\JointNets\JointNets>R CMD Rd2pdf Joi[0K[?25h[?25lE:\Github\JointNets\JointNets>R CMD Rd2pdf Jo[0K[?25h[?25lE:\Github\JointNets\JointNets>R CMD Rd2pdf J[0K[?25h[?25lE:\Github\JointNets\JointNets>R CMD Rd2pdf[0K[44G[?25h[?25lE:\Github\JointNets\JointNets>R CMD Rd2pdf m[0K[?25ha[0Kn[0K]0;  - R  CMD Rd2pdf man[?25l
-[0K[?25hConverting Rd files to LaTeX[0K[30G[?25lConverting Rd files to LaTeX .[0K[?25h[?25l
-Creating pdf output from LaTeX[0K[26G[?25h[?25lCreating pdf output from LaTeX ...[0K
-Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  :[0K
-  pdflatex is not available[0K
-[0K[?25hError in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  :[0K[?25l
-  pdflatex is not available[0K
-Error in running tools::texi2pdf()[0K
-[0K[?25h]0; [?25l
-E:\Github\JointNets\JointNets>[0K[?25h

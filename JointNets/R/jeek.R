@@ -1,23 +1,23 @@
-.EEGM <- function(covMatrix, lambda){
+jeek.EEGM <- function(covMatrix, lambda){
   result = sign(covMatrix) * pmax(abs(covMatrix) - lambda, 0)
   result
 }
 
-.backwardMap <- function(covMatrix){
+jeek.backwardMap <- function(covMatrix){
   niuList = 0.001 * (1:1000)
-  bestDet = det(.EEGM(covMatrix, 0.001))
+  bestDet = det(jeek.EEGM(covMatrix, 0.001))
   bestniu = 0.001
   for (i in 1:1000) {
-    if (bestDet < det(.EEGM(covMatrix, niuList[i]))) {
-      bestDet = det(.EEGM(covMatrix, niuList[i]))
+    if (bestDet < det(jeek.EEGM(covMatrix, niuList[i]))) {
+      bestDet = det(jeek.EEGM(covMatrix, niuList[i]))
       bestniu = niuList[i]
     }
   }
-  return(solve(.EEGM(covMatrix, bestniu)))
+  return(solve(jeek.EEGM(covMatrix, bestniu)))
 }
 
 #A simplex solver for linear programming problem in jeek
-.linprogS <- function(w, b, lambda){
+jeek.linprogS <- function(w, b, lambda){
   # K
   # Get parameters
   K = length(b)
@@ -38,7 +38,7 @@
 }
 
 #The parallel version for jeek
-.linprogSPar <- function(i, W, B, lambda){
+jeek.linprogSPar <- function(i, W, B, lambda){
   #get j,k
   p = dim(B)[1]
   K = dim(B)[3]
@@ -51,7 +51,7 @@
   j = i - (k - 1) * (k - 2) / 2
   w = W[j,k,]
   b = B[j,k,]
-  return(.linprogS(w, b, lambda))
+  return(jeek.linprogS(w, b, lambda))
 }
 
 
@@ -120,6 +120,7 @@
 #' @import lpSolve
 #' @import parallel
 #' @import pcaPP
+#' @details if labels are provided in the datalist as column names, result will contain labels (to be plotted)
 #' @examples
 #' \dontrun{
 #' library(JointNets)
@@ -167,15 +168,15 @@ jeek <- function(X, lambda, W = NA, covType = "cov", parallel = FALSE) {
   }
   #Decide if X is the data matrices or cov matrices
 
-  B = array(apply(B, 3, .backwardMap), dim = c(p, p, K))
+  B = array(apply(B, 3, jeek.backwardMap), dim = c(p, p, K))
 
-  f = function(x) .linprogSPar(x, weight, B, lambda)
+  f = function(x) jeek.linprogSPar(x, weight, B, lambda)
 
   if (parallel == TRUE) {
     no_cores = detectCores() - 1
     cl = makeCluster(no_cores)
     # declare variable and function names to the cluster
-    clusterExport(cl, list("f", "weight", "B", "lambda", ".linprogSPar", "lp", ".linprogS"), envir = environment())
+    clusterExport(cl, list("f", "weight", "B", "lambda", "jeek.linprogSPar", "lp", "jeek.linprogS"), envir = environment())
     numOfVariable = (p - 1) * p / 2
     result = parLapply(cl, 1:numOfVariable, f)
     #print('Done!')
@@ -190,7 +191,7 @@ jeek <- function(X, lambda, W = NA, covType = "cov", parallel = FALSE) {
   else{
     for(j in 1:(p-1)){
       for(k in (j+1):p){
-        xt[j,k,] = .linprogS(weight[j,k,], B[j,k,], lambda)
+        xt[j,k,] = jeek.linprogS(weight[j,k,], B[j,k,], lambda)
         xt[k,j,] = xt[j,k,]
       }
     }
@@ -199,9 +200,9 @@ jeek <- function(X, lambda, W = NA, covType = "cov", parallel = FALSE) {
     graphs[[i]] = xt[, , i] + xt[, , (K + 1)] + diag(1,p,p)
   }
   out = graphs
+  out = add_name_to_out(out,X)
   class(out) = "jeek"
   return(out)
 }
-
 
 

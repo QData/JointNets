@@ -11,7 +11,7 @@ wsimule(X, lambda, epsilon = 1, W, covType = "cov", parallel = FALSE)
 \item{X}{A List of input matrices. They can be data matrices or
 covariance/correlation matrices. If every matrix in the X is a symmetric
 matrix, the matrices are assumed to be covariance/correlation matrices. More
-details at <https://github.com/QData/SIMULE>}
+details at \url{https://github.com/QData/SIMULE}}
 
 \item{lambda}{A positive number. The hyperparameter controls the sparsity
 level of the matrices. The \eqn{\lambda_n} in the following section:
@@ -57,7 +57,7 @@ Estimate multiple, related sparse Gaussian or Nonparanormal graphical models
 from multiple related datasets using the SIMULE algorithm. Please run
 demo(wsimule) to learn the basic functions provided by this package.
 For further details, please read the original paper: Beilun Wang, Ritambhara
-Singh, Yanjun Qi (2017) <DOI:10.1007/s10994-017-5635-7>.
+Singh, Yanjun Qi (2017) \url{DOI:10.1007/s10994-017-5635-7}.
 }
 \details{
 The SIMULE algorithm is a constrained l1 minimization method that can detect
@@ -76,7 +76,9 @@ the hyperparameter controlling the differences between the shared pattern
 among graphs and the individual part of each graph. It is the \code{epsilon}
 parameter in our function and the default value is 1. For further details,
 please see our paper:
-<http://link.springer.com/article/10.1007/s10994-017-5635-7>.
+\url{http://link.springer.com/article/10.1007/s10994-017-5635-7}.
+
+if labels are provided in the datalist as column names, result will contain labels (to be plotted)
 }
 \examples{
 \dontrun{

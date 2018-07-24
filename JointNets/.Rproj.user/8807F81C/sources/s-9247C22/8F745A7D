@@ -4,16 +4,16 @@
     "created" : 1531415461906.000,
     "dirty" : false,
     "encoding" : "UTF-8",
-    "folds" : "2|33|5|0|\n7|33|10|0|\n12|50|36|0|\n100|72|149|0|\n",
-    "hash" : "0",
+    "folds" : "2|33|5|0|\n7|33|10|0|\n12|56|36|0|\n101|72|151|0|\n",
+    "hash" : "546660384",
     "id" : "8F745A7D",
-    "lastKnownWriteTime" : 1531513078,
-    "last_content_update" : 1531513078775,
+    "lastKnownWriteTime" : 1532444151,
+    "last_content_update" : 1532444610110,
     "path" : "E:/Github/JointNets/JointNets/R/diffee.R",
     "project_path" : "R/diffee.R",
     "properties" : {
-        "cursorPosition" : "40,28",
-        "scrollLine" : "0"
+        "cursorPosition" : "148,30",
+        "scrollLine" : "110"
     },
     "relative_order" : 5,
     "source_on_save" : false,

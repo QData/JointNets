@@ -1,5 +1,5 @@
 ##A simplex solver for linear programming problem in (N)SIMULE
-.linprogSPar <- function(i, Sigma, lambda)
+simule.linprogSPar <- function(i, Sigma, lambda)
   {
     # num of p * N
     # pTimesN = nrow(Sigma)
@@ -95,6 +95,7 @@
 ##' @import lpSolve
 ##' @import parallel
 ##' @import pcaPP
+##' @details if labels are provided in the datalist as column names, result will contain labels (to be plotted)
 ##' @examples
 ##' \dontrun{
 ##' library(JointNets)
@@ -157,7 +158,7 @@ simule <- function(X,  lambda, epsilon = 1, covType = "cov",parallel = FALSE)
         A = rbind(A, temp)
     }
     # define the function f for parallelization
-    f = function(x) .linprogSPar(x, A, lambda)
+    f = function(x) simule.linprogSPar(x, A, lambda)
 
     if(parallel == TRUE){ # parallel version
     	# number of cores to collect,
@@ -166,7 +167,7 @@ simule <- function(X,  lambda, epsilon = 1, covType = "cov",parallel = FALSE)
         no_cores = detectCores() - 1
         cl = makeCluster(no_cores)
         # declare variable and function names to the cluster
-        clusterExport(cl, list("f", "A", "lambda", ".linprogSPar", "lp"), envir = environment())
+        clusterExport(cl, list("f", "A", "lambda", "simule.linprogSPar", "lp"), envir = environment())
         result = parLapply(cl, 1:p, f)
         #print('Done!')
         for (i in 1:p){
@@ -205,9 +206,9 @@ simule <- function(X,  lambda, epsilon = 1, covType = "cov",parallel = FALSE)
     }
 
     out = Graphs
+    # add names / lables to output precision matrix
+    out = add_name_to_out(out,X)
     class(out) = "simule"
     return(out)
 }
-
-
 
