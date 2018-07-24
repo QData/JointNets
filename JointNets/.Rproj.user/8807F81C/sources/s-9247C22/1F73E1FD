@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1532453044916.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "2|30|4|0|\n11|35|13|0|\n23|35|25|0|\n33|35|35|0|\n43|35|45|0|\n53|35|55|0|\n62|3|77|2|\n86|3|175|2|\n",
+    "hash" : "0",
+    "id" : "1F73E1FD",
+    "lastKnownWriteTime" : 1532454633,
+    "last_content_update" : 1532454633187,
+    "path" : "E:/Github/JointNets/JointNets/R/make_title.R",
+    "project_path" : "R/make_title.R",
+    "properties" : {
+        "cursorPosition" : "11,16",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

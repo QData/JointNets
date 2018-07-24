@@ -250,7 +250,7 @@ returngraph_jointnets <-
            subID = NULL,
            index = NULL) {
 
-    adj = make.adj.matrix(x)
+    adj = make_adj_matrix(x)
     diag(adj) = 0
     gadj = graph.adjacency(adj, mode = "upper", weighted = TRUE)
     K = length(x)
