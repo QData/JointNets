@@ -358,8 +358,8 @@ jointplot <-
         args$vertex.frame.color,
         "white"
       ),
-      vertex.size = ifelse(hasArg('vertex.size'), args$vertex.size, 10),
       main = ifelse(hasArg('main'), args$main, title),
+      vertex.size = ifelse(hasArg('vertex.size'), args$vertex.size, 10),
       ...
     )
 
@@ -376,10 +376,10 @@ jointplot <-
       graphics::legend(
         "topright" ,
         inset = 0,
-        legend = c(paste("task", c(1:2), "specific"), "share"),
-        col = grDevices::rainbow(3),
+        legend = glegend,
+        col = grDevices::rainbow(length(x$graphs)+1),
         lty = 1,
-        cex = 0.5,
+        cex = 0.7,
         box.lty = 0
       )
     }
