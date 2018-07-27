@@ -1,5 +1,5 @@
 #A simplex solver for linear programming problem in (W)SIMULE
-wsimule.wlinprogSPar <- function(i, Sigma, W, lambda){
+wsimule.linprogSPar <- function(i, Sigma, W, lambda){
   # num of p * N
   # pTimesN = nrow(Sigma)
   # num of p * (N + 1)
@@ -161,7 +161,7 @@ wsimule <- function(X, lambda, epsilon = 1, W, covType = "cov",parallel = FALSE 
     A = rbind(A, temp)
   }
   # define the function f for parallelization
-  f = function(x) wsimule.wlinprogSPar(x, A, W, lambda)
+  f = function(x) wsimule.linprogSPar(x, A, W, lambda)
 
   if(parallel == TRUE){ # parallel version
     # number of cores to collect,
@@ -170,7 +170,7 @@ wsimule <- function(X, lambda, epsilon = 1, W, covType = "cov",parallel = FALSE 
     no_cores = detectCores() - 1
     cl = makeCluster(no_cores)
     # declare variable and function names to the cluster
-    clusterExport(cl, list("f", "A", "W", "lambda", ".linprogSPar", "lp"), envir = environment())
+    clusterExport(cl, list("f", "A", "W", "lambda", "wsimule.linprogSPar", "lp"), envir = environment())
     result = parLapply(cl, 1:p, f)
     #print('Done!')
     for (i in 1:p){

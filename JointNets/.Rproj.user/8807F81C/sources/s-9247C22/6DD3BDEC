@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1532631787685.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "6DD3BDEC",
+    "lastKnownWriteTime" : 1532462499,
+    "last_content_update" : 1532462499,
+    "path" : "E:/Github/JointNets/JointNets/R/returngraph.R",
+    "project_path" : "R/returngraph.R",
+    "properties" : {
+        "cursorPosition" : "5,72",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
