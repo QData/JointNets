@@ -53,7 +53,7 @@ The R implementation of the FASJEM method, which is introduced in the paper
 "A Fast and Scalable Joint Estimator for Learning Multiple Related Sparse
 Gaussian Graphical Models". Please run demo(fasjem) to learn the basic
 functions provided by this package. For more details, please see
-<http://proceedings.mlr.press/v54/wang17e/wang17e.pdf>.
+\url{http://proceedings.mlr.press/v54/wang17e/wang17e.pdf}.
 }
 \details{
 The FASJEM algorithm is a fast and scalable method to estimate multiple
@@ -85,7 +85,9 @@ When \code{method = "fasjem-i"}, \eqn{\mathcal{R}'(\cdot) =
 
 Please run \code{demo(fasjem)} to learn the basic functions provided by this
 package. For more details, please see
-<http://proceedings.mlr.press/v54/wang17e/wang17e.pdf>.
+\url{http://proceedings.mlr.press/v54/wang17e/wang17e.pdf}.
+
+if labels are provided in the datalist as column names, result will contain labels (to be plotted)
 }
 \examples{
 \dontrun{
@@ -98,6 +100,6 @@ plot(result)
 \references{
 Beilun Wang, Ji Gao, Yanjun Qi (2017). A Fast and Scalable Joint
 Estimator for Learning Multiple Related Sparse Gaussian Graphical Models.
-<http://proceedings.mlr.press/v54/wang17e/wang17e.pdf>
+\url{http://proceedings.mlr.press/v54/wang17e/wang17e.pdf}
 }
 \keyword{fasjem}

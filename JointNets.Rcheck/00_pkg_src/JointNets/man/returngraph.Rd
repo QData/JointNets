@@ -2,11 +2,34 @@
 % Please edit documentation in R/returngraph.R
 \name{returngraph}
 \alias{returngraph}
-\title{S3 method returngraph}
+\title{return igraph object from jointnet result specified by user input}
 \usage{
-returngraph(x, type = "task", neighbouroption = "task", subID = NULL,
-  index = NULL)
+returngraph(x, ...)
+}
+\arguments{
+\item{x}{output generated from any one of the jointnet functions (simule,wsimule,jeek,fasjem,diffee)}
+
+\item{...}{additional arguments, see \code{\link{returngraph.simule}}, \code{\link{returngraph.wsimule}},
+\code{\link{returngraph.diffee}}, \code{\link{returngraph.fasjem}}, \code{\link{returngraph.jeek}} for details.}
+}
+\value{
+an igraph object of graph / subgraph from jointnet result specified by user input
 }
 \description{
-S3 method returngraph
+This function returns an igraph object from jointnet result for user to work with directly
+}
+\details{
+the function aims to provide users the flexibility to explore and visualize the graph on their own
+generated from jointnet
+}
+\examples{
+\dontrun{
+library(JointNets)
+data(exampleData)
+result = jeek(X = exampleData, 0.3, covType = "cov", parallel = TRUE)
+graph = returngraph(result)
+}
+}
+\author{
+Beilun Wang, Zhaoyang Wang (Author), Zhaoyang Wang (maintainer) \email{zw4dn@virginia.edu}
 }

@@ -157,7 +157,6 @@ plotbrain.jeek <- function(x, ...) {
 }
 
 
-
 plotbrain_joint <-
   function(x,
            type = "task",
@@ -210,6 +209,23 @@ plotbrain_joint <-
       rescale = FALSE
     )
 
+
+    if (hastitle) {
+      title(main = title, line = 3)
+    }
+    if (haslegend) {
+      legend3d(
+        "topright" ,
+        legend = c(paste("task", c(
+          1:length(x$graphs)
+        ), "specific"), "share"),
+        col = grDevices::rainbow(length(x$graphs) + 1),
+        pch = 16,
+        cex = 1,
+        inset = c(0.02)
+      )
+    }
+
     #vertex.label
     #vertex.color
     #vertex.label = label,
@@ -231,12 +247,15 @@ plotbrain_joint <-
         args$vertex.frame.color,
         "white"
       ),
+
       add = TRUE,
       draw = TRUE,
       rescale = FALSE,
       ...
     )
 
+
+    if (FALSE){
     rgl::bgplot3d({
       plot.new()
       if (hastitle) {
@@ -255,5 +274,6 @@ plotbrain_joint <-
         )
       }
     })
+    }
 
   }

@@ -2,10 +2,10 @@
 % Please edit documentation in R/make_adj_matrix.R
 \name{make_adj_matrix}
 \alias{make_adj_matrix}
-\title{S3 method to make title for outputs from different methods}
+\title{method to make adjancey matrix for outputs from different methods}
 \usage{
-make_adj_matrix(x, ...)
+make_adj_matrix(x, separate = FALSE)
 }
 \description{
-S3 method to make title for outputs from different methods
+method to make adjancey matrix for outputs from different methods
 }

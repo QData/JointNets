@@ -1,5 +1,5 @@
 #A simplex solver for linear programming problem in (W)SIMULE
-.wlinprogSPar <- function(i, Sigma, W, lambda){
+wsimule.linprogSPar <- function(i, Sigma, W, lambda){
   # num of p * N
   # pTimesN = nrow(Sigma)
   # num of p * (N + 1)
@@ -98,6 +98,7 @@
 #' @import lpSolve
 #' @import parallel
 #' @import pcaPP
+#' @details if labels are provided in the datalist as column names, result will contain labels (to be plotted)
 #' @examples
 #' \dontrun{
 #' library(JointNets)
@@ -160,7 +161,7 @@ wsimule <- function(X, lambda, epsilon = 1, W, covType = "cov",parallel = FALSE 
     A = rbind(A, temp)
   }
   # define the function f for parallelization
-  f = function(x) .wlinprogSPar(x, A, W, lambda)
+  f = function(x) wsimule.linprogSPar(x, A, W, lambda)
 
   if(parallel == TRUE){ # parallel version
     # number of cores to collect,
@@ -169,7 +170,7 @@ wsimule <- function(X, lambda, epsilon = 1, W, covType = "cov",parallel = FALSE 
     no_cores = detectCores() - 1
     cl = makeCluster(no_cores)
     # declare variable and function names to the cluster
-    clusterExport(cl, list("f", "A", "W", "lambda", ".linprogSPar", "lp"), envir = environment())
+    clusterExport(cl, list("f", "A", "W", "lambda", "wsimule.linprogSPar", "lp"), envir = environment())
     result = parLapply(cl, 1:p, f)
     #print('Done!')
     for (i in 1:p){
@@ -207,8 +208,22 @@ wsimule <- function(X, lambda, epsilon = 1, W, covType = "cov",parallel = FALSE 
     }
   }
 
-  out = Graphs
+  share = 1/(epsilon * N) * xt[(1 + N * p):((N + 1) * p),]
+  for(j in 1:p){
+    for(k in j:p){
+      if (abs(share[j,k]) < abs(share[k,j])){
+        share[j,k] = share[j,k]
+        share[k,j] = share[j,k]
+      }
+      else{
+        share[j,k] = share[k,j]
+        share[k,j] = share[k,j]
+      }
+    }
+  }
+  out = list(graphs = Graphs, share = share)
   class(out) = "wsimule"
+  out = add_name_to_out(out,X)
   return(out)
 }
 

@@ -128,6 +128,26 @@ plot.simule <-
               ...)
   }
 
+#' function to plot simulated result
+plot.simulation <-
+  function(x,
+           type = "task",
+           neighbouroption = "task",
+           subID = NULL,
+           index = NULL,
+           hastitle = TRUE,
+           haslegend = TRUE,
+           ...)
+  {
+    jointplot(x,
+              type,
+              neighbouroption,
+              subID,
+              index,
+              hastitle,
+              haslegend,
+              ...)
+  }
 #' Plot wsimule result specified by user input
 #'
 #' This function can plot and return multiple sparse graphs distinguished by edge colors

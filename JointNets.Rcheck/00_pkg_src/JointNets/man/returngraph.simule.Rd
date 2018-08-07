@@ -2,7 +2,7 @@
 % Please edit documentation in R/returngraph.R
 \name{returngraph.simule}
 \alias{returngraph.simule}
-\title{return graph from simule result}
+\title{return igraph object from simule result specified by user input}
 \usage{
 \method{returngraph}{simule}(x, type = "task", neighbouroption = "task",
   subID = NULL, index = NULL)
@@ -10,27 +10,33 @@
 \arguments{
 \item{x}{output generated from simule function (simule class)}
 
-\item{type}{type of graph, there are four options:
-(1) "task" (graph for each task (including shared part) specified further by subID (task number))
-(2) "share" (shared graph for all tasks)
-(3) "taskspecific" (graph for each task specific (excluding shared part)
+\item{type}{type of graph. There are four options:
+\itemize{
+\item "task" (graph for each task (including shared part) specified further by subID (task number))
+\item "share" (shared graph for all tasks)
+\item "taskspecific" (graph for each task specific graph (excluding shared part)
 specified further by subID (task number) )
-(4) "neighbour" (zoom into nodes in the graph specified further by neighbouroptoin, subID (task number)
-and index (node id))}
+\item "neighbour" (zoom into nodes in the graph specified further by neighbouroptoin, subID (task number)
+and index (node id))
+}}
 
-\item{neighbouroption}{determines what type of graph to zoom into when parameter type is "neighbour"
-There are two options:
-(1) "task" (zoom into graph for each task (including shared part))
-(2) "taskspecific" (zoom into graph for each task specific (excluding shared part))}
+\item{neighbouroption}{determines what type of graph to zoom into when parameter \strong{"type"} is \strong{"neighbour"}. There are two options:
+\itemize{
+\item "task" (zoom into graph for each task (including shared part))
+\item "taskspecific" (zoom into graph for each task specific (excluding shared part))
+}}
 
-\item{subID}{selects which task to display
-(1) 0 (only allowed when type is task or type is neighbour and neighbouroption is task) (selecting share graph)
-(2) positive task number (selects a task number)
-(3) a vector of task number (selects multiple tasks)
-(4) NULL (selects all tasks (all graphs))}
+\item{subID}{selects which task to display. There are four options:
+\itemize{
+\item 0 (only allowed when
+\strong{"type"} is \strong{"task"} or \strong{"type"} is \strong{"neighbour"} and \strong{"neighbouroption"} is \strong{"task"}) (selects share graph)
+\item positive task number (selects that particular task)
+\item a vector of task number (selects multiple tasks)
+\item NULL (selects all tasks (all graphs))
+}}
 
-\item{index}{determines which node(s) to zoom into when parameter type is "neighbour"
-could either be an integer or vector of integers representing node ids
+\item{index}{determines which node(s) to zoom into when parameter \strong{"type"} is \strong{"neighbour"}.
+This parameter could either be an integer or vector of integers representing node ids
 (zoom into one node or multiple nodes)}
 }
 \value{
@@ -45,11 +51,12 @@ generated from simule
 }
 \examples{
 \dontrun{
+library(JointNets)
 data(exampleData)
 result = simule(X = exampleData , lambda = 0.1, epsilon = 0.45, covType = "cov", FALSE)
-returngraph.simule(result)
+graph = returngraph.simule(result)
 }
 }
 \author{
-Beilun Wang, Zhaoyang Wang (Author), Zhaoyang Wang (maintainer)
+Beilun Wang, Zhaoyang Wang (Author), Zhaoyang Wang (maintainer) \email{zw4dn@virginia.edu}
 }

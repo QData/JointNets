@@ -100,7 +100,7 @@ simule.linprogSPar <- function(i, Sigma, lambda)
 ##' \dontrun{
 ##' library(JointNets)
 ##' data(exampleData)
-##' result = simule(X = exampleData , lambda = 0.1, epsilon = 0.45, covType = "cov", FALSE)
+##' result = simule(X = exampleData , lambda = 0.1, epsilon = 0.45, covType = "cov", TRUE)
 ##' plot(result)
 ##' }
 simule <- function(X,  lambda, epsilon = 1, covType = "cov",parallel = FALSE)
@@ -111,7 +111,6 @@ simule <- function(X,  lambda, epsilon = 1, covType = "cov",parallel = FALSE)
         X[[i]] = as.matrix(X[[i]])
       }
     }
-
     #get number of tasks
     N = length(X)
     #get the cov/cor matrices

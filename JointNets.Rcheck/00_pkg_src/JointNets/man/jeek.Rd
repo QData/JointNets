@@ -11,7 +11,7 @@ jeek(X, lambda, W = NA, covType = "cov", parallel = FALSE)
 \item{X}{A List of input matrices. They can be data matrices or
 covariance/correlation matrices. If every matrix in the X is a symmetric
 matrix, the matrices are assumed to be covariance/correlation matrices. More
-details at <https://github.com/QData/JEEK>}
+details at \url{https://github.com/QData/JEEK}}
 
 \item{lambda}{A positive number. The hyperparameter controls the sparsity
 level of the matrices. The \eqn{\lambda_n} in the following section:
@@ -69,6 +69,8 @@ hyperparameter controlling the sparsity level of the matrices and it is the
 Beilun Wang, Arshdeep Sekhon, Yanjun Qi. A Fast and Scalable Joint Estimator
 for Integrating Additional Knowledge in Learning Multiple Related Sparse
 Gaussian Graphical Models. ICML 2018
+
+if labels are provided in the datalist as column names, result will contain labels (to be plotted)
 }
 \examples{
 \dontrun{
@@ -81,7 +83,7 @@ plot(result)
 \references{
 Beilun Wang, Arshdeep Sekhon, Yanjun Qi. A Fast and Scalable
 Joint Estimator for Integrating Additional Knowledge in Learning Multiple
-Related Sparse Gaussian Graphical Models. <arXiv:1806.00548>
+Related Sparse Gaussian Graphical Models. \url{arXiv:1806.00548}
 }
 \author{
 Beilun Wang

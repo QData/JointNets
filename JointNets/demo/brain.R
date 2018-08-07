@@ -17,14 +17,7 @@ result = simule(ABIDE_aal116_timeseries, 0.2, 1, covType = "cov", TRUE)
 #braintemplate <- neurobase::readnii(system.file("MNI152_T1_1mm_brain.nii.gz", package = "brainR"),reorient = FALSE)
 
 color = as.integer(aal116coordinates$lobe)
+
 plotbrain(result, type = "task", neighbouroption = "task",
                          subID = NULL, index = NULL, layout = layout)
 
-plotbrain(result, type = "share", neighbouroption = "task",
-                         subID = NULL, index = NULL, layout = layout)
-
-plotbrain(result, type = "taskspecific", neighbouroption = "task",
-                         subID = 1, index = NULL, layout = layout)
-
-plotbrain(result, type = "taskspecific", neighbouroption = "task",
-                         subID = 2, index = NULL, layout = layout)

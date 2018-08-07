@@ -77,22 +77,22 @@
   return(x)
 }
 
-.EEGM <- function(covMatrix, lambda) {
+fasjem.EEGM <- function(covMatrix, lambda) {
   result = sign(covMatrix) * pmax(abs(covMatrix) - lambda, 0)
   result
 }
 
-.backwardMap <- function(covMatrix) {
+fasjem.backwardMap <- function(covMatrix) {
   niuList = 0.001 * (1:1000)
-  bestDet = det(.EEGM(covMatrix, 0.001))
+  bestDet = det(fasjem.EEGM(covMatrix, 0.001))
   bestniu = 0.001
   for (i in 1:1000) {
-    if (bestDet < det(.EEGM(covMatrix, niuList[i]))) {
-      bestDet = det(.EEGM(covMatrix, niuList[i]))
+    if (bestDet < det(fasjem.EEGM(covMatrix, niuList[i]))) {
+      bestDet = det(fasjem.EEGM(covMatrix, niuList[i]))
       bestniu = niuList[i]
     }
   }
-  return(solve(.EEGM(covMatrix, bestniu)))
+  return(solve(fasjem.EEGM(covMatrix, bestniu)))
 }
 
 
@@ -171,6 +171,7 @@
 #' <http://proceedings.mlr.press/v54/wang17e/wang17e.pdf>
 #' @keywords fasjem
 #' @export
+#' @details if labels are provided in the datalist as column names, result will contain labels (to be plotted)
 #' @examples
 #' \dontrun{
 #' library(JointNets)
@@ -209,7 +210,7 @@ fasjem <-
       tmp = array(apply(tmp, 3, stats::cov), dim = c(ncol(X[[i]]), ncol(X[[i]]), length(X)))
     }
 
-    tmp = array(apply(tmp, 3, .backwardMap), dim = c(ncol(X[[i]]), ncol(X[[i]]), length(X)))
+    tmp = array(apply(tmp, 3, fasjem.backwardMap), dim = c(ncol(X[[i]]), ncol(X[[i]]), length(X)))
     if (method == "fasjem-g") {
       tmp = .fasjem_g(tmp, lambda, epsilon, gamma, rho, iterMax)
     }
@@ -220,7 +221,9 @@ fasjem <-
     for (i in 1:dim(tmp)[3]) {
       result[[i]] = tmp[, , i]
     }
+    result = list(graphs = result)
     class(result) = "fasjem"
+    result = add_name_to_out(result,X)
     return(result)
   }
 

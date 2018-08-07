@@ -4,7 +4,7 @@
 \alias{returngraph_jointnets}
 \title{core function to return graph from jointnets result}
 \usage{
-returngraph_jointnets(gadj, K, type = "task", neighbouroption = "task",
+returngraph_jointnets(x, type = "task", neighbouroption = "task",
   subID = NULL, index = NULL)
 }
 \description{

@@ -1,46 +1,59 @@
-#' S3 method returngraph
-returngraph <- function(x,
-                        type = "task",
-                        neighbouroption = "task",
-                        subID = NULL,
-                        index = NULL) {
-  UseMethod("returngraph", x, type, neighbouroption, subID, index)
-
+#' return igraph object from jointnet result specified by user input
+#'
+#' This function returns an igraph object from jointnet result for user to work with directly
+#' @author Beilun Wang, Zhaoyang Wang (Author), Zhaoyang Wang (maintainer) \email{zw4dn@virginia.edu}
+#' @param x output generated from any one of the jointnet functions (simule,wsimule,jeek,fasjem,diffee)
+#' @param ... additional arguments, see \code{\link{returngraph.simule}}, \code{\link{returngraph.wsimule}},
+#' \code{\link{returngraph.diffee}}, \code{\link{returngraph.fasjem}}, \code{\link{returngraph.jeek}} for details.
+#' @return an igraph object of graph / subgraph from jointnet result specified by user input
+#' @details the function aims to provide users the flexibility to explore and visualize the graph on their own
+#' generated from jointnet
+#' @examples
+#' \dontrun{
+#' library(JointNets)
+#' data(exampleData)
+#' result = jeek(X = exampleData, 0.3, covType = "cov", parallel = TRUE)
+#' graph = returngraph(result)
+#' }
+#' @export
+returngraph <- function(x,...) {
+  UseMethod("returngraph",x)
 }
 
 
 #' return igraph object from jeek result specified by user input
 #'
 #' This function can return an igraph object from jeek result for user to work with directly
-#' @author Beilun Wang, Zhaoyang Wang (Author), Zhaoyang Wang (maintainer)
+#' @author Beilun Wang, Zhaoyang Wang (Author), Zhaoyang Wang (maintainer) \email{zw4dn@virginia.edu}
 #' @param x output generated from jeek function (jeek class)
-#' @param type type of graph, there are four options:
-#' (1) "task" (graph for each task (including shared part) specified further by subID (task number))
-#' (2) "share" (shared graph for all tasks)
-#' (3) "taskspecific" (graph for each task specific (excluding shared part)
+#' @param type type of graph. There are four options:
+#' * "task" (graph for each task (including shared part) specified further by subID (task number))
+#' * "share" (shared graph for all tasks)
+#' * "taskspecific" (graph for each task specific graph (excluding shared part)
 #' specified further by subID (task number) )
-#' (4) "neighbour" (zoom into nodes in the graph specified further by neighbouroptoin, subID (task number)
+#' * "neighbour" (zoom into nodes in the graph specified further by neighbouroptoin, subID (task number)
 #' and index (node id))
-#' @param neighbouroption determines what type of graph to zoom into when parameter type is "neighbour"
-#' There are two options:
-#' (1) "task" (zoom into graph for each task (including shared part))
-#' (2) "taskspecific" (zoom into graph for each task specific (excluding shared part))
-#' @param subID selects which task to display
-#' (1) 0 (only allowed when type is task or type is neighbour and neighbouroption is task) (selecting share graph)
-#' (2) positive task number (selects a task number)
-#' (3) a vector of task number (selects multiple tasks)
-#' (4) NULL (selects all tasks (all graphs))
-#' @param index determines which node(s) to zoom into when parameter type is "neighbour"
-#' could either be an integer or vector of integers representing node ids
+#' @param neighbouroption determines what type of graph to zoom into when parameter **"type"** is **"neighbour"**. There are two options:
+#' * "task" (zoom into graph for each task (including shared part))
+#' * "taskspecific" (zoom into graph for each task specific (excluding shared part))
+#' @param subID selects which task to display. There are four options:
+#' * 0 (only allowed when
+#' **"type"** is **"task"** or **"type"** is **"neighbour"** and **"neighbouroption"** is **"task"**) (selects share graph)
+#' * positive task number (selects that particular task)
+#' * a vector of task number (selects multiple tasks)
+#' * NULL (selects all tasks (all graphs))
+#' @param index determines which node(s) to zoom into when parameter **"type"** is **"neighbour"**.
+#' This parameter could either be an integer or vector of integers representing node ids
 #' (zoom into one node or multiple nodes)
 #' @return an igraph object of graph / subgraph from jeek result specified by user input
 #' @details the function aims to provide users the flexibility to explore and visualize the graph on their own
 #' generated from jeek
 #' @examples
 #' \dontrun{
+#' library(JointNets)
 #' data(exampleData)
 #' result = jeek(X = exampleData, 0.3, covType = "cov", parallel = TRUE)
-#' graph = returngraph(result)
+#' graph = returngraph.jeek(result)
 #' }
 #' @export
 #' @import igraph
@@ -49,42 +62,45 @@ returngraph.jeek <-
            type = "task",
            neighbouroption = "task",
            subID = NULL,
-           index = NULL) {
-    return(.returngraph_jointnets(x,type,neighbouroption,subID,index))
+           index = NULL,
+           ...) {
+    gadj_K = return_graph_K_joint(x)
+    return(returngraph_jointnets(gadj_K$gadj,gadj_K$K,type,neighbouroption,subID,index))
 }
 
-#' return graph from simule result
+#' return igraph object from simule result specified by user input
 #'
 #' This function can return an igraph object from simule result for user to work with directly
-#' @author Beilun Wang, Zhaoyang Wang (Author), Zhaoyang Wang (maintainer)
+#' @author Beilun Wang, Zhaoyang Wang (Author), Zhaoyang Wang (maintainer) \email{zw4dn@virginia.edu}
 #' @param x output generated from simule function (simule class)
-#' @param type type of graph, there are four options:
-#' (1) "task" (graph for each task (including shared part) specified further by subID (task number))
-#' (2) "share" (shared graph for all tasks)
-#' (3) "taskspecific" (graph for each task specific (excluding shared part)
+#' @param type type of graph. There are four options:
+#' * "task" (graph for each task (including shared part) specified further by subID (task number))
+#' * "share" (shared graph for all tasks)
+#' * "taskspecific" (graph for each task specific graph (excluding shared part)
 #' specified further by subID (task number) )
-#' (4) "neighbour" (zoom into nodes in the graph specified further by neighbouroptoin, subID (task number)
+#' * "neighbour" (zoom into nodes in the graph specified further by neighbouroptoin, subID (task number)
 #' and index (node id))
-#' @param neighbouroption determines what type of graph to zoom into when parameter type is "neighbour"
-#' There are two options:
-#' (1) "task" (zoom into graph for each task (including shared part))
-#' (2) "taskspecific" (zoom into graph for each task specific (excluding shared part))
-#' @param subID selects which task to display
-#' (1) 0 (only allowed when type is task or type is neighbour and neighbouroption is task) (selecting share graph)
-#' (2) positive task number (selects a task number)
-#' (3) a vector of task number (selects multiple tasks)
-#' (4) NULL (selects all tasks (all graphs))
-#' @param index determines which node(s) to zoom into when parameter type is "neighbour"
-#' could either be an integer or vector of integers representing node ids
+#' @param neighbouroption determines what type of graph to zoom into when parameter **"type"** is **"neighbour"**. There are two options:
+#' * "task" (zoom into graph for each task (including shared part))
+#' * "taskspecific" (zoom into graph for each task specific (excluding shared part))
+#' @param subID selects which task to display. There are four options:
+#' * 0 (only allowed when
+#' **"type"** is **"task"** or **"type"** is **"neighbour"** and **"neighbouroption"** is **"task"**) (selects share graph)
+#' * positive task number (selects that particular task)
+#' * a vector of task number (selects multiple tasks)
+#' * NULL (selects all tasks (all graphs))
+#' @param index determines which node(s) to zoom into when parameter **"type"** is **"neighbour"**.
+#' This parameter could either be an integer or vector of integers representing node ids
 #' (zoom into one node or multiple nodes)
 #' @return an igraph object of graph / subgraph from simule result specified by user input
 #' @details the function aims to provide users the flexibility to explore and visualize the graph on their own
 #' generated from simule
 #' @examples
 #' \dontrun{
+#' library(JointNets)
 #' data(exampleData)
 #' result = simule(X = exampleData , lambda = 0.1, epsilon = 0.45, covType = "cov", FALSE)
-#' returngraph.simule(result)
+#' graph = returngraph.simule(result)
 #' }
 #' @export
 #' @import igraph
@@ -94,43 +110,44 @@ returngraph.simule <-
            neighbouroption = "task",
            subID = NULL,
            index = NULL) {
-    return(.returngraph_jointnets(x,type,neighbouroption,subID,index))
+    gadj_K = return_graph_K_joint(x)
+    return(returngraph_jointnets(gadj_K$gadj,gadj_K$K,type,neighbouroption,subID,index))
   }
 
-#' return graph from wsimule result
+#' return igraph object from wsimule result specified by user input
 #'
-#' return graph from simule result
-#'
-#' This function can return an igraph object from simule result for user to work with directly
-#' @author Beilun Wang, Zhaoyang Wang (Author), Zhaoyang Wang (maintainer)
-#' @param x output generated from simule function (simule class)
-#' @param type type of graph, there are four options:
-#' (1) "task" (graph for each task (including shared part) specified further by subID (task number))
-#' (2) "share" (shared graph for all tasks)
-#' (3) "taskspecific" (graph for each task specific (excluding shared part)
+#' This function can return an igraph object from wsimule result for user to work with directly
+#' @author Beilun Wang, Zhaoyang Wang (Author), Zhaoyang Wang (maintainer) \email{zw4dn@virginia.edu}
+#' @param x output generated from wsimule function (wsimule class)
+#' @param type type of graph. There are four options:
+#' * "task" (graph for each task (including shared part) specified further by subID (task number))
+#' * "share" (shared graph for all tasks)
+#' * "taskspecific" (graph for each task specific graph (excluding shared part)
 #' specified further by subID (task number) )
-#' (4) "neighbour" (zoom into nodes in the graph specified further by neighbouroptoin, subID (task number)
+#' * "neighbour" (zoom into nodes in the graph specified further by neighbouroptoin, subID (task number)
 #' and index (node id))
-#' @param neighbouroption determines what type of graph to zoom into when parameter type is "neighbour"
-#' There are two options:
-#' (1) "task" (zoom into graph for each task (including shared part))
-#' (2) "taskspecific" (zoom into graph for each task specific (excluding shared part))
-#' @param subID selects which task to display
-#' (1) 0 (only allowed when type is task or type is neighbour and neighbouroption is task) (selecting share graph)
-#' (2) positive task number (selects a task number)
-#' (3) a vector of task number (selects multiple tasks)
-#' (4) NULL (selects all tasks (all graphs))
-#' @param index determines which node(s) to zoom into when parameter type is "neighbour"
-#' could either be an integer or vector of integers representing node ids
+#' @param neighbouroption determines what type of graph to zoom into when parameter **"type"** is **"neighbour"**. There are two options:
+#' * "task" (zoom into graph for each task (including shared part))
+#' * "taskspecific" (zoom into graph for each task specific (excluding shared part))
+#' @param subID selects which task to display. There are four options:
+#' * 0 (only allowed when
+#' **"type"** is **"task"** or **"type"** is **"neighbour"** and **"neighbouroption"** is **"task"**) (selects share graph)
+#' * positive task number (selects that particular task)
+#' * a vector of task number (selects multiple tasks)
+#' * NULL (selects all tasks (all graphs))
+#' @param index determines which node(s) to zoom into when parameter **"type"** is **"neighbour"**.
+#' This parameter could either be an integer or vector of integers representing node ids
 #' (zoom into one node or multiple nodes)
-#' @return an igraph object of graph / subgraph from simule result specified by user input
+#' @return an igraph object of graph / subgraph from wsimule result specified by user input
 #' @details the function aims to provide users the flexibility to explore and visualize the graph on their own
-#' generated from simule
+#' generated from wsimule
 #' @examples
 #' \dontrun{
+#' library(JointNets)
 #' data(exampleData)
-#' result = simule(X = exampleData , lambda = 0.1, epsilon = 0.45, covType = "cov", FALSE)
-#' returngraph.simule(result)
+#' result = wsimule(X = exampleData , lambda = 0.1, epsilon = 0.45,
+#' W = matrix(1,20,20), covType = "cov", FALSE)
+#' graph = returngraph.wsimule(result)
 #' }
 #' @export
 #' @import igraph
@@ -140,43 +157,43 @@ returngraph.wsimule <-
            neighbouroption = "task",
            subID = NULL,
            index = NULL) {
-    return(.returngraph_jointnets(x,type,neighbouroption,subID,index))
+    gadj_K = return_graph_K_joint(x)
+    return(returngraph_jointnets(gadj_K$gadj,gadj_K$K,type,neighbouroption,subID,index))
 }
 
-#' return graph from fasjem result
+#' return igraph object from fasjem result specified by user input
 #'
-#' return graph from simule result
-#'
-#' This function can return an igraph object from simule result for user to work with directly
-#' @author Beilun Wang, Zhaoyang Wang (Author), Zhaoyang Wang (maintainer)
-#' @param x output generated from simule function (simule class)
-#' @param type type of graph, there are four options:
-#' (1) "task" (graph for each task (including shared part) specified further by subID (task number))
-#' (2) "share" (shared graph for all tasks)
-#' (3) "taskspecific" (graph for each task specific (excluding shared part)
+#' This function can return an igraph object from fasjem result for user to work with directly
+#' @author Beilun Wang, Zhaoyang Wang (Author), Zhaoyang Wang (maintainer) \email{zw4dn@virginia.edu}
+#' @param x output generated from fasjem function (fasjem class)
+#' @param type type of graph. There are four options:
+#' * "task" (graph for each task (including shared part) specified further by subID (task number))
+#' * "share" (shared graph for all tasks)
+#' * "taskspecific" (graph for each task specific graph (excluding shared part)
 #' specified further by subID (task number) )
-#' (4) "neighbour" (zoom into nodes in the graph specified further by neighbouroptoin, subID (task number)
+#' * "neighbour" (zoom into nodes in the graph specified further by neighbouroptoin, subID (task number)
 #' and index (node id))
-#' @param neighbouroption determines what type of graph to zoom into when parameter type is "neighbour"
-#' There are two options:
-#' (1) "task" (zoom into graph for each task (including shared part))
-#' (2) "taskspecific" (zoom into graph for each task specific (excluding shared part))
-#' @param subID selects which task to display
-#' (1) 0 (only allowed when type is task or type is neighbour and neighbouroption is task) (selecting share graph)
-#' (2) positive task number (selects a task number)
-#' (3) a vector of task number (selects multiple tasks)
-#' (4) NULL (selects all tasks (all graphs))
-#' @param index determines which node(s) to zoom into when parameter type is "neighbour"
-#' could either be an integer or vector of integers representing node ids
+#' @param neighbouroption determines what type of graph to zoom into when parameter **"type"** is **"neighbour"**. There are two options:
+#' * "task" (zoom into graph for each task (including shared part))
+#' * "taskspecific" (zoom into graph for each task specific (excluding shared part))
+#' @param subID selects which task to display. There are four options:
+#' * 0 (only allowed when
+#' **"type"** is **"task"** or **"type"** is **"neighbour"** and **"neighbouroption"** is **"task"**) (selects share graph)
+#' * positive task number (selects that particular task)
+#' * a vector of task number (selects multiple tasks)
+#' * NULL (selects all tasks (all graphs))
+#' @param index determines which node(s) to zoom into when parameter **"type"** is **"neighbour"**.
+#' This parameter could either be an integer or vector of integers representing node ids
 #' (zoom into one node or multiple nodes)
-#' @return an igraph object of graph / subgraph from simule result specified by user input
+#' @return an igraph object of graph / subgraph from fasjem result specified by user input
 #' @details the function aims to provide users the flexibility to explore and visualize the graph on their own
-#' generated from simule
+#' generated from fasjem
 #' @examples
 #' \dontrun{
+#' library(JointNets)
 #' data(exampleData)
-#' result = simule(X = exampleData , lambda = 0.1, epsilon = 0.45, covType = "cov", FALSE)
-#' returngraph.simule(result)
+#' result = fasjem(X = exampleData, method = "fasjem-g", 0.5, 0.1, 0.1, 0.05, 10)
+#' graph = returngraph.fasjem(result)
 #' }
 #' @export
 #' @import igraph
@@ -186,66 +203,92 @@ returngraph.fasjem <-
            neighbouroption = "task",
            subID = NULL,
            index = NULL) {
-    return(.returngraph_jointnets(x,type,neighbouroption,subID,index))
+    gadj_K = return_graph_K_joint(x)
+    return(returngraph_jointnets(gadj_K$gadj,gadj_K$K,type,neighbouroption,subID,index))
 }
 
-#' return graph from diffee result
+#' function returngraph for simulated result
+returngraph.simulation <-
+  function(x,
+           type = "task",
+           neighbouroption = "task",
+           subID = NULL,
+           index = NULL) {
+    gadj_K = return_graph_K_joint(x)
+    return(returngraph_jointnets(gadj_K$gadj,gadj_K$K,type,neighbouroption,subID,index))
+  }
+
+#' function to return gadj and K (number of tasks)
+return_graph_K_joint<-function(x){
+  adj = make_adj_matrix(x)
+  diag(adj) = 0
+  gadj = graph.adjacency(adj, mode = "upper", weighted = TRUE)
+  if (!is.null(colnames(x$graphs[[1]]))){
+    V(gadj)$label = colnames(x$graphs[[1]])
+  }
+  K = length(x$graphs)
+  return(list(gadj=gadj,K=K))
+}
+
+
+#' return igraph object from diffee result specified by user input
 #'
-#' This function can return an igraph object from simule result for user to work with directly
-#' @author Beilun Wang, Zhaoyang Wang (Author), Zhaoyang Wang (maintainer)
-#' @param x output generated from simule function (simule class)
-#' @param type type of graph, there are four options:
-#' (1) "task" (graph for each task (including shared part) specified further by subID (task number))
-#' (2) "share" (shared graph for all tasks)
-#' (3) "taskspecific" (graph for each task specific (excluding shared part)
-#' specified further by subID (task number) )
-#' (4) "neighbour" (zoom into nodes in the graph specified further by neighbouroptoin, subID (task number)
-#' and index (node id))
-#' @param neighbouroption determines what type of graph to zoom into when parameter type is "neighbour"
-#' There are two options:
-#' (1) "task" (zoom into graph for each task (including shared part))
-#' (2) "taskspecific" (zoom into graph for each task specific (excluding shared part))
-#' @param subID selects which task to display
-#' (1) 0 (only allowed when type is task or type is neighbour and neighbouroption is task) (selecting share graph)
-#' (2) positive task number (selects a task number)
-#' (3) a vector of task number (selects multiple tasks)
-#' (4) NULL (selects all tasks (all graphs))
-#' @param index determines which node(s) to zoom into when parameter type is "neighbour"
-#' could either be an integer or vector of integers representing node ids
+#' This function can return an igraph object from diffee result for user to work with directly
+#' @author Beilun Wang, Zhaoyang Wang (Author), Zhaoyang Wang (maintainer) \email{zw4dn@virginia.edu}
+#' @param x output generated from diffee function (diffee class)
+#' @param type type of graph. There are two options:
+#' * "task" (difference graph)
+#' * "neighbour" (zoom into nodes in the difference graph specified further by parameter
+#' **"index"** (node id)
+#' @param neighbouroption unused
+#' @param subID unused
+#' @param index determines which node(s) to zoom into when parameter **"type"** is **"neighbour"**.
+#' This parameter could either be an integer or vector of integers representing node ids
 #' (zoom into one node or multiple nodes)
-#' @return an igraph object of graph / subgraph from simule result specified by user input
-#' @details the function aims to provide users the flexibility to explore and visualize the graph on their own
-#' generated from simule
+#' @param ... unused
+#' @return an igraph object of graph / subgraph from diffee result specified by user input
+#' @details the function aims to provide users the flexibility to explore and visualize the graph own their own
+#' generated from diffee
 #' @examples
 #' \dontrun{
 #' data(exampleData)
-#' result = simule(X = exampleData , lambda = 0.1, epsilon = 0.45, covType = "cov", FALSE)
-#' returngraph.simule(result)
+#' result = diffee(exampleData[[1]], exampleData[[2]], 0.45)
+#' graph = returngraph.diffee(result)
 #' }
 #' @export
 #' @import igraph
 returngraph.diffee <-
   function(x,
            type = "task",
+           neighbouroption = "task",
+           subID = NULL,
            index = NULL) {
     ### diffee only has difference graph
     if (!(type == "task" | type == "neighbour")) {stop("please specify a correct type")}
-    return(.returngraph_jointnets(x,type,"task",NULL,index))
-  }
 
-#' core function to return graph from jointnets result (core method for S3 method returngraph.<methodname>)
-.returngraph_jointnets <-
-  function(x,
+
+    adj = make_adj_matrix(x)
+    diag(adj) = 0
+    gadj = graph.adjacency(adj, mode = "upper", weighted = TRUE)
+
+    if (!is.null(colnames(x$difference))){
+      V(gadj)$label = colnames(x$difference)
+    }
+    K = 0
+
+
+    return(returngraph_jointnets(gadj,K,type,"task",NULL,index))
+}
+
+#' core function to return graph from jointnets result
+#' @import igraph
+returngraph_jointnets <-
+  function(gadj,
+           K,
            type = "task",
            neighbouroption = "task",
            subID = NULL,
            index = NULL) {
-
-    adj = .make.adj.matrix(x)
-    diag(adj) = 0
-    gadj = graph.adjacency(adj, mode = "upper", weighted = TRUE)
-    K = length(x)
-
 
     if (!is.null(E(gadj)$weight)) {E(gadj)$color = grDevices::rainbow(K+1)[E(gadj)$weight]}
     ### ignore subID and index
@@ -305,27 +348,4 @@ returngraph.diffee <-
     return(gadj)
   }
 
-#' helper function to make adjacency matrix
-#' @param theta result from jointnets
-.make.adj.matrix <-
-  function(theta, separate=FALSE)
-  {
-    K = length(theta)
-    adj = list()
-    if(separate)
-    {
-      for(k in 1:K)
-      {
-        adj[[k]] = (abs(theta[[k]])>1e-5)*1
-      }
-    }
-    if(!separate)
-    {
-      adj = 0*theta[[1]]
-      for(k in 1:K)
-      {
-        adj = adj+(abs(theta[[k]])>1e-5)*2^(k-1)
-      }
-    }
-    return(adj)
-  }
+
