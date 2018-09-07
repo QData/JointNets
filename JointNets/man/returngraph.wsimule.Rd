@@ -4,8 +4,8 @@
 \alias{returngraph.wsimule}
 \title{return igraph object from wsimule result specified by user input}
 \usage{
-\method{returngraph}{wsimule}(x, type = "task", neighbouroption = "task",
-  subID = NULL, index = NULL)
+\method{returngraph}{wsimule}(x, type = "task",
+  neighbouroption = "task", subID = NULL, index = NULL)
 }
 \arguments{
 \item{x}{output generated from wsimule function (wsimule class)}

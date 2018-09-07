@@ -5,7 +5,8 @@
 \title{plot 3d brain network from simule result}
 \usage{
 \method{plotbrain}{simule}(x, type = "task", neighbouroption = "task",
-  subID = NULL, index = NULL, hastitle = TRUE, haslegend = TRUE, ...)
+  subID = NULL, index = NULL, hastitle = TRUE, haslegend = TRUE,
+  ...)
 }
 \arguments{
 \item{x}{output generated from simule}

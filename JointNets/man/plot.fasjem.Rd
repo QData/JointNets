@@ -5,7 +5,8 @@
 \title{Plot fasjem result specified by user input}
 \usage{
 \method{plot}{fasjem}(x, type = "task", neighbouroption = "task",
-  subID = NULL, index = NULL, hastitle = TRUE, haslegend = TRUE, ...)
+  subID = NULL, index = NULL, hastitle = TRUE, haslegend = TRUE,
+  ...)
 }
 \arguments{
 \item{x}{output generated from fasjem function (fasjem class)}

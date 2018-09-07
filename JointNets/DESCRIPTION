@@ -11,4 +11,4 @@ Description: This is an R implementation of a constrained l1 minimization approa
 License: GPL-2
 URL: https://github.com/QData/SIMULE
 BugReports: https://github.com/QData/SIMULE
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0

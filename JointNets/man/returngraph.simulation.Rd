@@ -4,8 +4,8 @@
 \alias{returngraph.simulation}
 \title{function returngraph for simulated result}
 \usage{
-\method{returngraph}{simulation}(x, type = "task", neighbouroption = "task",
-  subID = NULL, index = NULL)
+\method{returngraph}{simulation}(x, type = "task",
+  neighbouroption = "task", subID = NULL, index = NULL)
 }
 \description{
 function returngraph for simulated result

@@ -4,8 +4,8 @@
 \alias{returngraph.fasjem}
 \title{return igraph object from fasjem result specified by user input}
 \usage{
-\method{returngraph}{fasjem}(x, type = "task", neighbouroption = "task",
-  subID = NULL, index = NULL)
+\method{returngraph}{fasjem}(x, type = "task",
+  neighbouroption = "task", subID = NULL, index = NULL)
 }
 \arguments{
 \item{x}{output generated from fasjem function (fasjem class)}

@@ -4,8 +4,8 @@
 \alias{plot.diffee}
 \title{return igraph object from diffee result specified by user input}
 \usage{
-\method{plot}{diffee}(x, type = "task", index = NULL, hastitle = TRUE,
-  ...)
+\method{plot}{diffee}(x, type = "task", index = NULL,
+  hastitle = TRUE, ...)
 }
 \arguments{
 \item{x}{output generated from diffee function (diffee class)}

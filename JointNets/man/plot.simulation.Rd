@@ -5,7 +5,8 @@
 \title{function to plot simulated result}
 \usage{
 \method{plot}{simulation}(x, type = "task", neighbouroption = "task",
-  subID = NULL, index = NULL, hastitle = TRUE, haslegend = TRUE, ...)
+  subID = NULL, index = NULL, hastitle = TRUE, haslegend = TRUE,
+  ...)
 }
 \description{
 function to plot simulated result

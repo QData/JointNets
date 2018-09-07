@@ -5,8 +5,8 @@
 \title{A Fast and Scalable Joint Estimator for Learning Multiple Related Sparse
 Gaussian Graphical Models}
 \usage{
-fasjem(X, method = "fasjem-g", lambda = 0.5, epsilon = 0.1, gamma = 0.1,
-  rho = 0.05, iterMax = 10)
+fasjem(X, method = "fasjem-g", lambda = 0.5, epsilon = 0.1,
+  gamma = 0.1, rho = 0.05, iterMax = 10)
 }
 \arguments{
 \item{X}{A List of input matrices. They can be either data matrices or

@@ -202,6 +202,7 @@ plotbrain_joint <-
 
 
         rgl::title3d(main = title); next3d()
+
         rgl::legend3d(
           "topright" ,
           legend = c(paste("task", c(
@@ -294,7 +295,6 @@ plotbrain_joint <-
       )
     }
 
-    #palette(categorical_pal(length(simuleresult$Graphs) + 1))
     rgl::rgl.open()
     rgl::par3d(windowRect = c(100, 100, 1000, 1000))
 

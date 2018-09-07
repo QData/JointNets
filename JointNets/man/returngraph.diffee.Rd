@@ -4,8 +4,8 @@
 \alias{returngraph.diffee}
 \title{return igraph object from diffee result specified by user input}
 \usage{
-\method{returngraph}{diffee}(x, type = "task", neighbouroption = "task",
-  subID = NULL, index = NULL)
+\method{returngraph}{diffee}(x, type = "task",
+  neighbouroption = "task", subID = NULL, index = NULL)
 }
 \arguments{
 \item{x}{output generated from diffee function (diffee class)}

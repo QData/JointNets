@@ -5,7 +5,8 @@
 \title{Plot wsimule result specified by user input}
 \usage{
 \method{plot}{wsimule}(x, type = "task", neighbouroption = "task",
-  subID = NULL, index = NULL, hastitle = TRUE, haslegend = TRUE, ...)
+  subID = NULL, index = NULL, hastitle = TRUE, haslegend = TRUE,
+  ...)
 }
 \arguments{
 \item{x}{output generated from wsimule function (wsimule class)}

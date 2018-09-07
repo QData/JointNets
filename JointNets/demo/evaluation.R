@@ -26,7 +26,10 @@ result = jeek(X = samples,
 evaluation(result,simulate)
 
 
-readline(prompt = "Press [enter] to view diffee evaluation")
+###readline(prompt = "Press [enter] to view diffee evaluation")
 
-result = diffee(samples[[1]], samples[[2]], 0.45)
-evaluation(result,simulate)
+###result = diffee(samples[[1]], samples[[2]], 0.45)
+###evaluation(result,simulate)
+
+AUC(simulate,"simule",seq(0,0.3, by=0.01),parallel = TRUE)
+

@@ -4,8 +4,8 @@
 \alias{returngraph.simule}
 \title{return igraph object from simule result specified by user input}
 \usage{
-\method{returngraph}{simule}(x, type = "task", neighbouroption = "task",
-  subID = NULL, index = NULL)
+\method{returngraph}{simule}(x, type = "task",
+  neighbouroption = "task", subID = NULL, index = NULL)
 }
 \arguments{
 \item{x}{output generated from simule function (simule class)}
