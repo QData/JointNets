@@ -15,7 +15,6 @@ plotbrain <- function(x, ...) {
 }
 
 
-
 #' plot 3d brain network from simule result
 #'
 #' This function plots 3d brain network from simule result
@@ -130,6 +129,31 @@ plotbrain.diffee <- function(x, ...) {
 }
 
 
+#' plot 3d brain network from diffeek result
+#'
+#' This function plots 3d brain network from diffee result
+#' @author Zhaoyang Wang (Author), Zhaoyang Wang (maintainer) \email{zw4dn@virginia.edu}
+#' @param x output generated from diffee
+#' @param ... additional arguments
+#' @return 3d (rgl) brain network
+#' @details The function plots brain network using \code{\link{rglplot.igraph}}
+#' @examples
+#' \dontrun{
+#' }
+#' @method plotbrain diffeek
+#' @export
+#' @export plotbrain.diffeek
+plotbrain.diffee <- function(x, ...) {
+  plotbrain_joint(x,
+                  type,
+                  neighbouroption,
+                  subID,
+                  index,
+                  hastitle,
+                  haslegend,
+                  ...)
+}
+
 
 #' plot 3d brain network from jeek result
 #'
@@ -181,6 +205,7 @@ plotbrain_joint <-
     )
 
     title = NA
+
     if (hastitle) {
       glabel = V(gadj)$label
       if (hasArg('vertex.label')) {
@@ -197,12 +222,10 @@ plotbrain_joint <-
       )
     }
 
-        rgl::rgl.open()
+        #rgl::rgl.open()
+        rgl::open3d()
         rgl::par3d(windowRect = c(100, 100, 1000, 1000))
-
-
-        rgl::title3d(main = title); next3d()
-
+        rgl::title3d(main = title); rgl::next3d() ## not working currently
         rgl::legend3d(
           "topright" ,
           legend = c(paste("task", c(
@@ -212,7 +235,7 @@ plotbrain_joint <-
           pch = 16,
           cex = 1,
           inset = c(0.02)
-        ); next3d()
+        ); rgl::next3d()
 
         misc3d::contour3d(
           neurobase::readnii(
@@ -244,7 +267,6 @@ plotbrain_joint <-
             args$vertex.frame.color,
             "white"
           ),
-
           add = TRUE,
           draw = TRUE,
           rescale = FALSE,

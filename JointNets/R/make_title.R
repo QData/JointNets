@@ -14,6 +14,13 @@ maketitle.diffee <- function(x,
 }
 
 
+maketitle.diffeek <- function(x,
+                             type = "task",
+                             index = NULL,
+                             graphlabel = NULL,
+                             ...) {
+  maketitle_difference(x,type,index,graphlabel)
+}
 
 maketitle.simule <- function(x,
                              type = "task",
@@ -45,6 +52,7 @@ maketitle.jeek <- function(x,
   maketitle_joint(x,type,subID,index,neighbouroption,graphlabel)
 }
 
+
 maketitle.fasjem <- function(x,
                              type = "task",
                              subID = NULL,
@@ -54,6 +62,7 @@ maketitle.fasjem <- function(x,
                              ...) {
   maketitle_joint(x,type,subID,index,neighbouroption,graphlabel)
 }
+
 
 maketitle.simulation <- function(x,
                              type = "task",

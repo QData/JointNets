@@ -16,30 +16,10 @@ result = simule(ABIDE_aal116_timeseries, 0.2, 1, covType = "cov", TRUE)
 ### create a fixed layout on cancergraph for plotting
 #braintemplate <- neurobase::readnii(system.file("MNI152_T1_1mm_brain.nii.gz", package = "brainR"),reorient = FALSE)
 
-color = as.integer(aal116coordinates$lobe)
+#color for nodes
+#color = as.integer(aal116coordinates$lobe)
 
 plotbrain(result, type = "task", neighbouroption = "task",
                          subID = NULL, index = NULL, layout = layout)
 
 
-{
-open3d()
-cols <- rainbow(7)
-layout3d(matrix(1:16, 4,4), heights=c(1,3,1,3))
-text3d(0,0,0,"tetrahedron3d"); next3d()
-shade3d(tetrahedron3d(col=cols[1])); next3d()
-legend3d(
-  "topright" ,
-  legend = "hello"
-)
-}
-
-
-{
-  with(iris, plot3d(Sepal.Length, Sepal.Width, Petal.Length,
-                   type="s", col=as.numeric(Species)))
-  legend3d(
-    "topright" ,
-    legend = "hello"
-  )
-}

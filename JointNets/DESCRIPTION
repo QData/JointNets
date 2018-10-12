@@ -2,6 +2,7 @@ Roxygen: list(markdown = TRUE)
 Package: JointNets
 Version: 1.0.0
 Date: 2018-07-23
+Encoding: UTF-8
 Title: A Constrained L1 Minimization Approach for Estimating Multiple Sparse Gaussian or Nonparanormal Graphical Models
 Authors@R: c(person("Beilun", "Wang", role = c("aut", "cre"), email = "bw4mw@virginia.edu"), person("Yanjun", "Qi", role = "aut", email = "yanjun@virginia.edu"),person("Zhaoyang", "Wang", role = c("aut"), email = "zw4dn@virginia.edu"))
 Author: Beilun Wang [aut, cre], Yanjun Qi [aut], Zhaoyang Wang [aut]

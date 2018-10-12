@@ -278,9 +278,9 @@ plot.fasjem <-
   }
 
 
-#' return igraph object from diffee result specified by user input
+#' plot diffee result specified by user input
 #'
-#' This function can return an igraph object from diffee result for user to work with directly
+#' This function can plot diffee result
 #' @author Beilun Wang, Zhaoyang Wang (Author), Zhaoyang Wang (maintainer) \email{zw4dn@virginia.edu}
 #' @param x output generated from diffee function (diffee class)
 #' @param type type of graph. There are two options:
@@ -308,6 +308,46 @@ plot.fasjem <-
 #' @export plot.diffee
 #' @import igraph
 plot.diffee <-
+  function(x,
+           type = "task",
+           index = NULL,
+           hastitle = TRUE,
+           ...)
+  {
+    jointplot(x, type, "task", NULL, index, hastitle, FALSE, ...)
+  }
+
+
+#' plot diffeek result specified by user input
+#'
+#' This function can plot diffeek result
+#' @author Beilun Wang, Zhaoyang Wang (Author), Zhaoyang Wang (maintainer) \email{zw4dn@virginia.edu}
+#' @param x output generated from diffee function (diffee class)
+#' @param type type of graph. There are two options:
+#' * "task" (difference graph)
+#' * "neighbour" (zoom into nodes in the difference graph specified further by parameter
+#' **"index"** (node id)
+#' @param index determines which node(s) to zoom into when parameter **"type"** is **"neighbour"**.
+#' This parameter could either be an integer or vector of integers representing node ids
+#' @param hastitle determines whether the graph title is displayed or not (TRUE to display / FALSE to hide)
+#' @param ... extra parameters passed to  \code{\link{plot.igraph}}
+#' (zoom into one node or multiple nodes)
+#' @return a plot of the difference graph from diffee result specified by user input
+#' @details when only the diffeek result is provided, the function will plot all graphs with default numeric labels.
+#' Users can specify multiple subID to zoom in multiple nodes.
+#' Each graph will include a descriptive title.
+#' @examples
+#' \dontrun{
+#' library(JointNets)
+#' data(exampleData)
+#' result = diffeek(exampleData[[1]], exampleData[[2]], W = , g = )
+#' plot.diffee(result)
+#' }
+#' @method plot diffeek
+#' @export
+#' @export plot.diffeek
+#' @import igraph
+plot.diffeek <-
   function(x,
            type = "task",
            index = NULL,

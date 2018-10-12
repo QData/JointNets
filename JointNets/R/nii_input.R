@@ -1,4 +1,5 @@
 #' @export
+# currently not working
 convert_nii_to_datalist<-function(nii,atlas,number){
   data = nii@.Data
   mask = atlas@.Data

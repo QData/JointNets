@@ -258,6 +258,48 @@ returngraph.diffee <-
     return(returngraph_jointnets(x, type, "task", NULL, index))
   }
 
+
+
+#' return igraph object from diffee result specified by user input
+#'
+#' This function can return an igraph object from diffeek result for user to work with directly
+#' @author Beilun Wang, Zhaoyang Wang (Author), Zhaoyang Wang (maintainer) \email{zw4dn@virginia.edu}
+#' @param x output generated from diffeek function (diffeek class)
+#' @param type type of graph. There are two options:
+#' * "task" (difference graph)
+#' * "neighbour" (zoom into nodes in the difference graph specified further by parameter
+#' **"index"** (node id)
+#' @param neighbouroption unused
+#' @param subID unused
+#' @param index determines which node(s) to zoom into when parameter **"type"** is **"neighbour"**.
+#' This parameter could either be an integer or vector of integers representing node ids
+#' (zoom into one node or multiple nodes)
+#' @param ... unused
+#' @return an igraph object of graph / subgraph from diffee result specified by user input
+#' @details the function aims to provide users the flexibility to explore and visualize the graph own their own
+#' generated from diffee
+#' @examples
+#' \dontrun{
+#' data(exampleData)
+#' result = diffeek(exampleData[[1]], exampleData[[2]], W = , g = )
+#' graph = returngraph.diffee(result)
+#' }
+#' @export
+#' @import igraph
+returngraph.diffeek <-
+  function(x,
+           type = "task",
+           neighbouroption = "task",
+           subID = NULL,
+           index = NULL) {
+    ### diffeek only has difference graph
+    if (!(type == "task" |
+          type == "neighbour")) {
+      stop("please specify a correct type")
+    }
+    return(returngraph_jointnets(x, type, "task", NULL, index))
+  }
+
 #' core function to return graph from jointnets result
 #' @import igraph
 returngraph_jointnets <-

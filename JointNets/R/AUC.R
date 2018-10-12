@@ -1,12 +1,152 @@
 AUC_generic <- function(a,b){
   s = 0.0
-
   for(i in 1 : (length(a)-1)){
     s = 1/2 * (a[i] - a[i+1]) * (b[i] + b[i+1]) + s
   }
   return(s)
 }
 
+
+AUC_temp <- function(simulate, method, lambda, range = 30, ...){
+  tP = rep(0,range)
+  fN = rep(0,range)
+  fP = rep(0,range)
+  tN = rep(0,range)
+  fPM = rep(1, range)
+  tPM = rep(1, range)
+  real = simulate$graphs$share
+  for (a in 1:length(simulate$graphs$graphs)){
+  real = real + simulate$graphs$graphs[[a]]
+  }
+  real = abs(real) > 0
+  result = list()
+  X = simulate$samples
+
+  if (method == "simule"){
+    for(i in 2:range){
+      lambda = i*0.01
+      graphs = simule(X, lambda, epsilon = 1,parallel = TRUE)
+      estimategrpah = graphs$share
+      for (j in 1:length(graphs$graphs)){
+      estimategraph = graphs$graphs[[j]] + estimategraph
+      }
+      testGraph = abs(estimategraph) > 0
+      tP[i] = sum(testGraph & real)
+      tN[i] = sum((testGraph == 0) & (real == 0))
+      fP[i] = sum((testGraph == 1) & (real == 0))
+      fN[i] = sum((testGraph == 0) & (real == 1))
+      tPM[i] = tP[i] / (tP[i] + fN[i])
+      fPM[i] = fP[i] / (fP[i] + tN[i])
+    }
+    auc = AUC(c(fPM,0),c(tPM,0))
+  }
+
+  if (method == "wsimule"){
+    for(i in 2:range){
+      lambda = i*0.01
+      graphs = wsimule(X, lambda, epsilon = 1,parallel = TRUE)
+      estimategrpah = graphs$share
+      for (j in 1:length(graphs$graphs)){
+        estimategraph = graphs$graphs[[j]] + estimategraph
+      }
+      testGraph = abs(estimategraph) > 0
+      tP[i] = sum(testGraph & real)
+      tN[i] = sum((testGraph == 0) & (real == 0))
+      fP[i] = sum((testGraph == 1) & (real == 0))
+      fN[i] = sum((testGraph == 0) & (real == 1))
+      tPM[i] = tP[i] / (tP[i] + fN[i])
+      fPM[i] = fP[i] / (fP[i] + tN[i])
+    }
+    auc = AUC(c(fPM,0),c(tPM,0))
+  }
+
+  if (method == "jeek"){
+    for(i in 2:range){
+      lambda = i*0.01
+      graphs = jeek(X, lambda, parallel = TRUE)
+      estimategrpah = graphs$share
+      for (j in 1:length(graphs$graphs)){
+        estimategraph = graphs$graphs[[j]] + estimategraph
+      }
+      testGraph = abs(estimategraph) > 0
+      tP[i] = sum(testGraph & real)
+      tN[i] = sum((testGraph == 0) & (real == 0))
+      fP[i] = sum((testGraph == 1) & (real == 0))
+      fN[i] = sum((testGraph == 0) & (real == 1))
+      tPM[i] = tP[i] / (tP[i] + fN[i])
+      fPM[i] = fP[i] / (fP[i] + tN[i])
+    }
+    auc = AUC(c(fPM,0),c(tPM,0))
+  }
+
+
+  if (method == "fasjem"){
+    for(i in 2:range){
+      lambda = i*0.01
+      graphs = fasjem(X, lambda = lambda)
+      estimategrpah = graphs$share
+      for (j in 1:length(graphs$graphs)){
+        estimategraph = graphs$graphs[[j]] + estimategraph
+      }
+      testGraph = abs(estimategraph) > 0
+      tP[i] = sum(testGraph & real)
+      tN[i] = sum((testGraph == 0) & (real == 0))
+      fP[i] = sum((testGraph == 1) & (real == 0))
+      fN[i] = sum((testGraph == 0) & (real == 1))
+      tPM[i] = tP[i] / (tP[i] + fN[i])
+      fPM[i] = fP[i] / (fP[i] + tN[i])
+    }
+    auc = AUC(c(fPM,0),c(tPM,0))
+  }
+
+
+  if (method == "diffee"){
+    for(i in 2:range){
+      lambda = i*0.01
+      graphs = diffee(X[[1]], X[[2]], lambda = lambda)
+      estimategrpah = graphs$graphs
+      real = 0
+      for (a in 1:length(simulate$graphs$graphs)){
+        real = real + simulate$graphs$graphs[[a]]
+      }
+      real = abs(real) > 0
+      testGraph = abs(estimategraph) > 0
+      tP[i] = sum(testGraph & real)
+      tN[i] = sum((testGraph == 0) & (real == 0))
+      fP[i] = sum((testGraph == 1) & (real == 0))
+      fN[i] = sum((testGraph == 0) & (real == 1))
+      tPM[i] = tP[i] / (tP[i] + fN[i])
+      fPM[i] = fP[i] / (fP[i] + tN[i])
+    }
+    auc = AUC(c(fPM,0),c(tPM,0))
+  }
+
+
+  if (method == "diffeek"){
+    for(i in 2:range){
+      lambda = i*0.01
+      # fix the W, g interaction
+      graphs = diffee(X[[1]], X[[2]], W = NULL, g = NULL, lambda = lambda)
+      estimategrpah = graphs$graphs
+      real = 0
+      for (a in 1:length(simulate$graphs$graphs)){
+        real = real + simulate$graphs$graphs[[a]]
+      }
+      real = abs(real) > 0
+      testGraph = abs(estimategraph) > 0
+      tP[i] = sum(testGraph & real)
+      tN[i] = sum((testGraph == 0) & (real == 0))
+      fP[i] = sum((testGraph == 1) & (real == 0))
+      fN[i] = sum((testGraph == 0) & (real == 1))
+      tPM[i] = tP[i] / (tP[i] + fN[i])
+      fPM[i] = fP[i] / (fP[i] + tN[i])
+    }
+    auc = AUC(c(fPM,0),c(tPM,0))
+  }
+
+  result$auc = auc
+  return(result)
+}
 #' function to return AUC score
 #' @param simulate results from function simulation
 #' @param method method name from any one of the jointNets methods
@@ -74,15 +214,59 @@ AUC <- function(simulate, method, lambdas, ...){
 
 
   if (method == "wsimule"){
+    X = simulate$samples
+    ### j to calcualte AUC for each estimation
+    for (j in 1:length(simulate$samples)) {
+      real = abs(simulate$graphs$graphs[[j]]) > 0
+      for (i in 2:length) {
+        graphs = wsimule(X, lambdas[i-1], ...)
+        testGraph = abs(graphs$graphs[[j]]) > 0
+        tP[i] = sum(testGraph & real)
+        tN[i] = sum((testGraph == 0) & (real == 0))
+        fP[i] = sum((testGraph == 1) & (real == 0))
+        fN[i] = sum((testGraph == 0) & (real == 1))
+        tPM[i] = tP[i] / (tP[i] + fN[i])
+        fPM[i] = fP[i] / (fP[i] + tN[i])
+        pres[i] = tP[i] / (tP[i] + fP[i])
+        rec[i] = tP[i] / (tP[i] + fN[i])
+      }
+      precision[[j]] = pres
+      recall[[j]] = rec
+      auc[j] = AUC_generic(c(fPM, 0), c(tPM, 0))
+    }
+
+    K = length(simulate$samples)+1
+    real = abs(simulate$graphs$share) > 0
+    for (i in 2:length) {
+      graphs = simule(X, lambdas[i-1], ...)
+      testGraph = abs(graphs$share) > 0
+      tP[i] = sum(testGraph & real)
+      tN[i] = sum((testGraph == 0) & (real == 0))
+      fP[i] = sum((testGraph == 1) & (real == 0))
+      fN[i] = sum((testGraph == 0) & (real == 1))
+      tPM[i] = tP[i] / (tP[i] + fN[i])
+      fPM[i] = fP[i] / (fP[i] + tN[i])
+      pres[i] = tP[i] / (tP[i] + fP[i])
+      rec[i] = tP[i] / (tP[i] + fN[i])
+    }
+    precision[[K]] = pres
+    recall[[K]] = rec
+    auc[K] = AUC_generic(c(fPM, 0), c(tPM, 0))
   }
 
-  if (method == "diffee"){
-  }
+
 
   if (method == "fasjem"){
   }
 
   if (method == "jeek"){
+  }
+
+  if (method == "diffee"){
+  }
+
+  if (method == "diffeek"){
+
   }
 
   result$auc = auc
