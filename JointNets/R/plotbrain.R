@@ -143,7 +143,7 @@ plotbrain.diffee <- function(x, ...) {
 #' @method plotbrain diffeek
 #' @export
 #' @export plotbrain.diffeek
-plotbrain.diffee <- function(x, ...) {
+plotbrain.diffeek <- function(x, ...) {
   plotbrain_joint(x,
                   type,
                   neighbouroption,

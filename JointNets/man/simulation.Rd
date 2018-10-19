@@ -7,9 +7,9 @@
 simulation(p = 20, n, seedNum = 37, s = 0.1, ss = 0.1)
 }
 \arguments{
-\item{p}{number of features}
+\item{p}{number of features (number of nodes)}
 
-\item{n}{a vector indicating number of samples and tasks, for example c(100,200,300) for 3 tasks and 100,200 and 300 samples per task}
+\item{n}{a vector indicating number of samples and tasks, for example c(100,200,300) for 3 tasks and 100,200 and 300 samples for task 1, 2 and 3}
 
 \item{seedNum}{seed number for random simulation}
 
@@ -18,7 +18,7 @@ simulation(p = 20, n, seedNum = 37, s = 0.1, ss = 0.1)
 \item{ss}{controls sparsity of the generated graph}
 }
 \value{
-a list comprising graphs (multiple related simulated graphs) and samples (samples generated from multiple related graphs)
+a list comprising simulatedgraphs (multiple related simulated graphs) and simulatedsamples (samples generated from multiple related graphs)
 }
 \description{
 function to simulate multiple sparse graphs and generate samples

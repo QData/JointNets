@@ -207,7 +207,42 @@ returngraph.fasjem <-
 
   }
 
-#' function returngraph for simulated result
+#' return igraph object from simulation result specified by user input
+#'
+#' This function can return an igraph object from simulation result for user to work with directly
+#' @author Beilun Wang, Zhaoyang Wang (Author), Zhaoyang Wang (maintainer) \email{zw4dn@virginia.edu}
+#' @param x output generated from fasjem function (fasjem class)
+#' @param type type of graph. There are four options:
+#' * "task" (graph for each task (including shared part) specified further by subID (task number))
+#' * "share" (shared graph for all tasks)
+#' * "taskspecific" (graph for each task specific graph (excluding shared part)
+#' specified further by subID (task number) )
+#' * "neighbour" (zoom into nodes in the graph specified further by neighbouroptoin, subID (task number)
+#' and index (node id))
+#' @param neighbouroption determines what type of graph to zoom into when parameter **"type"** is **"neighbour"**. There are two options:
+#' * "task" (zoom into graph for each task (including shared part))
+#' * "taskspecific" (zoom into graph for each task specific (excluding shared part))
+#' @param subID selects which task to display. There are four options:
+#' * 0 (only allowed when
+#' **"type"** is **"task"** or **"type"** is **"neighbour"** and **"neighbouroption"** is **"task"**) (selects share graph)
+#' * positive task number (selects that particular task)
+#' * a vector of task number (selects multiple tasks)
+#' * NULL (selects all tasks (all graphs))
+#' @param index determines which node(s) to zoom into when parameter **"type"** is **"neighbour"**.
+#' This parameter could either be an integer or vector of integers representing node ids
+#' (zoom into one node or multiple nodes)
+#' @return an igraph object of graph / subgraph from fasjem result specified by user input
+#' @details the function aims to provide users the flexibility to explore and visualize the graph on their own
+#' generated from simulation
+#' @examples
+#' \dontrun{
+#' library(JointNets)
+#' data(exampleData)
+#' result = simulation(n=c(100,100,100))$simulatedgraphs
+#' graph = returngraph.fasjem(result)
+#' }
+#' @export
+#' @import igraph
 returngraph.simulation <-
   function(x,
            type = "task",

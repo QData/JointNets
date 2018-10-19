@@ -2,6 +2,7 @@
 #' @param datalist datalist used as an input to any of the jointnet method
 #' @param result result generated from datalist using the same jointnet method
 #' @return BIC score
+#' @export
 BIC <- function(datalist, result){
   K = length(datalist)
   covs = list()

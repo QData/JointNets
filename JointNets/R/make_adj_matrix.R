@@ -17,7 +17,8 @@ make_adj_matrix <- function(x, separate = FALSE) {
     adj = 0*x[[1]]
     for(k in 1:K)
     {
-      adj = adj+(abs(x[[k]])>1e-5)*2^(k-1)
+      adj = adj+(abs(x[[k]])>1e-5)*2^(k-1) ## why 2^(k-1)?
+      #adj = adj+(abs(x[[k]])>1e-5)*1
     }
   }
   return(adj)
