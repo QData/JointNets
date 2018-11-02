@@ -4,16 +4,16 @@
 \alias{AUC}
 \title{function to return AUC score}
 \usage{
-AUC(simulate, method, lambdas, ...)
+AUC(a, b)
 }
 \arguments{
 \item{simulate}{results from function simulation}
 
 \item{method}{method name from any one of the jointNets methods}
 
-\item{...}{parameters passed to method}
-
 \item{range}{values of lambda to calculate AUC score}
+
+\item{...}{parameters passed to method}
 }
 \value{
 a list consisting of AUC (a list of AUC scores), precision (a list of precisions)

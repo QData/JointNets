@@ -6,6 +6,14 @@
 \usage{
 make_adj_matrix(x, separate = FALSE)
 }
+\arguments{
+\item{x}{result from JointNet methods}
+
+\item{separate}{determines whther the adj matrix is accumulative or individual}
+}
+\value{
+a single adj matrix or a list of adj matrices
+}
 \description{
 method to make adjancey matrix for outputs from different methods
 }

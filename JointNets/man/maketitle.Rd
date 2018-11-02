@@ -6,6 +6,9 @@
 \usage{
 maketitle(x, ...)
 }
+\value{
+according to the type of graph, return a descriptive title
+}
 \description{
 S3 method to make title for different graph estimation
 }

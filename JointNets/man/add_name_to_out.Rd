@@ -12,6 +12,9 @@ add_name_to_out(output, datalist, ...)
 
 \item{datalist}{orginial data list}
 }
+\value{
+output with names from datalist
+}
 \description{
 helper function to add row/col names to jointnet precision matrix output
 To help label igraph object in returngraph and plot

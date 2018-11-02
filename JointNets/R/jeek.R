@@ -161,7 +161,8 @@ jeek <- function(X, lambda, W = NA, covType = "cov", parallel = FALSE) {
   for (i in 1:length(X)) {
     B[,,i] = X[[i]]
   }
-  if (!is.na(W)){
+  ## add any() to fix multiple NA problems
+  if (!any(is.na(W))){ ## will give warnings since W is a list
     for (i in 1:length(W)) {
       weight[,,i] = W[[i]]
     }

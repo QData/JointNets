@@ -2,7 +2,7 @@
 
 .softThrek <- function(x, lambda){
   result = sign(x) * pmax(abs(x)-lambda, 0)
-  result
+  return(result)
 }
 
 .hardThrek <- function(x, lambda){
@@ -125,12 +125,16 @@ diffeek <- function(C, D, W, g, epsilon = 1, lambda = 0.05, covType = "cov", thr
   backX = .backwardMapk(covX, thre)
   backY = .backwardMapk(covY, thre)
   B = backY -backX
+
   diffNet = .softThrek(B, W * lambda)
   diag(diffNet) = 0
+
+  ### why update diffNet[i,i]
   if (epsilon > 0){
     for (i in 1:max(g)){
       index = which(g == i)
       B2 = max(norm(B[index,index], 'F') - epsilon * lambda, 0) * B[index,index] / norm(B[index,index], 'F')
+
       diffNet[index,index] = pmax(lambda - B[index,index], pmin(B2, lambda + B[index,index]))
     }
   }
