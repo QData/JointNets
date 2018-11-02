@@ -1,6 +1,9 @@
 
 #'method to make adjancey matrix for outputs from different methods
 #'@export
+#'@param x result from JointNet methods
+#'@param separate determines whther the adj matrix is accumulative or individual
+#'@return a single adj matrix or a list of adj matrices
 make_adj_matrix <- function(x, separate = FALSE) {
   x = x$graphs
   K = length(x)
