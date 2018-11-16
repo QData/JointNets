@@ -183,7 +183,7 @@ simule <- function(X,  lambda, epsilon = 1, covType = "cov",parallel = FALSE)
                 }
             }
         }
-        print("Done!")
+        #print("Done!")
     }
 
     for(i in 1:N){

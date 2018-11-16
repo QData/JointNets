@@ -1,6 +1,6 @@
 jeek.EEGM <- function(covMatrix, lambda){
   result = sign(covMatrix) * pmax(abs(covMatrix) - lambda, 0)
-  result
+  return(result)
 }
 
 jeek.backwardMap <- function(covMatrix){

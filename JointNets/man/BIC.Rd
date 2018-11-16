@@ -17,3 +17,13 @@ BIC score
 \description{
 function to return BIC score
 }
+\details{
+not working with DIFFEE and DIFFEEK (difference estimation)
+}
+\examples{
+\dontrun{
+simulateresult = simulation(p = 20,  n = c(100,100))
+result = simule(simulateresult$simulatedsamples, 0.2, 0.5, covType = "cov", TRUE)
+BIC(simulateresult$simulatedsamples,result)
+}
+}

@@ -1,20 +1,33 @@
-
-#' This function computes F1 score for jointnet result
+#' computes F1 score for jointnet result
 #' @author Zhaoyang Wang (Author), Zhaoyang Wang (maintainer) \email{zw4dn@virginia.edu}
 #' @param result output generated from any one of the jointnet algorithms
+#' @param simulatedgraphs $simulatedgraphs from function simulation()
 #' @param ... additional arguments
-#' @return computed F1 scores
+#' @return F1 scores
 #' @examples
 #' \dontrun{
+#' simulationresult = simulation(p = 20,  n = c(100,100))
+#' truth = simulationresult$simulatedgraphs
+#' result = simule(simulationresult$simulatedsamples, 0.2, 0.5, covType = "cov", TRUE)
+#' F1(result,truth)
 #' }
 #' @export
-F1 <- function(result, simulatedgraphs, ...) {
+F1 <- function(result, simulatedgraphs,...) {
   UseMethod("F1", result)
 }
 
+
+#' computes F1 score for jointnet result
 #' @method F1 simule
 #' @export
 #' @export F1.simule
+#' @examples
+#' \dontrun{
+#' simulationresult = simulation(p = 20,  n = c(100,100))
+#' truth = simulationresult$simulatedgraphs
+#' result = simule(simulationresult$simulatedsamples, 0.2, 0.5, covType = "cov", TRUE)
+#' F1(result,truth)
+#' }
 F1.simule <-
   function(result,
            simulatedgraphs,
@@ -33,9 +46,17 @@ F1.simule <-
     return(out)
   }
 
+#' computes F1 score for jointnet result
 #' @method F1 wsimule
 #' @export
 #' @export F1.wsimule
+#' @examples
+#' \dontrun{
+#' simulationresult = simulation(p = 20,  n = c(100,100))
+#' truth = simulationresult$simulatedgraphs
+#' result = wsimule(simulationresult$simulatedsamples, 0.2, 1, W = matrix(1,20,20), covType = "cov", TRUE)
+#' F1(result,truth)
+#' }
 F1.wsimule <-
   function(result,
            simulatedgraphs,
@@ -57,6 +78,13 @@ F1.wsimule <-
 #' @method F1 jeek
 #' @export
 #' @export F1.jeek
+#' @examples
+#' \dontrun{
+#' simulationresult = simulation(p = 20,  n = c(100,100))
+#' truth = simulationresult$simulatedgraphs
+#' result = jeek(simulationresult$simulatedsamples,0.25,covType = "kendall",parallel = TRUE)
+#' F1(result,truth)
+#' }
 F1.jeek <-
   function(result,
            simulatedgraphs,
@@ -77,6 +105,13 @@ F1.jeek <-
 #' @method F1 fasjem
 #' @export
 #' @export F1.fasjem
+#' @examples
+#' \dontrun{
+#' simulationresult = simulation(p = 20,  n = c(100,100))
+#' truth = simulationresult$simulatedgraphs
+#' result = fasjem(simulationresult$simulatedsamples, method = "fasjem-g", 2, 0.1, 0.1, 0.05, 20)
+#' F1(result,truth)
+#' }
 F1.fasjem <-
   function(result,
            simulatedgraphs,
@@ -97,6 +132,13 @@ F1.fasjem <-
 #' @method F1 diffee
 #' @export
 #' @export F1.diffee
+#' @examples
+#' \dontrun{
+#' simulationresult = simulation(p = 20,  n = c(100,100))
+#' truth = simulationresult$simulatedgraphs
+#' result = diffee(simulationresult$simulatedsamples[[1]], simulationresult$simulatedsamples[[2]], 0.01)
+#' F1(result,truth)
+#' }
 F1.diffee <-
   function(result,
            simulatedgraphs,

@@ -126,20 +126,29 @@ diffeek <- function(C, D, W, g, epsilon = 1, lambda = 0.05, covType = "cov", thr
   backY = .backwardMapk(covY, thre)
   B = backY -backX
 
-  diffNet = .softThrek(B, W * lambda)
-  diag(diffNet) = 0
+  diffNet = matrix(0,nrow(W),ncol(W)) ## initialize empty diffNet
+  gV = cbind(combn(g,2),combn(g,2)[c(2,1),]) ## obtain gV
 
-  ### why update diffNet[i,i]
-  if (epsilon > 0){
-    for (i in 1:max(g)){
-      index = which(g == i)
-      B2 = max(norm(B[index,index], 'F') - epsilon * lambda, 0) * B[index,index] / norm(B[index,index], 'F')
-
-      diffNet[index,index] = pmax(lambda - B[index,index], pmin(B2, lambda + B[index,index]))
+  ## update diffnet on E\gV
+  for (i in 1:nrow(W)){
+    for (j in 1:ncol(W)){
+      diffNet[i,j] = .softThrek(B[i,j], lambda / W[i,j])
     }
   }
 
-  diag(diffNet) = 1
+  ## update diffnet on gV
+  sum = 0
+  for (i in 1:dim(gV)[2]){
+      sum = sum + (B[gV[1,i],gV[2,i]])^2
+  }
+  B_V_norm = sqrt(sum)
+  B2 = max(B_V_norm - epsilon * lambda, 0) * B / B_V_norm
+  for (i in 1:dim(gV)[2]){
+    a = gV[1,i]
+    b = gV[2,i]
+    diffNet[a,b] = pmax(lambda - B[a,b], pmin(B2[a,b], lambda + B[a,b]))
+  }
+
   diffNet = list(diffNet)
   ### share = NULL since diffeek produces only the difference graph
   out = list(graphs = diffNet, share = NULL)
@@ -147,3 +156,8 @@ diffeek <- function(C, D, W, g, epsilon = 1, lambda = 0.05, covType = "cov", thr
   out = add_name_to_out(out,C)
   return(out)
 }
+
+
+
+
+

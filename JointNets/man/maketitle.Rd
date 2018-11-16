@@ -7,7 +7,7 @@
 maketitle(x, ...)
 }
 \value{
-according to the type of graph, return a descriptive title
+a descriptive title for the plotted graph
 }
 \description{
 S3 method to make title for different graph estimation

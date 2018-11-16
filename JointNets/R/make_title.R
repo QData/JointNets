@@ -1,6 +1,6 @@
 
 #'S3 method to make title for different graph estimation
-#'@return according to the type of graph, return a descriptive title
+#'@return a descriptive title for the plotted graph
 maketitle <- function(x,...) {
   UseMethod("maketitle",x)
 }

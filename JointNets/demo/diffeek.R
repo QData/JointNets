@@ -11,7 +11,7 @@ data(cancer)
 cancerlist = list(as.matrix(cancer[[1]][which(cancer[[2]] == "not"), ]),
                   as.matrix(cancer[[1]][which(cancer[[2]] == "pcr"), ]))
 
-result = diffeek(cancerlist[[1]], cancerlist[[2]], W = , g = )
+result = diffeek(cancerlist[[1]], cancerlist[[2]], W = matrix(1,26,26), g = c(1,2,3))
 
 #diffeek <- function(C, D, W, g, epsilon = 1, lambda = 0.05, covType = "cov", thre = "soft")
 

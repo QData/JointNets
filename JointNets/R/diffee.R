@@ -2,7 +2,7 @@
 
 .softThre <- function(x, lambda){
     result = sign(x) * pmax(abs(x)-lambda, 0)
-    result
+    return(result)
 }
 
 .hardThre <- function(x, lambda){
