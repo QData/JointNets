@@ -51,7 +51,7 @@ multiple tasks.}
 models from multiple related datasets using the SIMULE algorithm. Please
 run demo(simule) to learn the basic functions provided by this package.
 For further details, please read the original paper: Beilun Wang,
-Ritambhara Singh, Yanjun Qi (2017) \url{DOI:10.1007/s10994-017-5635-7}.
+Ritambhara Singh, Yanjun Qi (2017) \doi{10.1007/s10994-017-5635-7}.
 }
 \details{
 The SIMULE algorithm is a constrained l1 minimization method that can

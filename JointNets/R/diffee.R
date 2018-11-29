@@ -44,7 +44,7 @@ diffee.backwardMap <-function(covMatrix, thre = "soft"){
 #' high-dimensional situation. Please run demo(diffee) to learn the basics.
 #' For further details, please read the
 #' original paper: Beilun Wang, Arshdeep Sekhon, Yanjun Qi (2018)
-#' <arXiv:1710.11223>.
+#' <https://arxiv.org/abs/1710.11223>.
 #'
 #' The DIFFEE algorithm is a fast and scalable Learning algorithm of Sparse
 #' Changes in High-Dimensional Gaussian Graphical Model Structure. It solves
@@ -54,7 +54,7 @@ diffee.backwardMap <-function(covMatrix, thre = "soft"){
 #' equation (2.11) in our paper. The \eqn{\lambda_n} is the hyperparameter
 #' controlling the sparsity level of the matrix and it is the \code{lambda} in
 #' our function. For further details, please see our paper: Beilun Wang,
-#' Arshdeep Sekhon, Yanjun Qi (2018) <arXiv:1710.11223>.
+#' Arshdeep Sekhon, Yanjun Qi (2018) <https://arxiv.org/abs/1710.11223>.
 #'
 #' @param C A input matrix for the 'control' group. It can be data matrix or
 #' covariance matrix. If C is a symmetric matrix, the matrices are assumed to
@@ -88,7 +88,7 @@ diffee.backwardMap <-function(covMatrix, thre = "soft"){
 #' @author Beilun Wang
 #' @references Beilun Wang, Arshdeep Sekhon, Yanjun Qi (2018). Fast and
 #' Scalable Learning of Sparse Changes in High-Dimensional Gaussian Graphical
-#' Model Structure. <arXiv:1710.11223>
+#' Model Structure. <https://arxiv.org/abs/1710.11223>
 #' @export
 #' @import pcaPP
 #' @details if labels are provided in the datalist as column names, result will contain labels (to be plotted)

@@ -83,12 +83,12 @@ readline(prompt = "Press [enter] to view comparison between ground truth and gen
 
 readline(prompt = "Press [enter] to continue to synthetic Gaussian data demo with 2 tasks and 500 features")
 
-data(exampleData500)
 
 readline(prompt = "Press [enter] to view the DIFFEE runtime (takes roughly 30 seconds on an i7 machine)")
 {
   start_time = Sys.time()
-  diffee(exampleData500[[1]], exampleData500[[2]], 1)
+  data500 = simulation(p=500, n = c(500,500))
+  diffee(data500$simulatedsamples[[1]], data500$simulatedsamples[[2]], 1)
   end_time = Sys.time()
   print(paste(
     "the time taken for DIFFEE to run with p = 500 is",

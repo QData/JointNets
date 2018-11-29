@@ -2,6 +2,7 @@
 #' @author Zhaoyang Wang (Author), Zhaoyang Wang (maintainer) \email{zw4dn@virginia.edu}
 #' @param result output generated from any one of the jointnet algorithms
 #' @param simulatedgraphs $simulatedgraphs from function simulation()
+#' @param ... unused
 #' @return F1 scores (F1 score for each context and the shared part (for simule and wsimule))
 #' @examples
 #' \dontrun{
@@ -17,6 +18,9 @@ F1 <- function(result, simulatedgraphs,...) {
 
 
 #' computes F1 score for jointnet result
+#' @param result output generated from any one of the jointnet algorithms
+#' @param simulatedgraphs $simulatedgraphs from function simulation()
+#' @param ... unused
 #' @method F1 simule
 #' @export
 #' @export F1.simule
@@ -46,6 +50,9 @@ F1.simule <-
   }
 
 #' computes F1 score for jointnet result
+#' @param result output generated from any one of the jointnet algorithms
+#' @param simulatedgraphs $simulatedgraphs from function simulation()
+#' @param ... unused
 #' @method F1 wsimule
 #' @export
 #' @export F1.wsimule
@@ -53,7 +60,8 @@ F1.simule <-
 #' \dontrun{
 #' simulationresult = simulation(p = 20,  n = c(100,100))
 #' truth = simulationresult$simulatedgraphs
-#' result = wsimule(simulationresult$simulatedsamples, 0.2, 1, W = matrix(1,20,20), covType = "cov", TRUE)
+#' result = wsimule(simulationresult$simulatedsamples,
+#'  0.2, 1, W = matrix(1,20,20), covType = "cov", TRUE)
 #' F1(result,truth)
 #' }
 F1.wsimule <-
@@ -75,6 +83,9 @@ F1.wsimule <-
   }
 
 #' computes F1 score for jointnet result
+#' @param result output generated from any one of the jointnet algorithms
+#' @param simulatedgraphs $simulatedgraphs from function simulation()
+#' @param ... unused
 #' @method F1 jeek
 #' @export
 #' @export F1.jeek
@@ -103,6 +114,9 @@ F1.jeek <-
   }
 
 #' computes F1 score for jointnet result
+#' @param result output generated from any one of the jointnet algorithms
+#' @param simulatedgraphs $simulatedgraphs from function simulation()
+#' @param ... unused
 #' @method F1 fasjem
 #' @export
 #' @export F1.fasjem
@@ -131,6 +145,9 @@ F1.fasjem <-
   }
 
 #' computes F1 score for jointnet result
+#' @param result output generated from any one of the jointnet algorithms
+#' @param simulatedgraphs $simulatedgraphs from function simulation()
+#' @param ... unused
 #' @method F1 diffee
 #' @export
 #' @export F1.diffee
@@ -138,7 +155,8 @@ F1.fasjem <-
 #' \dontrun{
 #' simulationresult = simulation(p = 20,  n = c(100,100))
 #' truth = simulationresult$simulatedgraphs
-#' result = diffee(simulationresult$simulatedsamples[[1]], simulationresult$simulatedsamples[[2]], 0.01)
+#' result = diffee(simulationresult$simulatedsamples[[1]],
+#' simulationresult$simulatedsamples[[2]], 0.01)
 #' F1(result,truth)
 #' }
 F1.diffee <-
@@ -155,6 +173,9 @@ F1.diffee <-
   }
 
 #' computes F1 score for jointnet result
+#' @param result output generated from any one of the jointnet algorithms
+#' @param simulatedgraphs $simulatedgraphs from function simulation()
+#' @param ... unused
 #' @method F1 diffeek
 #' @export
 #' @export F1.diffeek

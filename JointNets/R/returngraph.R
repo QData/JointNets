@@ -45,6 +45,7 @@ returngraph <- function(x, ...) {
 #' @param index determines which node(s) to zoom into when parameter **"type"** is **"neighbour"**.
 #' This parameter could either be an integer or vector of integers representing node ids
 #' (zoom into one node or multiple nodes)
+#' @param ... not used
 #' @return an igraph object of graph / subgraph from jeek result specified by user input
 #' @details the function aims to provide users the flexibility to explore and visualize the graph on their own
 #' generated from jeek
@@ -92,6 +93,7 @@ returngraph.jeek <-
 #' @param index determines which node(s) to zoom into when parameter **"type"** is **"neighbour"**.
 #' This parameter could either be an integer or vector of integers representing node ids
 #' (zoom into one node or multiple nodes)
+#' @param ... not used
 #' @return an igraph object of graph / subgraph from simule result specified by user input
 #' @details the function aims to provide users the flexibility to explore and visualize the graph on their own
 #' generated from simule
@@ -109,7 +111,8 @@ returngraph.simule <-
            type = "task",
            neighbouroption = "task",
            subID = NULL,
-           index = NULL) {
+           index = NULL,
+           ...) {
     return(returngraph_jointnets(x, type, neighbouroption, subID, index))
 
   }
@@ -138,6 +141,7 @@ returngraph.simule <-
 #' @param index determines which node(s) to zoom into when parameter **"type"** is **"neighbour"**.
 #' This parameter could either be an integer or vector of integers representing node ids
 #' (zoom into one node or multiple nodes)
+#' @param ... not used
 #' @return an igraph object of graph / subgraph from wsimule result specified by user input
 #' @details the function aims to provide users the flexibility to explore and visualize the graph on their own
 #' generated from wsimule
@@ -156,7 +160,8 @@ returngraph.wsimule <-
            type = "task",
            neighbouroption = "task",
            subID = NULL,
-           index = NULL) {
+           index = NULL,
+           ...) {
     return(returngraph_jointnets(x, type, neighbouroption, subID, index))
 
   }
@@ -185,6 +190,7 @@ returngraph.wsimule <-
 #' @param index determines which node(s) to zoom into when parameter **"type"** is **"neighbour"**.
 #' This parameter could either be an integer or vector of integers representing node ids
 #' (zoom into one node or multiple nodes)
+#' @param ... not used
 #' @return an igraph object of graph / subgraph from fasjem result specified by user input
 #' @details the function aims to provide users the flexibility to explore and visualize the graph on their own
 #' generated from fasjem
@@ -202,7 +208,8 @@ returngraph.fasjem <-
            type = "task",
            neighbouroption = "task",
            subID = NULL,
-           index = NULL) {
+           index = NULL,
+           ...) {
     return(returngraph_jointnets(x, type, neighbouroption, subID, index))
 
   }
@@ -231,6 +238,7 @@ returngraph.fasjem <-
 #' @param index determines which node(s) to zoom into when parameter **"type"** is **"neighbour"**.
 #' This parameter could either be an integer or vector of integers representing node ids
 #' (zoom into one node or multiple nodes)
+#' @param ... not used
 #' @return an igraph object of graph / subgraph from fasjem result specified by user input
 #' @details the function aims to provide users the flexibility to explore and visualize the graph on their own
 #' generated from simulation
@@ -248,7 +256,8 @@ returngraph.simulation <-
            type = "task",
            neighbouroption = "task",
            subID = NULL,
-           index = NULL) {
+           index = NULL,
+           ...) {
     return(returngraph_jointnets(x, type, neighbouroption, subID, index))
   }
 
@@ -284,7 +293,8 @@ returngraph.diffee <-
            type = "task",
            neighbouroption = "task",
            subID = NULL,
-           index = NULL) {
+           index = NULL,
+           ...) {
     ### diffee only has difference graph
     if (!(type == "task" |
           type == "neighbour")) {
@@ -326,7 +336,8 @@ returngraph.diffeek <-
            type = "task",
            neighbouroption = "task",
            subID = NULL,
-           index = NULL) {
+           index = NULL,
+           ...) {
     ### diffeek only has difference graph
     if (!(type == "task" |
           type == "neighbour")) {
@@ -335,8 +346,7 @@ returngraph.diffeek <-
     return(returngraph_jointnets(x, type, "task", NULL, index))
   }
 
-#' core function to return graph from jointnets result
-#' @import igraph
+
 returngraph_jointnets <-
   function(x,
            type = "task",

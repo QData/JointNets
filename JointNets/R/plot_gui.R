@@ -1,6 +1,3 @@
-library(shiny)
-
-
 ui <- fluidPage(
 
 
@@ -10,7 +7,7 @@ ui <- fluidPage(
     # Sidebar with a slider and selection inputs
     sidebarPanel(
       textInput("result","choose a graph to plot"),
-      actionButton("confirm", "confirm"),
+
       selectInput("type", "choose the graph type:",
                   choices = c("task","share","taskspecific","neighbour")),
       conditionalPanel("input.type == 'neighbour'",
@@ -38,34 +35,38 @@ ui <- fluidPage(
 
 )
 
+
+
 server <- function(input, output) {
-  v <- reactiveValues()
-
-  observeEvent(input$confirm, {
-    v = 5
-    #v = input$result
-    #v = eval(as.name(input$result))
-  })
-
-  output$plot <- renderPlot({
-      par(mfrow = c(1, 1))
+  output$plot <- shiny::renderPlot({
     #layout = layout_nicely(returngraph(eval(as.name(input$result))), dim = 2)
-      plot(v)
+    par(mfrow = c(1, 1))
 
-      plot(x = eval(as.name(v)),
-           type = input$type,
-           index = as.integer(input$index),
-           subID = if (as.integer(input$subID) == -1) NULL else as.integer(input$subID)
-      )
+    plot(x = eval(as.name(input$result)),
+         type = input$type,
+         index = as.integer(input$index),
+         subID = if (as.integer(input$subID) == -1) NULL else as.integer(input$subID)
+    )
   })
 
 }
 
-app = shinyApp(ui = ui, server = server)
+app = shiny::shinyApp(ui = ui, server = server)
 
-#' GUI version of plot
+
+#' GUI of JointNets plot
+#'
+#' GUI version of JointNets plot (input from the global environment)
 #' @export
+#' @author Zhaoyang Wang (Author), Zhaoyang Wang (maintainer) \email{zw4dn@virginia.edu}
+#' @details please refer to plot.simule, plot.wsimule and etc for details in plotting.
+#' value -1 for subID and index corresponds to NUL value
+#' @import shiny
+#' @importFrom graphics par
+#' @importFrom graphics plot
 plot_gui <- function(){
-  runApp(app)
-}
 
+  shiny::runApp(app)
+}
+#par(ask = F)
+#shiny::runApp(app)

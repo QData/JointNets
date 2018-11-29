@@ -2,13 +2,53 @@
 % Please edit documentation in R/plot.R
 \name{jointplot}
 \alias{jointplot}
-\title{core function for plotting jeek, simule, fasjem and wsimule
-need to fix diffee title issue}
+\title{core function to plot}
 \usage{
 jointplot(x, type = "task", neighbouroption = "task", subID = NULL,
   index = NULL, hastitle = TRUE, haslegend = TRUE, ...)
 }
+\arguments{
+\item{x}{output generated from JointNets}
+
+\item{type}{type of graph. There are four options:
+\itemize{
+\item "task" (graph for each task (including shared part) specified further by subID (task number))
+\item "share" (shared graph for all tasks)
+\item "taskspecific" (graph for each task specific graph (excluding shared part)
+specified further by subID (task number) )
+\item "neighbour" (zoom into nodes in the graph specified further by neighbouroptoin, subID (task number)
+and index (node id))
+}}
+
+\item{neighbouroption}{determines what type of graph to zoom into when parameter \strong{"type"} is \strong{"neighbour"}. There are two options:
+\itemize{
+\item "task" (zoom into graph for each task (including shared part))
+\item "taskspecific" (zoom into graph for each task specific (excluding shared part))
+}}
+
+\item{subID}{selects which task to display. There are four options:
+\itemize{
+\item 0 (only allowed when
+\strong{"type"} is \strong{"task"} or \strong{"type"} is \strong{"neighbour"} and \strong{"neighbouroption"} is \strong{"task"}) (selects share graph)
+\item positive task number (selects that particular task)
+\item a vector of task number (selects multiple tasks)
+\item NULL (selects all tasks (all graphs))
+}}
+
+\item{index}{determines which node(s) to zoom into when parameter \strong{"type"} is \strong{"neighbour"}.
+This parameter could either be an integer or vector of integers representing node ids
+(zoom into one node or multiple nodes)}
+
+\item{hastitle}{determines whether the graph title is displayed or not (TRUE to display / FALSE to hide)}
+
+\item{haslegend}{determines whether the graph legend is displayed or not (TRUE to display / FALSE to hide)}
+
+\item{...}{extra parameters passed to plot.igraph() and legend() (only the argument "legend" for legend() is available).
+Please see \code{\link{plot.igraph}} and \code{\link{legend}}}
+}
+\value{
+a plot of graph
+}
 \description{
-core function for plotting jeek, simule, fasjem and wsimule
-need to fix diffee title issue
+core function to plot
 }

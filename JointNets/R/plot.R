@@ -385,7 +385,9 @@ plot.diffee <-
 #' \dontrun{
 #' library(JointNets)
 #' data(exampleData)
-#' result = diffeek(exampleData[[1]], exampleData[[2]], W = matrix(1,20,20), g = rep(0,20),epsilon = 0.2, lambda = 0.4,covType = "cov")
+#' result = diffeek(exampleData[[1]], exampleData[[2]],
+#' W = matrix(1,20,20), g = rep(0,20),epsilon = 0.2,
+#' lambda = 0.4,covType = "cov")
 #' plot(result)
 #' }
 #' @method plot diffeek
@@ -402,8 +404,34 @@ plot.diffeek <-
     jointplot(x, type, "task", NULL, index, hastitle, FALSE, ...)
   }
 
-#' core function for plotting jeek, simule, fasjem and wsimule
-#' need to fix diffee title issue
+#' core function to plot
+#'
+#' @param x output generated from JointNets
+#' @param type type of graph. There are four options:
+#' * "task" (graph for each task (including shared part) specified further by subID (task number))
+#' * "share" (shared graph for all tasks)
+#' * "taskspecific" (graph for each task specific graph (excluding shared part)
+#' specified further by subID (task number) )
+#' * "neighbour" (zoom into nodes in the graph specified further by neighbouroptoin, subID (task number)
+#' and index (node id))
+#' @param neighbouroption determines what type of graph to zoom into when parameter **"type"** is **"neighbour"**. There are two options:
+#' * "task" (zoom into graph for each task (including shared part))
+#' * "taskspecific" (zoom into graph for each task specific (excluding shared part))
+#' @param subID selects which task to display. There are four options:
+#' * 0 (only allowed when
+#' **"type"** is **"task"** or **"type"** is **"neighbour"** and **"neighbouroption"** is **"task"**) (selects share graph)
+#' * positive task number (selects that particular task)
+#' * a vector of task number (selects multiple tasks)
+#' * NULL (selects all tasks (all graphs))
+#' @param index determines which node(s) to zoom into when parameter **"type"** is **"neighbour"**.
+#' This parameter could either be an integer or vector of integers representing node ids
+#' (zoom into one node or multiple nodes)
+#' @param hastitle determines whether the graph title is displayed or not (TRUE to display / FALSE to hide)
+#' @param haslegend determines whether the graph legend is displayed or not (TRUE to display / FALSE to hide)
+#' @param ... extra parameters passed to plot.igraph() and legend() (only the argument "legend" for legend() is available).
+#' Please see \code{\link{plot.igraph}} and \code{\link{legend}}
+#' @return a plot of graph
+#' @import methods
 jointplot <-
   function(x,
            type = "task",
@@ -431,7 +459,7 @@ jointplot <-
     title = NA
     if (hastitle) {
       glabel = V(gadj)$label
-      if (hasArg('vertex.label')) {
+      if (methods::hasArg('vertex.label')) {
         glabel = args$vertex.label
       }
       ## make title according to user input
@@ -450,21 +478,21 @@ jointplot <-
     #vertex.label to specify label names
     igraph::plot.igraph(
       gadj,
-      vertex.label.font = ifelse(hasArg('vertex.label.font'), args$vertex.label.font, 2),
-      vertex.shape =  ifelse(hasArg('vertex.shape'), args$vertex.shape, "none"),
+      vertex.label.font = ifelse(methods::hasArg('vertex.label.font'), args$vertex.label.font, 2),
+      vertex.shape =  ifelse(methods::hasArg('vertex.shape'), args$vertex.shape, "none"),
       vertex.label.color = ifelse(
-        hasArg('vertex.label.color'),
+        methods::hasArg('vertex.label.color'),
         args$vertex.label.color,
         "gray40"
       ),
-      vertex.label.cex = ifelse(hasArg('vertex.label.cex'), args$vertex.label.cex, .7),
+      vertex.label.cex = ifelse(methods::hasArg('vertex.label.cex'), args$vertex.label.cex, .7),
       vertex.frame.color = ifelse(
-        hasArg('vertex.frame.color'),
+        methods::hasArg('vertex.frame.color'),
         args$vertex.frame.color,
         "white"
       ),
-      main = ifelse(hasArg('main'), args$main, title),
-      vertex.size = ifelse(hasArg('vertex.size'), args$vertex.size, 10),
+      main = ifelse(methods::hasArg('main'), args$main, title),
+      vertex.size = ifelse(methods::hasArg('vertex.size'), args$vertex.size, 10),
       ...
     )
 
@@ -475,12 +503,12 @@ jointplot <-
     #user can specify their own legend
     if (haslegend) {
       glegend = c(paste("task", c(1:length(x$graphs)), "specific"), "share")
-      if (hasArg('legend')) {
+      if (methods::hasArg('legend')) {
         glegend = args$legend
       }
       graphics::legend(
         "topright" ,
-        inset=c(-0.2,0),
+        inset=c(0,0),
         legend = glegend,
         col = grDevices::rainbow(length(x$graphs)+1),
         lty = 1,

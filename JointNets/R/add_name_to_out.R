@@ -2,6 +2,7 @@
 #'To help label igraph object in returngraph and plot
 #'@param output output of jointnets
 #'@param datalist orginial data list
+#'@param ... unused
 #'@return output with names from datalist
 add_name_to_out <- function(output, datalist, ...) {
   cname = colnames(datalist[[1]])

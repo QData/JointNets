@@ -10,6 +10,8 @@ F1(result, simulatedgraphs, ...)
 \item{result}{output generated from any one of the jointnet algorithms}
 
 \item{simulatedgraphs}{$simulatedgraphs from function simulation()}
+
+\item{...}{unused}
 }
 \value{
 F1 scores (F1 score for each context and the shared part (for simule and wsimule))

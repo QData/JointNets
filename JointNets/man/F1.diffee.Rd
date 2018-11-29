@@ -6,6 +6,13 @@
 \usage{
 \method{F1}{diffee}(result, simulatedgraphs, ...)
 }
+\arguments{
+\item{result}{output generated from any one of the jointnet algorithms}
+
+\item{simulatedgraphs}{$simulatedgraphs from function simulation()}
+
+\item{...}{unused}
+}
 \description{
 computes F1 score for jointnet result
 }
@@ -13,7 +20,8 @@ computes F1 score for jointnet result
 \dontrun{
 simulationresult = simulation(p = 20,  n = c(100,100))
 truth = simulationresult$simulatedgraphs
-result = diffee(simulationresult$simulatedsamples[[1]], simulationresult$simulatedsamples[[2]], 0.01)
+result = diffee(simulationresult$simulatedsamples[[1]],
+simulationresult$simulatedsamples[[2]], 0.01)
 F1(result,truth)
 }
 }

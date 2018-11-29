@@ -84,8 +84,7 @@ jeek.linprogSPar <- function(i, W, B, lambda){
 #'
 #' @param X A List of input matrices. They can be data matrices or
 #' covariance/correlation matrices. If every matrix in the X is a symmetric
-#' matrix, the matrices are assumed to be covariance/correlation matrices. More
-#' details at <https://github.com/QData/JEEK>
+#' matrix, the matrices are assumed to be covariance/correlation matrices.
 #' @param lambda A positive number. The hyperparameter controls the sparsity
 #' level of the matrices. The \eqn{\lambda_n} in the following section:
 #' Details.
@@ -115,7 +114,7 @@ jeek.linprogSPar <- function(i, W, B, lambda){
 #' @author Beilun Wang
 #' @references Beilun Wang, Arshdeep Sekhon, Yanjun Qi. A Fast and Scalable
 #' Joint Estimator for Integrating Additional Knowledge in Learning Multiple
-#' Related Sparse Gaussian Graphical Models. <arXiv:1806.00548>
+#' Related Sparse Gaussian Graphical Models. <https://arxiv.org/abs/1806.00548>
 #' @export
 #' @import lpSolve
 #' @import parallel

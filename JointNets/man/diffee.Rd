@@ -49,7 +49,7 @@ Estimate DIFFerential networks via an Elementary Estimator under a
 high-dimensional situation. Please run demo(diffee) to learn the basics.
 For further details, please read the
 original paper: Beilun Wang, Arshdeep Sekhon, Yanjun Qi (2018)
-\url{arXiv:1710.11223}.
+\url{https://arxiv.org/abs/1710.11223}.
 }
 \details{
 The DIFFEE algorithm is a fast and scalable Learning algorithm of Sparse
@@ -60,7 +60,7 @@ the following equation: \deqn{ \min\limits_{\Delta}||\Delta||_1 } Subject to
 equation (2.11) in our paper. The \eqn{\lambda_n} is the hyperparameter
 controlling the sparsity level of the matrix and it is the \code{lambda} in
 our function. For further details, please see our paper: Beilun Wang,
-Arshdeep Sekhon, Yanjun Qi (2018) \url{arXiv:1710.11223}.
+Arshdeep Sekhon, Yanjun Qi (2018) \url{https://arxiv.org/abs/1710.11223}.
 
 if labels are provided in the datalist as column names, result will contain labels (to be plotted)
 }
@@ -75,7 +75,7 @@ plot(result)
 \references{
 Beilun Wang, Arshdeep Sekhon, Yanjun Qi (2018). Fast and
 Scalable Learning of Sparse Changes in High-Dimensional Gaussian Graphical
-Model Structure. \url{arXiv:1710.11223}
+Model Structure. \url{https://arxiv.org/abs/1710.11223}
 }
 \author{
 Beilun Wang

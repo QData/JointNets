@@ -9,11 +9,27 @@
   ...)
 }
 \arguments{
-\item{x}{output generated from diffee}
+\item{x}{output generated from diffee function (diffee class)}
 
-\item{...}{additional arguments, please see \code{\link{plot.diffee}} for details}
+\item{type}{type of graph. There are two options:
+\itemize{
+\item "task" (difference graph)
+\item "neighbour" (zoom into nodes in the difference graph specified further by parameter
+\strong{"index"} (node id)
+}}
 
-\item{layout}{numeric matrix (3 columns) that specifies node positions in 3d brain network (atlas coordinates)}
+\item{neighbouroption}{not used}
+
+\item{subID}{not used}
+
+\item{index}{determines which node(s) to zoom into when parameter \strong{"type"} is \strong{"neighbour"}.
+This parameter could either be an integer or vector of integers representing node ids}
+
+\item{hastitle}{determines whether the graph title is displayed or not (TRUE to display / FALSE to hide)}
+
+\item{haslegend}{not used}
+
+\item{...}{extra parameters passed to igraph::rglplot()}
 }
 \value{
 3d (rgl) brain network
@@ -32,9 +48,12 @@ par(ask=F)
 par(mfrow=c(1,1))
 data(ABIDE_aal116_timeseries)
 data(aal116coordinates)
-layout = cbind(aal116coordinates$x.mni + 90,aal116coordinates$y.mni+126, aal116coordinates$z.mni+72)
-result = diffee(ABIDE_aal116_timeseries[[1]], ABIDE_aal116_timeseries[[2]], 0.001)
-plotbrain(result, type = "task", neighbouroption = "task", subID = NULL, index = NULL, layout = layout)
+layout = cbind(aal116coordinates$x.mni + 90,
+aal116coordinates$y.mni+126, aal116coordinates$z.mni+72)
+result = diffee(ABIDE_aal116_timeseries[[1]],
+ABIDE_aal116_timeseries[[2]], 0.001)
+plotbrain(result, type = "task", neighbouroption = "task",
+subID = NULL, index = NULL, layout = layout)
 }
 }
 \author{

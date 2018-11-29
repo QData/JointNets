@@ -5,7 +5,7 @@
 \title{return igraph object from diffee result specified by user input}
 \usage{
 \method{returngraph}{diffeek}(x, type = "task",
-  neighbouroption = "task", subID = NULL, index = NULL)
+  neighbouroption = "task", subID = NULL, index = NULL, ...)
 }
 \arguments{
 \item{x}{output generated from diffeek function (diffeek class)}

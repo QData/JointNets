@@ -91,12 +91,12 @@ readline(prompt = "Press [enter] to view comparison between ground truth and gen
 
 readline(prompt = "Press [enter] to continue to synthetic Gaussian data demo with 2 tasks and 500 features")
 
-data(exampleData500)
 
 readline(prompt = "Press [enter] to view the DIFFEEK runtime (takes roughly 30 seconds on an i7 machine)")
 {
+  data500 = simulation(p=500, n = c(500,500))
   start_time = Sys.time()
-  diffeek(exampleData500[[1]], exampleData500[[2]], W = matrix(1,500,500), g = rep(0,500),
+  diffeek(data500$simulatedsamples[[1]], data500$simulatedsamples[[2]], W = matrix(1,500,500), g = rep(0,500),
                    epsilon = 0.2, lambda = 0.4,covType = "cov")
   end_time = Sys.time()
   print(paste(

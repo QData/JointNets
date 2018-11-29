@@ -1,6 +1,4 @@
 
-#'make title for different graph estimation
-#'@return a descriptive title for the plotted graph
 maketitle <- function(x,...) {
   UseMethod("maketitle",x)
 }

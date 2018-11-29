@@ -38,6 +38,8 @@ and index (node id))
 \item{index}{determines which node(s) to zoom into when parameter \strong{"type"} is \strong{"neighbour"}.
 This parameter could either be an integer or vector of integers representing node ids
 (zoom into one node or multiple nodes)}
+
+\item{...}{not used}
 }
 \value{
 an igraph object of graph / subgraph from jeek result specified by user input

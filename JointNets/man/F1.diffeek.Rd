@@ -6,6 +6,13 @@
 \usage{
 \method{F1}{diffeek}(result, simulatedgraphs, ...)
 }
+\arguments{
+\item{result}{output generated from any one of the jointnet algorithms}
+
+\item{simulatedgraphs}{$simulatedgraphs from function simulation()}
+
+\item{...}{unused}
+}
 \description{
 computes F1 score for jointnet result
 }

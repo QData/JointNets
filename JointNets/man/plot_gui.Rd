@@ -2,10 +2,17 @@
 % Please edit documentation in R/plot_gui.R
 \name{plot_gui}
 \alias{plot_gui}
-\title{GUI version of plot}
+\title{GUI of JointNets plot}
 \usage{
 plot_gui()
 }
 \description{
-GUI version of plot
+GUI version of JointNets plot (input from the global environment)
+}
+\details{
+please refer to plot.simule, plot.wsimule and etc for details in plotting.
+value -1 for subID and index corresponds to NUL value
+}
+\author{
+Zhaoyang Wang (Author), Zhaoyang Wang (maintainer) \email{zw4dn@virginia.edu}
 }

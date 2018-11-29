@@ -6,13 +6,14 @@
 #' @param ss controls sparsity of the generated graph
 #' @return a list of N related sparse pXp precision matrices (graphs)
 #' @import MASS
+#' @importFrom stats rbinom
 simulateGraph <-
   function(p = 20,
            N = 2,
            seedNum = 37,
            s = 0.1,
            ss = 0.1) {
-    library(MASS)
+    #library(MASS)
     #set parameters
     # p = 1000
     # N = 3

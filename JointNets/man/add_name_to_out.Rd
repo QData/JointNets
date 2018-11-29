@@ -11,6 +11,8 @@ add_name_to_out(output, datalist, ...)
 \item{output}{output of jointnets}
 
 \item{datalist}{orginial data list}
+
+\item{...}{unused}
 }
 \value{
 output with names from datalist
