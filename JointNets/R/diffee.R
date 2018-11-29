@@ -41,8 +41,8 @@ diffee.backwardMap <-function(covMatrix, thre = "soft"){
 #' Graphical Model Structure
 #'
 #' Estimate DIFFerential networks via an Elementary Estimator under a
-#' high-dimensional situation. Please run demo(diffee) to learn the basic
-#' functions provided by this package.  For further details, please read the
+#' high-dimensional situation. Please run demo(diffee) to learn the basics.
+#' For further details, please read the
 #' original paper: Beilun Wang, Arshdeep Sekhon, Yanjun Qi (2018)
 #' <arXiv:1710.11223>.
 #'
@@ -58,10 +58,10 @@ diffee.backwardMap <-function(covMatrix, thre = "soft"){
 #'
 #' @param C A input matrix for the 'control' group. It can be data matrix or
 #' covariance matrix. If C is a symmetric matrix, the matrices are assumed to
-#' be covariance matrix. More details at <https://github.com/QData/DIFFEE>
+#' be covariance matrix.
 #' @param D A input matrix for the 'disease' group. It can be data matrix or
 #' covariance matrix. If D is a symmetric matrix, the matrices are assumed to
-#' be covariance matrix. More details at <https://github.com/QData/DIFFEE>
+#' be covariance matrix.
 #' @param lambda A positive number. The hyperparameter controls the sparsity
 #' level of the matrices. The \eqn{\lambda_n} in the following section:
 #' Details.
@@ -124,7 +124,7 @@ diffee <- function(C, D, lambda = 0.05, covType = "cov", thre = "soft"){
       }
     }
 
-    if (covType == "cor") {
+    if (covType == "kendall") {
       if (isSymmetric(C) == FALSE){
         covX = cor.fk(C)
       }

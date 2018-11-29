@@ -11,8 +11,7 @@ simule(X, lambda, epsilon = 1, covType = "cov", parallel = FALSE)
 \arguments{
 \item{X}{A List of input matrices. They can be data matrices or
 covariance/correlation matrices. If every matrix in the X is a symmetric
-matrix, the matrices are assumed to be covariance/correlation matrices.
-More details at \url{https://github.com/QData/SIMULE}}
+matrix, the matrices are assumed to be covariance/correlation matrices.}
 
 \item{lambda}{A positive number. The hyperparameter controls the sparsity
 level of the matrices. The \eqn{\lambda_n} in the following section:
@@ -44,8 +43,8 @@ as input to the simule algorithm.}
 the multithreading architecture or not.}
 }
 \value{
-\item{Graphs}{A list of the estimated inverse
-covariance/correlation matrices.} \item{share}{The share graph among
+\item{$graphs}{A list of the estimated inverse
+covariance/correlation matrices.} \item{$share}{The shared graph among
 multiple tasks.}
 }
 \description{

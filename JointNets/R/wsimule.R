@@ -87,8 +87,8 @@ wsimule.linprogSPar <- function(i, Sigma, W, lambda){
 #' simule algorithm.
 #' @param parallel A boolean. This parameter decides if the package will use
 #' the multithreading architecture or not.
-#' @return \item{Graphs}{A list of the estimated inverse covariance/correlation
-#' matrices.} \item{share}{The share graph among multiple tasks.}
+#' @return \item{$graphs}{A list of the estimated inverse covariance/correlation
+#' matrices.} \item{$share}{The share graph among multiple tasks.}
 #' @author Beilun Wang
 #' @references Beilun Wang, Ritambhara Singh, Yanjun Qi (2017).  A constrained
 #' L1 minimization approach for estimating multiple Sparse Gaussian or
@@ -187,7 +187,7 @@ wsimule <- function(X, lambda, epsilon = 1, W, covType = "cov",parallel = FALSE 
         }
       }
     }
-    print("Done!")
+    #print("Done!")
   }
 
   for(i in 1:N){

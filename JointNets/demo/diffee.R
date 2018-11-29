@@ -62,7 +62,7 @@ layout = layout_nicely(exampleDataGraph[[1]], dim = 2)
 readline(prompt = "Press [enter] to view comparison between ground truth and generated difference graph")
 
 {
-  par(mfrow = c(2, 2))
+  par(mfrow = c(1, 2))
   plot(result, layout = layout)
   plot(
     union(exampleDataGraph[[2]], exampleDataGraph[[3]]),
@@ -76,11 +76,7 @@ readline(prompt = "Press [enter] to view comparison between ground truth and gen
     edge.color = rainbow(1)[1],
     main = "difference graph ground truth"
   )
-  nodeid = c(3, 8)
-  plot(result,
-       type = "neighbour",
-       index = nodeid,
-       layout = layout)
+
 }
 
 
@@ -97,6 +93,6 @@ readline(prompt = "Press [enter] to view the DIFFEE runtime (takes roughly 30 se
   print(paste(
     "the time taken for DIFFEE to run with p = 500 is",
     end_time - start_time,
-    "seconds"
+    "mins"
   ))
 }

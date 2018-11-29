@@ -1,35 +1,139 @@
 library(JointNets)
+graphics.off()
+par(ask = F)
+par(mfrow = c(1, 1))
 
 
 readline(prompt = "Press [enter] to view simule evaluation")
 
-simulate = simulation(n = c(100,100))
-samples = simulate$samples
-result = simule(
-  X = samples,
-  lambda = 0.1,
-  epsilon = 0.45,
-  covType = "cov",
-  TRUE
-)
-evaluation(result,simulate)
+simulationresult = simulation(n=c(100,100,100))
+AUC_result = AUC(simulationresult,
+                 gm_method = "simule",
+                 lambdas = seq(0.1,2,0.05)
+                 ,epsilon = 1)
+truth = simulationresult$simulatedgraphs
+result = simule(simulationresult$simulatedsamples, 0.2, 0.5, covType = "cov", TRUE)
 
+{
+cat(paste("AUC score: ", AUC_result$auc))
+cat("\n")
+cat("F1 score graphs: ")
+cat(F1(result,truth)$graphs)
+cat("\n")
+cat(paste("F1 score share: ", F1(result,truth)$share))
+cat("\n")
+cat(paste("BIC score: ", BIC(simulationresult$simulatedsamples,result)))
+plot(AUC_result$fPM,AUC_result$tPM, xlab = "False Positive Rate", ylab = "True Positive Rate", main = "ROC")
+lines(AUC_result$fPM[order(AUC_result$fPM)], AUC_result$tPM[order(AUC_result$fPM)], xlim=range(AUC_result$fPM), ylim=range(AUC_result$tPM))
+}
+
+readline(prompt = "Press [enter] to view wsimule evaluation")
+
+simulationresult = simulation(n=c(100,100,100))
+AUC_result = AUC(simulationresult,
+                 gm_method = "wsimule",
+                 lambdas = seq(0.1,2,0.05)
+                 ,epsilon = 1,W= matrix(1,20,20))
+
+truth = simulationresult$simulatedgraphs
+result = wsimule(simulationresult$simulatedsamples , lambda = 0.1, epsilon = 0.45, W = matrix(1,20,20), covType = "cov", TRUE)
+
+{
+  cat(paste("AUC score: ", AUC_result$auc))
+  cat("\n")
+  cat("F1 score graphs: ")
+  cat(F1(result,truth)$graphs)
+  cat("\n")
+  cat(paste("F1 score share: ", F1(result,truth)$share))
+  cat("\n")
+  cat(paste("BIC score: ", BIC(simulationresult$simulatedsamples,result)))
+  plot(AUC_result$fPM,AUC_result$tPM, xlab = "False Positive Rate", ylab = "True Positive Rate", main = "ROC")
+  lines(AUC_result$fPM[order(AUC_result$fPM)], AUC_result$tPM[order(AUC_result$fPM)], xlim=range(AUC_result$fPM), ylim=range(AUC_result$tPM))
+}
+
+
+readline(prompt = "Press [enter] to view fasjem evaluation")
+
+simulationresult = simulation(n=c(100,100,100))
+AUC_result = AUC(simulationresult,
+                 gm_method = "fasjem",
+                 lambdas = seq(0.1,2,0.05))
+truth = simulationresult$simulatedgraphs
+result = fasjem(X = simulationresult$simulatedsamples, method = "fasjem-g", 0.5, 0.1, 0.1, 0.05, 10)
+
+{
+  cat(paste("AUC score: ", AUC_result$auc))
+  cat("\n")
+  cat("F1 score graphs: ")
+  cat(F1(result,truth)$graphs)
+  cat("\n")
+  cat(paste("BIC score: ", BIC(simulationresult$simulatedsamples,result)))
+  plot(AUC_result$fPM,AUC_result$tPM, xlab = "False Positive Rate", ylab = "True Positive Rate", main = "ROC")
+  lines(AUC_result$fPM[order(AUC_result$fPM)], AUC_result$tPM[order(AUC_result$fPM)], xlim=range(AUC_result$fPM), ylim=range(AUC_result$tPM))
+}
 
 
 readline(prompt = "Press [enter] to view jeek evaluation")
+simulationresult = simulation(n=c(100,100,100))
+AUC_result = AUC(simulationresult,
+                 gm_method = "jeek",
+                 lambdas = seq(0.1,2,0.05)
+                 , W = list(matrix(1,20,20),matrix(1,20,20),matrix(1,20,20)))
 
-
-result = jeek(X = samples,
+truth = simulationresult$simulatedgraphs
+result = jeek(X = simulationresult$simulatedsamples,
               0.3,
               covType = "cov",
               parallel = TRUE)
-evaluation(result,simulate)
+{
+  cat(paste("AUC score: ", AUC_result$auc))
+  cat("\n")
+  cat("F1 score graphs: ")
+  cat(F1(result,truth)$graphs)
+  cat("\n")
+  cat(paste("BIC score: ", BIC(simulationresult$simulatedsamples,result)))
+  plot(AUC_result$fPM,AUC_result$tPM, xlab = "False Positive Rate", ylab = "True Positive Rate", main = "ROC")
+  lines(AUC_result$fPM[order(AUC_result$fPM)], AUC_result$tPM[order(AUC_result$fPM)], xlim=range(AUC_result$fPM), ylim=range(AUC_result$tPM))
+}
 
 
-###readline(prompt = "Press [enter] to view diffee evaluation")
 
-###result = diffee(samples[[1]], samples[[2]], 0.45)
-###evaluation(result,simulate)
+readline(prompt = "Press [enter] to view diffee evaluation")
+simulationresult = simulation(n=c(100,100))
+AUC_result = AUC(simulationresult,
+                 gm_method = "diffee",
+                 lambdas = seq(0.1,2,0.05))
+truth = simulationresult$simulatedgraphs
+result = diffee(simulationresult$simulatedsamples[[1]], simulationresult$simulatedsamples[[2]], 0.45)
 
-AUC(simulate,"simule",seq(0,0.3, by=0.01),parallel = TRUE)
+{
+  cat(paste("AUC score: ", AUC_result$auc))
+  cat("\n")
+  cat("F1 score difference: ")
+  cat(F1(result,truth)$difference)
+  cat("\n")
+  plot(AUC_result$fPM,AUC_result$tPM, xlab = "False Positive Rate", ylab = "True Positive Rate", main = "ROC")
+  lines(AUC_result$fPM[order(AUC_result$fPM)], AUC_result$tPM[order(AUC_result$fPM)], xlim=range(AUC_result$fPM), ylim=range(AUC_result$tPM))
+}
+
+readline(prompt = "Press [enter] to view diffeek evaluation")
+simulationresult = simulation(n=c(100,100))
+AUC_result = AUC(simulationresult,
+                 gm_method = "diffeek",
+                 lambdas = seq(0.1,2,0.05)
+                 , W = matrix(1,20,20), g = 0)
+truth = simulationresult$simulatedgraphs
+result = diffeek(exampleData[[1]], exampleData[[2]], W = matrix(1,20,20), g = rep(0,20),
+                 epsilon = 0.2, lambda = 0.4,covType = "cov")
+{
+  cat(paste("AUC score: ", AUC_result$auc))
+  cat("\n")
+  cat("F1 score difference: ")
+  cat(F1(result,truth)$difference)
+  cat("\n")
+  plot(AUC_result$fPM,AUC_result$tPM, xlab = "False Positive Rate", ylab = "True Positive Rate", main = "ROC")
+  lines(AUC_result$fPM[order(AUC_result$fPM)], AUC_result$tPM[order(AUC_result$fPM)], xlim=range(AUC_result$fPM), ylim=range(AUC_result$tPM))
+}
+
+
 

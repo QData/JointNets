@@ -2,20 +2,20 @@
 % Please edit documentation in R/BIC.R
 \name{BIC}
 \alias{BIC}
-\title{function to return BIC score}
+\title{calculate BIC score for JointNets method}
 \usage{
 BIC(datalist, result)
 }
 \arguments{
-\item{datalist}{datalist used as an input to any of the jointnet method}
+\item{datalist}{datalist used as an input to any of the JointNets method}
 
-\item{result}{result generated from datalist using the same jointnet method}
+\item{result}{result generated from datalist using the same JointNets method}
 }
 \value{
 BIC score
 }
 \description{
-function to return BIC score
+calculate BIC score for JointNets method
 }
 \details{
 not working with DIFFEE and DIFFEEK (difference estimation)
@@ -26,4 +26,7 @@ simulateresult = simulation(p = 20,  n = c(100,100))
 result = simule(simulateresult$simulatedsamples, 0.2, 0.5, covType = "cov", TRUE)
 BIC(simulateresult$simulatedsamples,result)
 }
+}
+\author{
+Zhaoyang Wang (Author), Zhaoyang Wang (maintainer) \email{zw4dn@virginia.edu}
 }

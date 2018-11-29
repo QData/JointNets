@@ -2,8 +2,9 @@
 % Please edit documentation in R/diffeek.R
 \name{diffeek}
 \alias{diffeek}
-\title{Fast and Scalable Learning of Sparse Changes in High-Dimensional Gaussian
-Graphical Model Structure}
+\title{Fast and Scalable Estimator for Using Additional Knowledge in Learning
+Sparse Structure Change of High Dimensional of Sparse Changes
+in High-Dimensional Gaussian Graphical Models}
 \usage{
 diffeek(C, D, W, g, epsilon = 1, lambda = 0.05, covType = "cov",
   thre = "soft")
@@ -11,19 +12,22 @@ diffeek(C, D, W, g, epsilon = 1, lambda = 0.05, covType = "cov",
 \arguments{
 \item{C}{A input matrix for the 'control' group. It can be data matrix or
 covariance matrix. If C is a symmetric matrix, the matrices are assumed to
-be covariance matrix. More details at \url{https://github.com/QData/DIFFEE}}
+be covariance matrix.}
 
 \item{D}{A input matrix for the 'disease' group. It can be data matrix or
 covariance matrix. If D is a symmetric matrix, the matrices are assumed to
-be covariance matrix. More details at \url{https://github.com/QData/DIFFEE}}
+be covariance matrix.}
 
-\item{g}{grouping information}
+\item{W}{positive weight matrix of size p x p representing prior knowledge of the graphs}
 
-\item{epsilon}{A positive number}
+\item{g}{grouping information
+(a vector of size p representing node groups, eg: c(1,1,2,2,0,0)
+represents node 1&2 are in group 1, 3&4 are in group 1, 5&6 are not in any group)}
 
-\item{lambda}{A positive number. The hyperparameter controls the sparsity
-level of the matrices. The \eqn{\lambda_n} in the following section:
-Details.}
+\item{epsilon}{A positive number. The hyperparameter controls the sparsity level of the
+groups in g of the difference matrix}
+
+\item{lambda}{A positive number. The hyperparameter controls the sparsity level of the difference matrix}
 
 \item{covType}{A parameter to decide which Graphical model we choose to
 estimate from the input data.
@@ -44,8 +48,6 @@ simule algorithm.}
 \eqn{T_v}. If thre = "soft", it means that we choose soft-threshold function
 as \eqn{T_v}. If thre = "hard", it means that we choose hard-threshold
 function as \eqn{T_v}.}
-
-\item{w}{weight matrix}
 }
 \value{
 \item{diffNet}{A matrix of the estimated sparse changes between two
@@ -54,10 +56,13 @@ Gaussian Graphical Models}
 \description{
 The DIFFEEK algorithm
 }
-\references{
-Beilun Wang, Arshdeep Sekhon, Yanjun Qi (2018). Fast and
-Scalable Learning of Sparse Changes in High-Dimensional Gaussian Graphical
-Model Structure. \url{arXiv:1710.11223}
+\examples{
+\dontrun{
+library(JointNets)
+data(exampleData)
+result = diffeek(exampleData[[1]], exampleData[[2]], W = matrix(1,20,20), g = rep(0,20),epsilon = 0.2, lambda = 0.4,covType = "cov")
+plot(result)
+}
 }
 \author{
 Beilun Wang

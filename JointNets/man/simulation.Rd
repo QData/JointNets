@@ -2,7 +2,7 @@
 % Please edit documentation in R/simulation.R
 \name{simulation}
 \alias{simulation}
-\title{function to simulate multiple sparse graphs and generate samples}
+\title{simulate multiple sparse graphs and generate samples}
 \usage{
 simulation(p = 20, n, seedNum = 37, s = 0.1, ss = 0.1)
 }
@@ -13,13 +13,13 @@ simulation(p = 20, n, seedNum = 37, s = 0.1, ss = 0.1)
 
 \item{seedNum}{seed number for random simulation}
 
-\item{s}{controls sparsity of the generated graph}
+\item{s}{positive number that controls sparsity of the generated graphs}
 
-\item{ss}{controls sparsity of the generated graph}
+\item{ss}{positive number that controls sparsity of the shared part of generated graphs}
 }
 \value{
 a list comprising simulatedgraphs (multiple related simulated graphs) and simulatedsamples (samples generated from multiple related graphs)
 }
 \description{
-function to simulate multiple sparse graphs and generate samples
+simulate multiple sparse graphs and generate samples
 }

@@ -2,30 +2,36 @@
 % Please edit documentation in R/AUC.R
 \name{AUC}
 \alias{AUC}
-\title{function to return AUC score for JointNets methods given}
+\title{return AUC score for JointNets method}
 \usage{
 AUC(simulationresult, gm_method = "simule", lambdas, ...)
 }
 \arguments{
-\item{simulationresult}{results from function simulation}
+\item{simulationresult}{output from the function simulation()}
 
-\item{gm_method}{method name from any one of the jointNets methods}
+\item{gm_method}{method name from any one of the JointNets methods}
 
 \item{lambdas}{a vector of lambda values for the JointNets method to run with}
 
-\item{...}{extra parameters passed to the JointNets method}
+\item{...}{extra parameters passed to the JointNets method such as lambda, epislon and etc, refer to each method for details (eg, ?simule)}
 }
 \value{
 AUC score, a list of precisions and recalls
 }
 \description{
-function to return AUC score for JointNets methods given
+return AUC score for JointNets method
 }
 \examples{
 \dontrun{
 simulationresult = simulation(n=c(100,100,100))
 AUC_result = AUC(simulationresult,lambdas = seq(0.1,2,0.05),epsilon = 2)
 AUC_result
+graphics.off()
+par(ask = F)
+par(mfrow = c(1, 1))
 plot(AUC_result$fPM,AUC_result$tPM)
 }
+}
+\author{
+Zhaoyang Wang (Author), Zhaoyang Wang (maintainer) \email{zw4dn@virginia.edu}
 }

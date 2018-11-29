@@ -57,7 +57,6 @@ simule.linprogSPar <- function(i, Sigma, lambda)
 ##' @param X A List of input matrices. They can be data matrices or
 ##' covariance/correlation matrices. If every matrix in the X is a symmetric
 ##' matrix, the matrices are assumed to be covariance/correlation matrices.
-##' More details at <https://github.com/QData/SIMULE>
 ##' @param lambda A positive number. The hyperparameter controls the sparsity
 ##' level of the matrices. The \eqn{\lambda_n} in the following section:
 ##' Details.
@@ -83,8 +82,8 @@ simule.linprogSPar <- function(i, Sigma, lambda)
 ##' as input to the simule algorithm.
 ##' @param parallel A boolean. This parameter decides if the package will use
 ##' the multithreading architecture or not.
-##' @return \item{Graphs}{A list of the estimated inverse
-##' covariance/correlation matrices.} \item{share}{The share graph among
+##' @return \item{$graphs}{A list of the estimated inverse
+##' covariance/correlation matrices.} \item{$share}{The shared graph among
 ##' multiple tasks.}
 ##' @author Beilun Wang
 ##' @references Beilun Wang, Ritambhara Singh, Yanjun Qi (2017).  A constrained

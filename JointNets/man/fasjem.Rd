@@ -46,7 +46,7 @@ for more details.}
 of fasjem.}
 }
 \value{
-\item{Graphs}{A list of the estimated inverse covariance matrices.}
+\item{$graphs}{A list of the estimated inverse covariance matrices.}
 }
 \description{
 The R implementation of the FASJEM method, which is introduced in the paper
@@ -83,8 +83,8 @@ When \code{method = "fasjem-g"}, \eqn{\mathcal{R}'(\cdot) =
 When \code{method = "fasjem-i"}, \eqn{\mathcal{R}'(\cdot) =
 ||\cdot||_{\mathcal{G},\infty}}.
 
-Please run \code{demo(fasjem)} to learn the basic functions provided by this
-package. For more details, please see
+Please run \code{demo(fasjem)} to learn the basics.
+For more details, please see
 \url{http://proceedings.mlr.press/v54/wang17e/wang17e.pdf}.
 
 if labels are provided in the datalist as column names, result will contain labels (to be plotted)

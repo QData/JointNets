@@ -49,8 +49,8 @@ simule algorithm.}
 the multithreading architecture or not.}
 }
 \value{
-\item{Graphs}{A list of the estimated inverse covariance/correlation
-matrices.} \item{share}{The share graph among multiple tasks.}
+\item{$graphs}{A list of the estimated inverse covariance/correlation
+matrices.} \item{$share}{The share graph among multiple tasks.}
 }
 \description{
 Estimate multiple, related sparse Gaussian or Nonparanormal graphical models

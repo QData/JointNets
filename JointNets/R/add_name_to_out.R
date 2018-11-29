@@ -1,4 +1,4 @@
-#'helper function to add row/col names to jointnet precision matrix output
+#'helper function to add row/col names to JointNets precision matrix output
 #'To help label igraph object in returngraph and plot
 #'@param output output of jointnets
 #'@param datalist orginial data list

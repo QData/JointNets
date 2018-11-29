@@ -28,7 +28,7 @@
 #' @param ... extra parameters passed to plot.igraph() and legend() (only the argument "legend" for legend() is available).
 #' Please see \code{\link{plot.igraph}} and \code{\link{legend}}
 #' @return a plot of graph / subgraph from jeek result specified by user input
-#' @details when only the jeekresult is provided, the function will plot all graphs with default numeric labels
+#' @details when only the jeek result is provided, the function will plot all graphs with default numeric labels
 #' User can specify multiple subID and multiple index to zoom in multiple nodes on multiple graphs
 #' Each graph will include a descriptive title and legend to indicate correspondence between edge color and task.
 #' @examples
@@ -377,7 +377,7 @@ plot.diffee <-
 #' @param hastitle determines whether the graph title is displayed or not (TRUE to display / FALSE to hide)
 #' @param ... extra parameters passed to  \code{\link{plot.igraph}}
 #' (zoom into one node or multiple nodes)
-#' @return a plot of the difference graph from diffee result specified by user input
+#' @return a plot of the difference graph from diffeek result specified by user input
 #' @details when only the diffeek result is provided, the function will plot all graphs with default numeric labels.
 #' Users can specify multiple subID to zoom in multiple nodes.
 #' Each graph will include a descriptive title.
@@ -385,8 +385,8 @@ plot.diffee <-
 #' \dontrun{
 #' library(JointNets)
 #' data(exampleData)
-#' result = diffeek(exampleData[[1]], exampleData[[2]], W = , g = )
-#' plot.diffee(result)
+#' result = diffeek(exampleData[[1]], exampleData[[2]], W = matrix(1,20,20), g = rep(0,20),epsilon = 0.2, lambda = 0.4,covType = "cov")
+#' plot(result)
 #' }
 #' @method plot diffeek
 #' @export
@@ -480,12 +480,13 @@ jointplot <-
       }
       graphics::legend(
         "topright" ,
-        inset = 0,
+        inset=c(-0.2,0),
         legend = glegend,
         col = grDevices::rainbow(length(x$graphs)+1),
         lty = 1,
-        cex = 0.7,
-        box.lty = 0
+        cex = 0.5,
+        box.lty = 0,
+        bg = "transparent"
       )
     }
   }

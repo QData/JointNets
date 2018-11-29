@@ -1,6 +1,7 @@
-#' function to return BIC score
-#' @param datalist datalist used as an input to any of the jointnet method
-#' @param result result generated from datalist using the same jointnet method
+#' calculate BIC score for JointNets method
+#' @author Zhaoyang Wang (Author), Zhaoyang Wang (maintainer) \email{zw4dn@virginia.edu}
+#' @param datalist datalist used as an input to any of the JointNets method
+#' @param result result generated from datalist using the same JointNets method
 #' @return BIC score
 #' @export
 #' @details not working with DIFFEE and DIFFEEK (difference estimation)

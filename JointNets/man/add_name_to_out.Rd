@@ -2,7 +2,7 @@
 % Please edit documentation in R/add_name_to_out.R
 \name{add_name_to_out}
 \alias{add_name_to_out}
-\title{helper function to add row/col names to jointnet precision matrix output
+\title{helper function to add row/col names to JointNets precision matrix output
 To help label igraph object in returngraph and plot}
 \usage{
 add_name_to_out(output, datalist, ...)
@@ -16,6 +16,6 @@ add_name_to_out(output, datalist, ...)
 output with names from datalist
 }
 \description{
-helper function to add row/col names to jointnet precision matrix output
+helper function to add row/col names to JointNets precision matrix output
 To help label igraph object in returngraph and plot
 }

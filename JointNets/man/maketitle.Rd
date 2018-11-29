@@ -2,7 +2,7 @@
 % Please edit documentation in R/make_title.R
 \name{maketitle}
 \alias{maketitle}
-\title{S3 method to make title for different graph estimation}
+\title{make title for different graph estimation}
 \usage{
 maketitle(x, ...)
 }
@@ -10,5 +10,5 @@ maketitle(x, ...)
 a descriptive title for the plotted graph
 }
 \description{
-S3 method to make title for different graph estimation
+make title for different graph estimation
 }

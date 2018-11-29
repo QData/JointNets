@@ -42,7 +42,7 @@ JEEK algorithm.}
 the multithreading architecture or not.}
 }
 \value{
-\item{Graphs}{A list of the estimated inverse covariance/correlation
+\item{$graphs}{A list of the estimated inverse covariance/correlation
 matrices.}
 }
 \description{

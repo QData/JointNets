@@ -93,15 +93,20 @@ generateSampleList <-
 
 # this is the main function
 
-#' function to simulate multiple sparse graphs and generate samples
+#' simulate multiple sparse graphs and generate samples
 #' @param p number of features (number of nodes)
 #' @param n a vector indicating number of samples and tasks, for example c(100,200,300) for 3 tasks and 100,200 and 300 samples for task 1, 2 and 3
 #' @param seedNum seed number for random simulation
-#' @param s controls sparsity of the generated graph
-#' @param ss controls sparsity of the generated graph
-#' @return a list comprising simulatedgraphs (multiple related simulated graphs) and simulatedsamples (samples generated from multiple related graphs)
+#' @param s positive number that controls sparsity of the generated graphs
+#' @param ss positive number that controls sparsity of the shared part of generated graphs
+#' @return a list comprising $simulatedgraphs (multiple related simulated graphs) and $simulatedsamples (samples generated from multiple related graphs)
 #' @import MASS
 #' @export
+#' @examples
+#' \dontrun{
+#' simulateresult = simulation(p = 20,  n = c(100,100))
+#' plot(simulateresult$simulatedgraphs)
+#' }
 simulation <- function(p = 20,
                      n,
                      seedNum = 37,

@@ -110,7 +110,7 @@ jeek.linprogSPar <- function(i, W, B, lambda){
 #' JEEK algorithm.
 #' @param parallel A boolean. This parameter decides if the package will use
 #' the multithreading architecture or not.
-#' @return \item{Graphs}{A list of the estimated inverse covariance/correlation
+#' @return \item{$graphs}{A list of the estimated inverse covariance/correlation
 #' matrices.}
 #' @author Beilun Wang
 #' @references Beilun Wang, Arshdeep Sekhon, Yanjun Qi. A Fast and Scalable

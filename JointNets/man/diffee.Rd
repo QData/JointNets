@@ -10,11 +10,11 @@ diffee(C, D, lambda = 0.05, covType = "cov", thre = "soft")
 \arguments{
 \item{C}{A input matrix for the 'control' group. It can be data matrix or
 covariance matrix. If C is a symmetric matrix, the matrices are assumed to
-be covariance matrix. More details at \url{https://github.com/QData/DIFFEE}}
+be covariance matrix.}
 
 \item{D}{A input matrix for the 'disease' group. It can be data matrix or
 covariance matrix. If D is a symmetric matrix, the matrices are assumed to
-be covariance matrix. More details at \url{https://github.com/QData/DIFFEE}}
+be covariance matrix.}
 
 \item{lambda}{A positive number. The hyperparameter controls the sparsity
 level of the matrices. The \eqn{\lambda_n} in the following section:
@@ -46,8 +46,8 @@ Gaussian Graphical Models}
 }
 \description{
 Estimate DIFFerential networks via an Elementary Estimator under a
-high-dimensional situation. Please run demo(diffee) to learn the basic
-functions provided by this package.  For further details, please read the
+high-dimensional situation. Please run demo(diffee) to learn the basics.
+For further details, please read the
 original paper: Beilun Wang, Arshdeep Sekhon, Yanjun Qi (2018)
 \url{arXiv:1710.11223}.
 }

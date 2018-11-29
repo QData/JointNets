@@ -1,8 +1,8 @@
-#' plot 3d brain network from jointnet result
+#' plot 3d brain network from JointNets result
 #'
-#' This function plots 3d brain network from jointnet result
+#' This function plots 3d brain network from JointNets result
 #' @author Zhaoyang Wang (Author), Zhaoyang Wang (maintainer) \email{zw4dn@virginia.edu}
-#' @param x output generated from any one of the jointnet functions (simule,wsimule,jeek,fasjem,diffee)
+#' @param x output generated from any one of the JointNets functions (simule,wsimule,jeek,fasjem,diffee,diffeek)
 #' @param ... additional arguments
 #' @return 3d (rgl) brain network
 #' @details The function plots brain network using \code{\link{rglplot.igraph}}
@@ -181,7 +181,6 @@ plotbrain.jeek <- function(x, ...) {
 }
 
 
-
 plotbrain_joint <-
   function(x,
            type = "task",
@@ -276,7 +275,6 @@ plotbrain_joint <-
         #vertex.label
         #vertex.color
         #vertex.label = label,
-
   }
 
 

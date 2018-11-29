@@ -2,7 +2,7 @@
 % Please edit documentation in R/F1.R
 \name{F1}
 \alias{F1}
-\title{computes F1 score for jointnet result}
+\title{Compute F1 score for JointNets result}
 \usage{
 F1(result, simulatedgraphs, ...)
 }
@@ -10,14 +10,12 @@ F1(result, simulatedgraphs, ...)
 \item{result}{output generated from any one of the jointnet algorithms}
 
 \item{simulatedgraphs}{$simulatedgraphs from function simulation()}
-
-\item{...}{additional arguments}
 }
 \value{
-F1 scores
+F1 scores (F1 score for each context and the shared part (for simule and wsimule))
 }
 \description{
-computes F1 score for jointnet result
+Compute F1 score for JointNets result
 }
 \examples{
 \dontrun{

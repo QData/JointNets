@@ -6,11 +6,12 @@ AUC_generic <- function(a,b){
   return(s)
 }
 
-#' function to return AUC score for JointNets methods given
-#' @param simulationresult results from function simulation
-#' @param gm_method method name from any one of the jointNets methods
+#' return AUC score for JointNets method
+#' @author Zhaoyang Wang (Author), Zhaoyang Wang (maintainer) \email{zw4dn@virginia.edu}
+#' @param simulationresult output from the function simulation()
+#' @param gm_method method name from any one of the JointNets methods
 #' @param lambdas a vector of lambda values for the JointNets method to run with
-#' @param ... extra parameters passed to the JointNets method
+#' @param ... extra parameters passed to the JointNets method such as lambda, epislon and etc, refer to each method for details (eg, ?simule)
 #' @return AUC score, a list of precisions and recalls
 #' @export
 #' @examples
@@ -18,6 +19,9 @@ AUC_generic <- function(a,b){
 #' simulationresult = simulation(n=c(100,100,100))
 #' AUC_result = AUC(simulationresult,lambdas = seq(0.1,2,0.05),epsilon = 2)
 #' AUC_result
+#' graphics.off()
+#' par(ask = F)
+#' par(mfrow = c(1, 1))
 #' plot(AUC_result$fPM,AUC_result$tPM)
 #' }
 AUC <- function(simulationresult, gm_method = "simule", lambdas, ...){
@@ -156,7 +160,6 @@ AUC <- function(simulationresult, gm_method = "simule", lambdas, ...){
     }
     auc = AUC_generic(c(fPM,0),c(tPM,0)) ## compute AUC score
   }
-
 
   out$auc = auc
   out$fPM = c(fPM,0)

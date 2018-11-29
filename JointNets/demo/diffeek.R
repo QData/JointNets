@@ -11,9 +11,10 @@ data(cancer)
 cancerlist = list(as.matrix(cancer[[1]][which(cancer[[2]] == "not"), ]),
                   as.matrix(cancer[[1]][which(cancer[[2]] == "pcr"), ]))
 
-result = diffeek(cancerlist[[1]], cancerlist[[2]], W = matrix(1,26,26), g = c(1,2,3))
-
-#diffeek <- function(C, D, W, g, epsilon = 1, lambda = 0.05, covType = "cov", thre = "soft")
+### group node 1 to 3 to group 1 and node 4 to 6 to group 2, the rest of the nodes are not grouped
+### same weights for all edges (W is a matrix of ones)
+result = diffeek(cancerlist[[1]], cancerlist[[2]], W = matrix(1,26,26), g = c(rep(1,3),rep(2,3),rep(0,20)),
+                 epsilon = 1, lambda = 0.3, covType = "kendall")
 
 label = colnames(cancer[[1]])
 graph = returngraph(result)
@@ -37,7 +38,9 @@ readline(prompt = "Press [enter] to continue to NIPS word count demo with 2 task
 data(nip_37_data)
 label = colnames(nip_37_data[[1]])
 
-result = diffeek(nip_37_data[[1]], nip_37_data[[2]], W = , g = )
+### no grouping information (g = 0), same weight for all edges (W is a matrix of ones)
+result = diffeek(nip_37_data[[1]], nip_37_data[[2]], W = matrix(1,37,37), g = 0,
+                 epsilon = 1, lambda = 0.1,covType = "kendall")
 
 graph = returngraph(result)
 layout = layout_nicely(graph, dim = 2)
@@ -60,7 +63,9 @@ readline(prompt = "Press [enter] to continue to synthetic Gaussian data demo wit
 
 
 data(exampleData)
-result = diffeek(exampleData[[1]], exampleData[[2]], W = , g =)
+### no grouping information (zero entries for g), same weight for all edges (W is a matrix of ones)
+result = diffeek(exampleData[[1]], exampleData[[2]], W = matrix(1,20,20), g = rep(0,20),
+                 epsilon = 0.2, lambda = 0.4,covType = "cov")
 data(exampleDataGraph)
 layout = layout_nicely(exampleDataGraph[[1]], dim = 2)
 
@@ -68,7 +73,7 @@ layout = layout_nicely(exampleDataGraph[[1]], dim = 2)
 readline(prompt = "Press [enter] to view comparison between ground truth and generated difference graph")
 
 {
-  par(mfrow = c(2, 2))
+  par(mfrow = c(1, 2))
   plot(result, layout = layout)
   plot(
     union(exampleDataGraph[[2]], exampleDataGraph[[3]]),
@@ -82,10 +87,21 @@ readline(prompt = "Press [enter] to view comparison between ground truth and gen
     edge.color = rainbow(1)[1],
     main = "difference graph ground truth"
   )
-  nodeid = c(3, 8)
-  plot(result,
-       type = "neighbour",
-       index = nodeid,
-       layout = layout)
 }
 
+readline(prompt = "Press [enter] to continue to synthetic Gaussian data demo with 2 tasks and 500 features")
+
+data(exampleData500)
+
+readline(prompt = "Press [enter] to view the DIFFEEK runtime (takes roughly 30 seconds on an i7 machine)")
+{
+  start_time = Sys.time()
+  diffeek(exampleData500[[1]], exampleData500[[2]], W = matrix(1,500,500), g = rep(0,500),
+                   epsilon = 0.2, lambda = 0.4,covType = "cov")
+  end_time = Sys.time()
+  print(paste(
+    "the time taken for DIFFEEK to run with p = 500 is",
+    end_time - start_time,
+    "mins"
+  ))
+}

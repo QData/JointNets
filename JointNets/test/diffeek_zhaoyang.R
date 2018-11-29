@@ -1,4 +1,3 @@
-
 .checkInvk <- function(m) class(try(solve(m),silent=T))=="matrix"
 
 .softThrek <- function(x, lambda){
@@ -37,25 +36,24 @@
   }
 }
 
-#' Fast and Scalable Estimator for Using Additional Knowledge in Learning
-#' Sparse Structure Change of High Dimensional of Sparse Changes
-#' in High-Dimensional Gaussian Graphical Models
+#' Fast and Scalable Learning of Sparse Changes in High-Dimensional Gaussian
+#' Graphical Model Structure
+#'
 #'
 #' The DIFFEEK algorithm
 #'
 #' @param C A input matrix for the 'control' group. It can be data matrix or
 #' covariance matrix. If C is a symmetric matrix, the matrices are assumed to
-#' be covariance matrix.
+#' be covariance matrix. More details at <https://github.com/QData/DIFFEE>
 #' @param D A input matrix for the 'disease' group. It can be data matrix or
 #' covariance matrix. If D is a symmetric matrix, the matrices are assumed to
-#' be covariance matrix.
-#' @param W positive weight matrix of size p x p representing prior knowledge of the graphs
+#' be covariance matrix. More details at <https://github.com/QData/DIFFEE>
+#' @param w weight matrix
 #' @param g grouping information
-#' (a vector of size p representing node groups, eg: c(1,1,2,2,0,0)
-#' represents node 1&2 are in group 1, 3&4 are in group 1, 5&6 are not in any group)
-#' @param epsilon A positive number. The hyperparameter controls the sparsity level of the
-#' groups in g of the difference matrix
-#' @param lambda A positive number. The hyperparameter controls the sparsity level of the difference matrix
+#' @param epsilon A positive number
+#' @param lambda A positive number. The hyperparameter controls the sparsity
+#' level of the matrices. The \eqn{\lambda_n} in the following section:
+#' Details.
 #' @param covType A parameter to decide which Graphical model we choose to
 #' estimate from the input data.
 #'
@@ -77,14 +75,10 @@
 #' @return \item{diffNet}{A matrix of the estimated sparse changes between two
 #' Gaussian Graphical Models}
 #' @author Beilun Wang
+#' @references Beilun Wang, Arshdeep Sekhon, Yanjun Qi (2018). Fast and
+#' Scalable Learning of Sparse Changes in High-Dimensional Gaussian Graphical
+#' Model Structure. <arXiv:1710.11223>
 #' @export
-#' @examples
-#' \dontrun{
-#' library(JointNets)
-#' data(exampleData)
-#' result = diffeek(exampleData[[1]], exampleData[[2]], W = matrix(1,20,20), g = rep(0,20),epsilon = 0.2, lambda = 0.4,covType = "cov")
-#' plot(result)
-#' }
 #' @import pcaPP
 #' @importFrom stats cov
 diffeek <- function(C, D, W, g, epsilon = 1, lambda = 0.05, covType = "cov", thre = "soft"){
@@ -112,7 +106,7 @@ diffeek <- function(C, D, W, g, epsilon = 1, lambda = 0.05, covType = "cov", thr
     }
   }
 
-  if (covType == "kendall") {
+  if (covType == "cor") {
     if (isSymmetric(C) == FALSE){
       covX = cor.fk(C)
     }
@@ -131,18 +125,30 @@ diffeek <- function(C, D, W, g, epsilon = 1, lambda = 0.05, covType = "cov", thr
   backX = .backwardMapk(covX, thre)
   backY = .backwardMapk(covY, thre)
   B = backY -backX
-  diffNet = .softThrek(B, lambda/W)
-  diag(diffNet) = 0
 
-  if (epsilon > 0 & max(g) != 0){
-    for (i in 1:max(g)){
-      index = which(g == i)
-      B2 = max(norm(B[index,index], 'F') - epsilon * lambda, 0) * B[index,index] / norm(B[index,index], 'F')
-      diffNet[index,index] = pmax(lambda - B[index,index], pmin(B2, lambda + B[index,index]))
+  diffNet = matrix(0,nrow(W),ncol(W)) ## initialize empty diffNet
+  gV = cbind(combn(g,2),combn(g,2)[c(2,1),]) ## obtain gV
+
+  ## update diffnet on E\gV
+  for (i in 1:nrow(W)){
+    for (j in 1:ncol(W)){
+      diffNet[i,j] = .softThrek(B[i,j], lambda / W[i,j])
     }
   }
 
-  diag(diffNet) = 1
+  ## update diffnet on gV
+  sum = 0
+  for (i in 1:dim(gV)[2]){
+    sum = sum + (B[gV[1,i],gV[2,i]])^2
+  }
+  B_V_norm = sqrt(sum)
+  B2 = max(B_V_norm - epsilon * lambda, 0) * B / B_V_norm
+  for (i in 1:dim(gV)[2]){
+    a = gV[1,i]
+    b = gV[2,i]
+    diffNet[a,b] = pmax(lambda - B[a,b], pmin(B2[a,b], lambda + B[a,b]))
+  }
+
   diffNet = list(diffNet)
   ### share = NULL since diffeek produces only the difference graph
   out = list(graphs = diffNet, share = NULL)
@@ -150,7 +156,3 @@ diffeek <- function(C, D, W, g, epsilon = 1, lambda = 0.05, covType = "cov", thr
   out = add_name_to_out(out,C)
   return(out)
 }
-
-
-
-

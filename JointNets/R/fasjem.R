@@ -132,8 +132,8 @@ fasjem.backwardMap <- function(covMatrix) {
 #' When \code{method = "fasjem-i"}, \eqn{\mathcal{R}'(\cdot) =
 #' ||\cdot||_{\mathcal{G},\infty}}.
 #'
-#' Please run \code{demo(fasjem)} to learn the basic functions provided by this
-#' package. For more details, please see
+#' Please run \code{demo(fasjem)} to learn the basics.
+#' For more details, please see
 #' <http://proceedings.mlr.press/v54/wang17e/wang17e.pdf>.
 #'
 #' @param X A List of input matrices. They can be either data matrices or
@@ -165,7 +165,7 @@ fasjem.backwardMap <- function(covMatrix) {
 #' for more details.
 #' @param iterMax An integer. The max number of iterations in the optimization
 #' of fasjem.
-#' @return \item{Graphs}{A list of the estimated inverse covariance matrices.}
+#' @return \item{$graphs}{A list of the estimated inverse covariance matrices.}
 #' @references Beilun Wang, Ji Gao, Yanjun Qi (2017). A Fast and Scalable Joint
 #' Estimator for Learning Multiple Related Sparse Gaussian Graphical Models.
 #' <http://proceedings.mlr.press/v54/wang17e/wang17e.pdf>
