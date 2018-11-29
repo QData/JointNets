@@ -4,12 +4,16 @@
 \alias{plotbrain.diffee}
 \title{plot 3d brain network from diffee result}
 \usage{
-\method{plotbrain}{diffee}(x, ...)
+\method{plotbrain}{diffee}(x, type = "task", neighbouroption = "task",
+  subID = NULL, index = NULL, hastitle = TRUE, haslegend = TRUE,
+  ...)
 }
 \arguments{
 \item{x}{output generated from diffee}
 
-\item{...}{additional arguments}
+\item{...}{additional arguments, please see \code{\link{plot.diffee}} for details}
+
+\item{layout}{numeric matrix (3 columns) that specifies node positions in 3d brain network (atlas coordinates)}
 }
 \value{
 3d (rgl) brain network
@@ -22,6 +26,15 @@ The function plots brain network using \code{\link{rglplot.igraph}}
 }
 \examples{
 \dontrun{
+library(JointNets)
+graphics.off()
+par(ask=F)
+par(mfrow=c(1,1))
+data(ABIDE_aal116_timeseries)
+data(aal116coordinates)
+layout = cbind(aal116coordinates$x.mni + 90,aal116coordinates$y.mni+126, aal116coordinates$z.mni+72)
+result = diffee(ABIDE_aal116_timeseries[[1]], ABIDE_aal116_timeseries[[2]], 0.001)
+plotbrain(result, type = "task", neighbouroption = "task", subID = NULL, index = NULL, layout = layout)
 }
 }
 \author{

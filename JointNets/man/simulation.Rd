@@ -18,8 +18,14 @@ simulation(p = 20, n, seedNum = 37, s = 0.1, ss = 0.1)
 \item{ss}{positive number that controls sparsity of the shared part of generated graphs}
 }
 \value{
-a list comprising simulatedgraphs (multiple related simulated graphs) and simulatedsamples (samples generated from multiple related graphs)
+a list comprising $simulatedgraphs (multiple related simulated graphs) and $simulatedsamples (samples generated from multiple related graphs)
 }
 \description{
 simulate multiple sparse graphs and generate samples
+}
+\examples{
+\dontrun{
+simulateresult = simulation(p = 20,  n = c(100,100))
+plot(simulateresult$simulatedgraphs)
+}
 }
