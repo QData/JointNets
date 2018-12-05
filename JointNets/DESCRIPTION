@@ -3,7 +3,7 @@ Package: JointNets
 Version: 1.0.0
 Date: 2018-11-29
 Encoding: UTF-8
-Title: JointNets: Sparse Gaussian Graphical Model Estimation, Visualization and Evaluation
+Title: Sparse Gaussian Graphical Model Estimation, Visualization and Evaluation
 Authors@R: c(person("Beilun", "Wang", role = c("aut"), email = "bw4mw@virginia.edu"), person("Yanjun", "Qi", role = "aut", email = "yanjun@virginia.edu"),person("Zhaoyang", "Wang", role = c("aut","cre"), email = "zw4dn@virginia.edu"))
 Author: Beilun Wang [aut], Yanjun Qi [aut], Zhaoyang Wang [aut, cre]
 Maintainer: Zhaoyang Wang <zw4dn@virginia.edu>

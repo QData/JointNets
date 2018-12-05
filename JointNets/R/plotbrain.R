@@ -16,6 +16,8 @@
 #' layout = cbind(aal116coordinates$x.mni + 90,
 #' aal116coordinates$y.mni+126, aal116coordinates$z.mni+72)
 #' # result = simule(ABIDE_aal116_timeseries, 0.2, 1, covType = "cov", FALSE)
+#' # plotbrain(result, type = "task", neighbouroption = "task",
+#' # subID = NULL, index = NULL, layout = layout)
 #' # for demonstration purpose only, for estimation from ABIDE dataset
 #' # please run the above commented code or run demo(brain)
 #' result = simulation(p=116, s = 0.001, ss = 0.001, n = c(1,1))$simulatedgraphs
@@ -335,7 +337,6 @@ plotbrain.diffee <- function(x,
 #' class(result) = "simule"
 #' plotbrain(result, type = "task", neighbouroption = "task",
 #' subID = NULL, index = NULL, layout = layout)
-
 #' @method plotbrain diffeek
 #' @export
 #' @export plotbrain.diffeek
@@ -448,7 +449,7 @@ plotbrain.jeek <- function(x,
 #' (zoom into one node or multiple nodes)
 #' @param hastitle determines whether the graph title is displayed or not (TRUE to display / FALSE to hide)
 #' @param haslegend determines whether the graph legend is displayed or not (TRUE to display / FALSE to hide)
-#' @param ... extra parameters passed to igraph::rglplot()
+#' @param ... extra parameters passed to igraph::rglplot() and level in misc::contour3d()
 #' @return 3d (rgl) brain network
 #' @import methods
 plotbrain_joint <-
@@ -460,6 +461,7 @@ plotbrain_joint <-
            hastitle = TRUE,
            haslegend = TRUE,
            ...) {
+    args = list(...)
     subID = unique(subID)
     index = unique(index)
     gadj = returngraph(
@@ -489,18 +491,22 @@ plotbrain_joint <-
     }
 
     ### intialize plot
-    rgl::mfrow3d(nr = 1, nc = 1, sharedMouse = TRUE)
-    rgl::par3d(windowRect = c(100, 100, 1000, 1000))
+    #rgl::mfrow3d(nr = 1, nc = 1, sharedMouse = TRUE)
+    #rgl::open3d()
+    #rgl::par3d(windowRect = c(100, 100, 1000, 1000))
+    rgl::par3d(skipRedraw=TRUE)
+    #rgl::open3d()
+    rgl::par3d(windowRect = c(100, 100, 612, 612))
     ### display background brain (refer to multipleRegion_plot from brainKCCA package)
     misc3d::contour3d(
       oro.nifti::readNIfTI(
         system.file("MNI152_T1_1mm_brain.nii.gz", package = "brainR"),
         reorient = FALSE
       ),
-      level = 3000,
-      alpha = 0.5,
+      level = ifelse(methods::hasArg('level'), args$level, 3000),
+      alpha = ifelse(methods::hasArg('alpha'), args$alpha, 0.5),
       draw = TRUE,
-      add = TRUE,
+      add = FALSE,
       rescale = FALSE
     )
 
@@ -532,14 +538,27 @@ plotbrain_joint <-
       ...
     )
 
+
     ### plot title
     if (hastitle) {
       title3d(main = title, sub = NULL, xlab = NULL, ylab = NULL,
               zlab = NULL, line = NA, ...)
+
     }
     ### plot legend
+    ###text3d(x=1.1, y=c(.9,1,1.1), z=1.1, c(paste("task", c(
+    ###   1:length(x$graphs)
+    ### ), "specific"), "share") ,
+    ###col=grDevices::rainbow(length(x$graphs) + 1))
+    #points3d(x=1.2,y=c(.9,1,1.1),z=1.1, col=as.numeric(as.factor(loadings[,4])), size=5)
+
+
     if (haslegend) {
-      legend3d(
+      bgplot3d({
+      par(mar=c(0,0,0,0))
+      par(ask = FALSE)
+      plot(0,0, type="n", xlim=0:1, ylim=0:1, xaxs="i", yaxs="i", axes=FALSE, bty="n")
+      graphics::legend(
         "topright" ,
         legend = c(paste("task", c(
           1:length(x$graphs)
@@ -549,7 +568,10 @@ plotbrain_joint <-
         cex = 1,
         inset = c(0.02)
       )
+      })
     }
+
+    rgl::par3d(skipRedraw=FALSE)
 
   }
 

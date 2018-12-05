@@ -12,4 +12,8 @@ result = simule(ABIDE_aal116_timeseries, 0.2, 1, covType = "cov", TRUE)
 plotbrain(result, type = "task", neighbouroption = "task",
                          subID = NULL, index = NULL, layout = layout)
 
+open3d()
+plotbrain(result, type = "task", neighbouroption = "task",
+          subID = 1, index = NULL, layout = layout)
+
 

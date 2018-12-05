@@ -44,7 +44,7 @@ This parameter could either be an integer or vector of integers representing nod
 
 \item{haslegend}{determines whether the graph legend is displayed or not (TRUE to display / FALSE to hide)}
 
-\item{...}{extra parameters passed to igraph::rglplot()}
+\item{...}{extra parameters passed to igraph::rglplot() and level in misc::contour3d()}
 }
 \value{
 3d (rgl) brain network

@@ -63,7 +63,7 @@ Each graph will include a descriptive title and legend to indicate correspondenc
 library(JointNets)
 data(exampleData)
 result = jeek(X = exampleData, 0.3, covType = "cov", parallel = FALSE)
-plot.jeek(result)
+plot(result)
 }
 \author{
 Beilun Wang, Zhaoyang Wang (Author), Zhaoyang Wang (maintainer) \email{zw4dn@virginia.edu}

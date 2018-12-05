@@ -35,7 +35,7 @@
 #' library(JointNets)
 #' data(exampleData)
 #' result = jeek(X = exampleData, 0.3, covType = "cov", parallel = FALSE)
-#' plot.jeek(result)
+#' plot(result)
 #' @method plot jeek
 #' @export
 #' @export plot.jeek
