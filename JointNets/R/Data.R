@@ -35,7 +35,6 @@ NULL
 #' @usage data(exampleDataGraph)
 NULL
 
-
 #' Microarray data set for breast cancer
 #'
 #' % This gene expression data set is freely available, coming from the Hess

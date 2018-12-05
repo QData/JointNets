@@ -32,12 +32,10 @@
 #' User can specify multiple subID and multiple index to zoom in multiple nodes on multiple graphs
 #' Each graph will include a descriptive title and legend to indicate correspondence between edge color and task.
 #' @examples
-#' \dontrun{
 #' library(JointNets)
 #' data(exampleData)
-#' result = jeek(X = exampleData, 0.3, covType = "cov", parallel = TRUE)
+#' result = jeek(X = exampleData, 0.3, covType = "cov", parallel = FALSE)
 #' plot.jeek(result)
-#' }
 #' @method plot jeek
 #' @export
 #' @export plot.jeek
@@ -98,12 +96,10 @@ plot.jeek <-
 #' User can specify multiple subID and multiple index to zoom in multiple nodes on multiple graphs.
 #' Each graph will include a descriptive title and legend to indicate correspondence between edge color and task.
 #' @examples
-#' \dontrun{
 #' library(JointNets)
 #' data(exampleData)
 #' result = simule(X = exampleData , lambda = 0.1, epsilon = 0.45, covType = "cov", FALSE)
 #' plot(result)
-#' }
 #' @method plot simule
 #' @export
 #' @export plot.simule
@@ -162,12 +158,10 @@ plot.simule <-
 #' User can specify multiple subID and multiple index to zoom in multiple nodes on multiple graphs.
 #' Each graph will include a descriptive title and legend to indicate correspondence between edge color and task.
 #' @examples
-#' \dontrun{
 #' library(JointNets)
 #' data(exampleData)
 #' result = simulation(n = c(100,100,100))$simulatedgraphs
 #' plot(result)
-#' }
 #' @method plot simulation
 #' @export
 #' @export plot.simulation
@@ -227,13 +221,11 @@ plot.simulation <-
 #' User can specify multiple subID and multiple index to zoom in multiple nodes on multiple graphs.
 #' Each graph will include a descriptive title and legend to indicate correspondence between edge color and task.
 #' @examples
-#' \dontrun{
 #' library(JointNets)
 #' data(exampleData)
 #' result = wsimule(X = exampleData , lambda = 0.1, epsilon = 0.45,
 #' W = matrix(1,20,20), covType = "cov", FALSE)
 #' plot(result)
-#' }
 #' @method plot wsimule
 #' @export
 #' @export plot.wsimule
@@ -292,12 +284,10 @@ plot.wsimule <-
 #' User can specify multiple subID and multiple index to zoom in multiple nodes on multiple graphs.
 #' Each graph will include a descriptive title and legend to indicate correspondence between edge color and task.
 #' @examples
-#' \dontrun{
 #' library(JointNets)
 #' data(exampleData)
 #' result = fasjem(X = exampleData, method = "fasjem-g", 0.5, 0.1, 0.1, 0.05, 10)
 #' plot(result)
-#' }
 #' @method plot fasjem
 #' @export
 #' @export plot.fasjem
@@ -342,12 +332,10 @@ plot.fasjem <-
 #' Users can specify multiple subID to zoom in multiple nodes.
 #' Each graph will include a descriptive title.
 #' @examples
-#' \dontrun{
 #' library(JointNets)
 #' data(exampleData)
 #' result = diffee(exampleData[[1]], exampleData[[2]], 0.45)
 #' plot.diffee(result)
-#' }
 #' @method plot diffee
 #' @export
 #' @export plot.diffee
@@ -382,14 +370,12 @@ plot.diffee <-
 #' Users can specify multiple subID to zoom in multiple nodes.
 #' Each graph will include a descriptive title.
 #' @examples
-#' \dontrun{
 #' library(JointNets)
 #' data(exampleData)
 #' result = diffeek(exampleData[[1]], exampleData[[2]],
 #' W = matrix(1,20,20), g = rep(0,20),epsilon = 0.2,
 #' lambda = 0.4,covType = "cov")
 #' plot(result)
-#' }
 #' @method plot diffeek
 #' @export
 #' @export plot.diffeek

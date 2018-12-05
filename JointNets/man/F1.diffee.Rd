@@ -17,11 +17,10 @@
 computes F1 score for jointnet result
 }
 \examples{
-\dontrun{
+library(JointNets)
 simulationresult = simulation(p = 20,  n = c(100,100))
 truth = simulationresult$simulatedgraphs
 result = diffee(simulationresult$simulatedsamples[[1]],
 simulationresult$simulatedsamples[[2]], 0.01)
 F1(result,truth)
-}
 }

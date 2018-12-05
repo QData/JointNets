@@ -121,12 +121,11 @@ jeek.linprogSPar <- function(i, W, B, lambda){
 #' @import pcaPP
 #' @details if labels are provided in the datalist as column names, result will contain labels (to be plotted)
 #' @examples
-#' \dontrun{
 #' library(JointNets)
 #' data(exampleData)
-#' result = jeek(X = exampleData, 0.3, covType = "cov", parallel = TRUE)
+#' result = jeek(X = exampleData, 0.3, covType = "cov", parallel = FALSE)
 #' plot(result)
-#' }
+
 jeek <- function(X, lambda, W = NA, covType = "cov", parallel = FALSE) {
   #decide if they dataframe or not
   if (is.data.frame(X[[1]])){

@@ -104,10 +104,10 @@ generateSampleList <-
 #' @import MASS
 #' @export
 #' @examples
-#' \dontrun{
+#' library(JointNets)
 #' simulateresult = simulation(p = 20,  n = c(100,100))
 #' plot(simulateresult$simulatedgraphs)
-#' }
+
 simulation <- function(p = 20,
                      n,
                      seedNum = 37,

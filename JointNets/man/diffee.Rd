@@ -65,12 +65,10 @@ Arshdeep Sekhon, Yanjun Qi (2018) \url{https://arxiv.org/abs/1710.11223}.
 if labels are provided in the datalist as column names, result will contain labels (to be plotted)
 }
 \examples{
-\dontrun{
 library(JointNets)
 data(exampleData)
 result = diffee(exampleData[[1]], exampleData[[2]], 0.45)
 plot(result)
-}
 }
 \references{
 Beilun Wang, Arshdeep Sekhon, Yanjun Qi (2018). Fast and

@@ -90,12 +90,10 @@ For more details, please see
 if labels are provided in the datalist as column names, result will contain labels (to be plotted)
 }
 \examples{
-\dontrun{
 library(JointNets)
 data(exampleData)
 result = fasjem(X = exampleData, method = "fasjem-g", 0.5, 0.1, 0.1, 0.05, 10)
 plot(result)
-}
 }
 \references{
 Beilun Wang, Ji Gao, Yanjun Qi (2017). A Fast and Scalable Joint

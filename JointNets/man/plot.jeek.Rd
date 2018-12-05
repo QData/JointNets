@@ -60,12 +60,10 @@ User can specify multiple subID and multiple index to zoom in multiple nodes on 
 Each graph will include a descriptive title and legend to indicate correspondence between edge color and task.
 }
 \examples{
-\dontrun{
 library(JointNets)
 data(exampleData)
-result = jeek(X = exampleData, 0.3, covType = "cov", parallel = TRUE)
+result = jeek(X = exampleData, 0.3, covType = "cov", parallel = FALSE)
 plot.jeek(result)
-}
 }
 \author{
 Beilun Wang, Zhaoyang Wang (Author), Zhaoyang Wang (maintainer) \email{zw4dn@virginia.edu}

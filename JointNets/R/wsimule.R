@@ -100,13 +100,11 @@ wsimule.linprogSPar <- function(i, Sigma, W, lambda){
 #' @import pcaPP
 #' @details if labels are provided in the datalist as column names, result will contain labels (to be plotted)
 #' @examples
-#' \dontrun{
 #' library(JointNets)
 #' data(exampleData)
 #' result = wsimule(X = exampleData , lambda = 0.1, epsilon = 0.45,
 #' W = matrix(1,20,20), covType = "cov", FALSE)
 #' plot(result)
-#' }
 wsimule <- function(X, lambda, epsilon = 1, W, covType = "cov",parallel = FALSE ){
 
   if (is.data.frame(X[[1]])){

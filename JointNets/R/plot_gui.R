@@ -41,12 +41,13 @@ server <- function(input, output) {
   output$plot <- shiny::renderPlot({
     #layout = layout_nicely(returngraph(eval(as.name(input$result))), dim = 2)
     par(mfrow = c(1, 1))
-
+    if (input$result != ''){
     plot(x = eval(as.name(input$result)),
          type = input$type,
          index = as.integer(input$index),
          subID = if (as.integer(input$subID) == -1) NULL else as.integer(input$subID)
     )
+    }
   })
 
 }
@@ -64,9 +65,14 @@ app = shiny::shinyApp(ui = ui, server = server)
 #' @import shiny
 #' @importFrom graphics par
 #' @importFrom graphics plot
+#' @examples
+#' library(JointNets)
+#' if(interactive()){
+#' plot_gui()
+#' shiny::stopApp()
+#' }
 plot_gui <- function(){
 
   shiny::runApp(app)
 }
-#par(ask = F)
-#shiny::runApp(app)
+

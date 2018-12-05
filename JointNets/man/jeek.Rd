@@ -72,12 +72,10 @@ Gaussian Graphical Models. ICML 2018
 if labels are provided in the datalist as column names, result will contain labels (to be plotted)
 }
 \examples{
-\dontrun{
 library(JointNets)
 data(exampleData)
-result = jeek(X = exampleData, 0.3, covType = "cov", parallel = TRUE)
+result = jeek(X = exampleData, 0.3, covType = "cov", parallel = FALSE)
 plot(result)
-}
 }
 \references{
 Beilun Wang, Arshdeep Sekhon, Yanjun Qi. A Fast and Scalable

@@ -3,7 +3,7 @@ library(JointNets)
 
 ### plotting window reset routine
 graphics.off()
-par(ask = F)
+par(ask = FALSE)
 par(mfrow = c(1, 1))
 
 

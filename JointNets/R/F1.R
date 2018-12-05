@@ -5,12 +5,11 @@
 #' @param ... unused
 #' @return F1 scores (F1 score for each context and the shared part (for simule and wsimule))
 #' @examples
-#' \dontrun{
+#' library(JointNets)
 #' simulationresult = simulation(p = 20,  n = c(100,100))
 #' truth = simulationresult$simulatedgraphs
-#' result = simule(simulationresult$simulatedsamples, 0.2, 0.5, covType = "cov", TRUE)
+#' result = simule(simulationresult$simulatedsamples, 0.2, 0.5, covType = "cov", FALSE)
 #' F1(result,truth)
-#' }
 #' @export
 F1 <- function(result, simulatedgraphs,...) {
   UseMethod("F1", result)
@@ -25,12 +24,12 @@ F1 <- function(result, simulatedgraphs,...) {
 #' @export
 #' @export F1.simule
 #' @examples
-#' \dontrun{
+#' library(JointNets)
 #' simulationresult = simulation(p = 20,  n = c(100,100))
 #' truth = simulationresult$simulatedgraphs
-#' result = simule(simulationresult$simulatedsamples, 0.2, 0.5, covType = "cov", TRUE)
+#' result = simule(simulationresult$simulatedsamples, 0.2, 0.5, covType = "cov", FALSE)
 #' F1(result,truth)
-#' }
+
 F1.simule <-
   function(result,
            simulatedgraphs,
@@ -57,13 +56,13 @@ F1.simule <-
 #' @export
 #' @export F1.wsimule
 #' @examples
-#' \dontrun{
+#' library(JointNets)
 #' simulationresult = simulation(p = 20,  n = c(100,100))
 #' truth = simulationresult$simulatedgraphs
 #' result = wsimule(simulationresult$simulatedsamples,
-#'  0.2, 1, W = matrix(1,20,20), covType = "cov", TRUE)
+#'  0.2, 1, W = matrix(1,20,20), covType = "cov", FALSE)
 #' F1(result,truth)
-#' }
+
 F1.wsimule <-
   function(result,
            simulatedgraphs,
@@ -90,12 +89,12 @@ F1.wsimule <-
 #' @export
 #' @export F1.jeek
 #' @examples
-#' \dontrun{
+#' library(JointNets)
 #' simulationresult = simulation(p = 20,  n = c(100,100))
 #' truth = simulationresult$simulatedgraphs
-#' result = jeek(simulationresult$simulatedsamples,0.25,covType = "kendall",parallel = TRUE)
+#' result = jeek(simulationresult$simulatedsamples,0.25,covType = "kendall",parallel = FALSE)
 #' F1(result,truth)
-#' }
+
 F1.jeek <-
   function(result,
            simulatedgraphs,
@@ -121,12 +120,12 @@ F1.jeek <-
 #' @export
 #' @export F1.fasjem
 #' @examples
-#' \dontrun{
+#' library(JointNets)
 #' simulationresult = simulation(p = 20,  n = c(100,100))
 #' truth = simulationresult$simulatedgraphs
 #' result = fasjem(simulationresult$simulatedsamples, method = "fasjem-g", 2, 0.1, 0.1, 0.05, 20)
 #' F1(result,truth)
-#' }
+
 F1.fasjem <-
   function(result,
            simulatedgraphs,
@@ -152,13 +151,13 @@ F1.fasjem <-
 #' @export
 #' @export F1.diffee
 #' @examples
-#' \dontrun{
+#' library(JointNets)
 #' simulationresult = simulation(p = 20,  n = c(100,100))
 #' truth = simulationresult$simulatedgraphs
 #' result = diffee(simulationresult$simulatedsamples[[1]],
 #' simulationresult$simulatedsamples[[2]], 0.01)
 #' F1(result,truth)
-#' }
+
 F1.diffee <-
   function(result,
            simulatedgraphs,
@@ -179,6 +178,16 @@ F1.diffee <-
 #' @method F1 diffeek
 #' @export
 #' @export F1.diffeek
+#' @examples
+#' library(JointNets)
+#' simulationresult = simulation(p = 20,  n = c(100,100))
+#' truth = simulationresult$simulatedgraphs
+#' result = diffeek(simulationresult$simulatedsamples[[1]],
+#' simulationresult$simulatedsamples[[2]],
+#' W = matrix(1,20,20), g = rep(0,20),epsilon = 0.2,
+#' lambda = 0.4,covType = "cov")
+#' F1(result,truth)
+
 F1.diffeek <-
   function(result,
            simulatedgraphs,
@@ -192,11 +201,11 @@ F1.diffeek <-
     return(out)
   }
 
-#' function to calculate F1 score for a single simulate graph with a single result graph
-#' @param truth ground truth precision matrix
-#' @param estimate estimated precision matrix
-#' @return a single F1 score between truth and estimate between 0 and 1 (higher scores correspond to better estimation)
-#' @export
+## function to calculate F1 score for a single simulate graph with a single result graph
+## @param truth ground truth precision matrix
+## @param estimate estimated precision matrix
+## @return a single F1 score between truth and estimate between 0 and 1 (higher scores correspond to better estimation)
+## @export
 F1_single <- function(truth,estimate){
   tP = sum((estimate == 1) & (truth == 1))
   tN = sum((estimate == 0) & (truth == 0))

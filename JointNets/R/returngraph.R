@@ -9,12 +9,10 @@
 #' @details the function aims to provide users the flexibility to explore and visualize the graph on their own
 #' generated from jointnet
 #' @examples
-#' \dontrun{
 #' library(JointNets)
 #' data(exampleData)
-#' result = jeek(X = exampleData, 0.3, covType = "cov", parallel = TRUE)
+#' result = jeek(X = exampleData, 0.3, covType = "cov", parallel = FALSE)
 #' graph = returngraph(result)
-#' }
 #' @export
 returngraph <- function(x, ...) {
   UseMethod("returngraph", x)
@@ -50,12 +48,10 @@ returngraph <- function(x, ...) {
 #' @details the function aims to provide users the flexibility to explore and visualize the graph on their own
 #' generated from jeek
 #' @examples
-#' \dontrun{
 #' library(JointNets)
 #' data(exampleData)
-#' result = jeek(X = exampleData, 0.3, covType = "cov", parallel = TRUE)
-#' graph = returngraph.jeek(result)
-#' }
+#' result = jeek(X = exampleData, 0.3, covType = "cov", parallel = FALSE)
+#' graph = returngraph(result)
 #' @export
 #' @import igraph
 returngraph.jeek <-
@@ -98,12 +94,10 @@ returngraph.jeek <-
 #' @details the function aims to provide users the flexibility to explore and visualize the graph on their own
 #' generated from simule
 #' @examples
-#' \dontrun{
 #' library(JointNets)
 #' data(exampleData)
 #' result = simule(X = exampleData , lambda = 0.1, epsilon = 0.45, covType = "cov", FALSE)
-#' graph = returngraph.simule(result)
-#' }
+#' graph = returngraph(result)
 #' @export
 #' @import igraph
 returngraph.simule <-
@@ -146,13 +140,11 @@ returngraph.simule <-
 #' @details the function aims to provide users the flexibility to explore and visualize the graph on their own
 #' generated from wsimule
 #' @examples
-#' \dontrun{
 #' library(JointNets)
 #' data(exampleData)
 #' result = wsimule(X = exampleData , lambda = 0.1, epsilon = 0.45,
 #' W = matrix(1,20,20), covType = "cov", FALSE)
-#' graph = returngraph.wsimule(result)
-#' }
+#' graph = returngraph(result)
 #' @export
 #' @import igraph
 returngraph.wsimule <-
@@ -195,12 +187,10 @@ returngraph.wsimule <-
 #' @details the function aims to provide users the flexibility to explore and visualize the graph on their own
 #' generated from fasjem
 #' @examples
-#' \dontrun{
 #' library(JointNets)
 #' data(exampleData)
 #' result = fasjem(X = exampleData, method = "fasjem-g", 0.5, 0.1, 0.1, 0.05, 10)
-#' graph = returngraph.fasjem(result)
-#' }
+#' graph = returngraph(result)
 #' @export
 #' @import igraph
 returngraph.fasjem <-
@@ -243,12 +233,10 @@ returngraph.fasjem <-
 #' @details the function aims to provide users the flexibility to explore and visualize the graph on their own
 #' generated from simulation
 #' @examples
-#' \dontrun{
 #' library(JointNets)
 #' data(exampleData)
 #' result = simulation(n=c(100,100,100))$simulatedgraphs
-#' graph = returngraph.fasjem(result)
-#' }
+#' graph = returngraph(result)
 #' @export
 #' @import igraph
 returngraph.simulation <-
@@ -281,11 +269,10 @@ returngraph.simulation <-
 #' @details the function aims to provide users the flexibility to explore and visualize the graph own their own
 #' generated from diffee
 #' @examples
-#' \dontrun{
+#' library(JointNets)
 #' data(exampleData)
 #' result = diffee(exampleData[[1]], exampleData[[2]], 0.45)
-#' graph = returngraph.diffee(result)
-#' }
+#' graph = returngraph(result)
 #' @export
 #' @import igraph
 returngraph.diffee <-
@@ -324,11 +311,12 @@ returngraph.diffee <-
 #' @details the function aims to provide users the flexibility to explore and visualize the graph own their own
 #' generated from diffee
 #' @examples
-#' \dontrun{
+#' library(JointNets)
 #' data(exampleData)
-#' result = diffeek(exampleData[[1]], exampleData[[2]], W = , g = )
-#' graph = returngraph.diffee(result)
-#' }
+#' result = diffeek(exampleData[[1]], exampleData[[2]],
+#' W = matrix(1,20,20), g = rep(0,20),epsilon = 0.2,
+#' lambda = 0.4,covType = "cov")
+#' graph = returngraph(result)
 #' @export
 #' @import igraph
 returngraph.diffeek <-

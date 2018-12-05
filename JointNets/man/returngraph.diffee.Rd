@@ -38,11 +38,10 @@ the function aims to provide users the flexibility to explore and visualize the 
 generated from diffee
 }
 \examples{
-\dontrun{
+library(JointNets)
 data(exampleData)
 result = diffee(exampleData[[1]], exampleData[[2]], 0.45)
-graph = returngraph.diffee(result)
-}
+graph = returngraph(result)
 }
 \author{
 Beilun Wang, Zhaoyang Wang (Author), Zhaoyang Wang (maintainer) \email{zw4dn@virginia.edu}

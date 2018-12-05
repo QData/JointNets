@@ -37,12 +37,10 @@ Users can specify multiple subID to zoom in multiple nodes.
 Each graph will include a descriptive title.
 }
 \examples{
-\dontrun{
 library(JointNets)
 data(exampleData)
 result = diffee(exampleData[[1]], exampleData[[2]], 0.45)
 plot.diffee(result)
-}
 }
 \author{
 Beilun Wang, Zhaoyang Wang (Author), Zhaoyang Wang (maintainer) \email{zw4dn@virginia.edu}

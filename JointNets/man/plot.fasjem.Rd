@@ -60,12 +60,10 @@ User can specify multiple subID and multiple index to zoom in multiple nodes on 
 Each graph will include a descriptive title and legend to indicate correspondence between edge color and task.
 }
 \examples{
-\dontrun{
 library(JointNets)
 data(exampleData)
 result = fasjem(X = exampleData, method = "fasjem-g", 0.5, 0.1, 0.1, 0.05, 10)
 plot(result)
-}
 }
 \author{
 Beilun Wang, Zhaoyang Wang (Author), Zhaoyang Wang (maintainer) \email{zw4dn@virginia.edu}

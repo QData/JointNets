@@ -15,15 +15,13 @@ AUC_generic <- function(a,b){
 #' @return AUC score, a list of precisions and recalls
 #' @export
 #' @examples
-#' \dontrun{
 #' simulationresult = simulation(n=c(100,100,100))
-#' AUC_result = AUC(simulationresult,lambdas = seq(0.1,2,0.05),epsilon = 2)
+#' AUC_result = AUC(simulationresult,lambdas = seq(0.1,2,0.5),epsilon = 2)
 #' AUC_result
 #' graphics.off()
-#' par(ask = F)
+#' par(ask = FALSE)
 #' par(mfrow = c(1, 1))
 #' plot(AUC_result$fPM,AUC_result$tPM)
-#' }
 AUC <- function(simulationresult, gm_method = "simule", lambdas, ...){
   range = length(lambdas)+1
   tP = rep(0,range)

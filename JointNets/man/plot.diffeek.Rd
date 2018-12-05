@@ -37,14 +37,12 @@ Users can specify multiple subID to zoom in multiple nodes.
 Each graph will include a descriptive title.
 }
 \examples{
-\dontrun{
 library(JointNets)
 data(exampleData)
 result = diffeek(exampleData[[1]], exampleData[[2]],
 W = matrix(1,20,20), g = rep(0,20),epsilon = 0.2,
 lambda = 0.4,covType = "cov")
 plot(result)
-}
 }
 \author{
 Beilun Wang, Zhaoyang Wang (Author), Zhaoyang Wang (maintainer) \email{zw4dn@virginia.edu}

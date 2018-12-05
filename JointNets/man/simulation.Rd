@@ -24,8 +24,7 @@ a list comprising $simulatedgraphs (multiple related simulated graphs) and $simu
 simulate multiple sparse graphs and generate samples
 }
 \examples{
-\dontrun{
+library(JointNets)
 simulateresult = simulation(p = 20,  n = c(100,100))
 plot(simulateresult$simulatedgraphs)
-}
 }

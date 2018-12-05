@@ -7,19 +7,21 @@
 #' @return 3d (rgl) brain network
 #' @details The function plots brain network using \code{\link{rglplot.igraph}}
 #' @examples
-#' \dontrun{
 #' library(JointNets)
 #' graphics.off()
-#' par(ask=F)
+#' par(ask=FALSE)
 #' par(mfrow=c(1,1))
 #' data(ABIDE_aal116_timeseries)
 #' data(aal116coordinates)
 #' layout = cbind(aal116coordinates$x.mni + 90,
 #' aal116coordinates$y.mni+126, aal116coordinates$z.mni+72)
-#' result = simule(ABIDE_aal116_timeseries, 0.2, 1, covType = "cov", TRUE)
+#' # result = simule(ABIDE_aal116_timeseries, 0.2, 1, covType = "cov", FALSE)
+#' # for demonstration purpose only, for estimation from ABIDE dataset
+#' # please run the above commented code or run demo(brain)
+#' result = simulation(p=116, s = 0.001, ss = 0.001, n = c(1,1))$simulatedgraphs
+#' class(result) = "simule"
 #' plotbrain(result, type = "task", neighbouroption = "task",
 #' subID = NULL, index = NULL, layout = layout)
-#' }
 #' @import rgl
 #' @import brainR
 #' @import misc3d
@@ -60,19 +62,21 @@ plotbrain <- function(x, ...) {
 #' @return 3d (rgl) brain network
 #' @details The function plots brain network using \code{\link{rglplot.igraph}}
 #' @examples
-#' \dontrun{
 #' library(JointNets)
 #' graphics.off()
-#' par(ask=F)
+#' par(ask=FALSE)
 #' par(mfrow=c(1,1))
 #' data(ABIDE_aal116_timeseries)
 #' data(aal116coordinates)
 #' layout = cbind(aal116coordinates$x.mni + 90,
 #' aal116coordinates$y.mni+126, aal116coordinates$z.mni+72)
-#' result = simule(ABIDE_aal116_timeseries, 0.2, 1, covType = "cov", TRUE)
+#' # result = simule(ABIDE_aal116_timeseries, 0.2, 1, covType = "cov", FALSE)
+#' # for demonstration purpose only, for estimation from ABIDE dataset
+#' # please run the above commented code or run demo(brain)
+#' result = simulation(p=116, s = 0.001, ss = 0.001, n = c(1,1))$simulatedgraphs
+#' class(result) = "simule"
 #' plotbrain(result, type = "task", neighbouroption = "task",
 #' subID = NULL, index = NULL, layout = layout)
-#' }
 #' @method plotbrain simule
 #' @export
 #' @export plotbrain.simule
@@ -129,20 +133,22 @@ plotbrain.simule <-
 #' @return 3d (rgl) brain network
 #' @details The function plots brain network using \code{\link{rglplot.igraph}}
 #' @examples
-#' \dontrun{
 #' library(JointNets)
 #' graphics.off()
-#' par(ask=F)
+#' par(ask=FALSE)
 #' par(mfrow=c(1,1))
 #' data(ABIDE_aal116_timeseries)
 #' data(aal116coordinates)
 #' layout = cbind(aal116coordinates$x.mni + 90,
 #' aal116coordinates$y.mni+126, aal116coordinates$z.mni+72)
-#' result = wsimule(ABIDE_aal116_timeseries, 0.2, 1,
-#' W = matrix(1,116,116), covType = "cov", TRUE)
+#' # result = wsimule(ABIDE_aal116_timeseries, 0.2, 1,
+#' # W = matrix(1,116,116), covType = "cov", FALSE)
+#' # for demonstration purpose only, for estimation from ABIDE dataset
+#' # please run the above commented code or run demo(brain)
+#' result = simulation(p=116, s = 0.001, ss = 0.001, n = c(1,1))$simulatedgraphs
+#' class(result) = "simule"
 #' plotbrain(result, type = "task", neighbouroption = "task",
 #' subID = NULL, index = NULL, layout = layout)
-#' }
 #' @method plotbrain wsimule
 #' @export
 #' @export plotbrain.wsimule
@@ -197,20 +203,22 @@ plotbrain.wsimule <-
 #' @return 3d (rgl) brain network
 #' @details The function plots brain network using \code{\link{rglplot.igraph}}
 #' @examples
-#' \dontrun{
 #' library(JointNets)
 #' graphics.off()
-#' par(ask=F)
+#' par(ask=FALSE)
 #' par(mfrow=c(1,1))
 #' data(ABIDE_aal116_timeseries)
 #' data(aal116coordinates)
 #' layout = cbind(aal116coordinates$x.mni + 90,
 #' aal116coordinates$y.mni+126, aal116coordinates$z.mni+72)
-#' result = fasjem(X = ABIDE_aal116_timeseries,
-#' method = "fasjem-g", 0.001, 0.1, 0.1, 0.05, 20)
+#' # result = fasjem(X = ABIDE_aal116_timeseries,
+#' # method = "fasjem-g", 0.001, 0.1, 0.1, 0.05, 20)
+#' # for demonstration purpose only, for estimation from ABIDE dataset
+#' # please run the above commented code or run demo(brain)
+#' result = simulation(p=116, s = 0.001, ss = 0.001, n = c(1,1))$simulatedgraphs
+#' class(result) = "simule"
 #' plotbrain(result, type = "task", neighbouroption = "task",
 #' subID = NULL, index = NULL, layout = layout)
-#' }
 #' @method plotbrain fasjem
 #' @export
 #' @export plotbrain.fasjem
@@ -254,20 +262,22 @@ plotbrain.fasjem <-
 #' @return 3d (rgl) brain network
 #' @details The function plots brain network using \code{\link{rglplot.igraph}}
 #' @examples
-#' \dontrun{
 #' library(JointNets)
 #' graphics.off()
-#' par(ask=F)
+#' par(ask=FALSE)
 #' par(mfrow=c(1,1))
 #' data(ABIDE_aal116_timeseries)
 #' data(aal116coordinates)
 #' layout = cbind(aal116coordinates$x.mni + 90,
 #' aal116coordinates$y.mni+126, aal116coordinates$z.mni+72)
-#' result = diffee(ABIDE_aal116_timeseries[[1]],
-#' ABIDE_aal116_timeseries[[2]], 0.001)
+#' # result = diffee(ABIDE_aal116_timeseries[[1]],
+#' # ABIDE_aal116_timeseries[[2]], 0.001)
+#' # for demonstration purpose only, for estimation from ABIDE dataset
+#' # please run the above commented code or run demo(brain)
+#' result = simulation(p=116, s = 0.001, ss = 0.001, n = c(1,1))$simulatedgraphs
+#' class(result) = "simule"
 #' plotbrain(result, type = "task", neighbouroption = "task",
 #' subID = NULL, index = NULL, layout = layout)
-#' }
 #' @method plotbrain diffee
 #' @export
 #' @export plotbrain.diffee
@@ -309,20 +319,23 @@ plotbrain.diffee <- function(x,
 #' @return 3d (rgl) brain network
 #' @details The function plots brain network using \code{\link{rglplot.igraph}}
 #' @examples
-#' \dontrun{
 #' library(JointNets)
 #' graphics.off()
-#' par(ask=F)
+#' par(ask=FALSE)
 #' par(mfrow=c(1,1))
 #' data(ABIDE_aal116_timeseries)
 #' data(aal116coordinates)
 #' layout = cbind(aal116coordinates$x.mni + 90,
 #' aal116coordinates$y.mni+126, aal116coordinates$z.mni+72)
-#' result = diffeek(ABIDE_aal116_timeseries[[1]], ABIDE_aal116_timeseries[[2]],
-#'  W = matrix(1,116,116), g = 0,epsilon = 0.1, lambda = 0.001)
+#' # result = diffeek(ABIDE_aal116_timeseries[[1]], ABIDE_aal116_timeseries[[2]],
+#' # W = matrix(1,116,116), g = 0,epsilon = 0.1, lambda = 0.001)
+#' # for demonstration purpose only, for estimation from ABIDE dataset
+#' # please run the above commented code or run demo(brain)
+#' result = simulation(p=116, s = 0.001, ss = 0.001, n = c(1,1))$simulatedgraphs
+#' class(result) = "simule"
 #' plotbrain(result, type = "task", neighbouroption = "task",
 #' subID = NULL, index = NULL, layout = layout)
-#' }
+
 #' @method plotbrain diffeek
 #' @export
 #' @export plotbrain.diffeek
@@ -375,20 +388,22 @@ plotbrain.diffeek <- function(x,
 #' @return 3d (rgl) brain network
 #' @details The function plots brain network using \code{\link{rglplot.igraph}}
 #' @examples
-#' \dontrun{
 #' library(JointNets)
 #' graphics.off()
-#' par(ask=F)
+#' par(ask=FALSE)
 #' par(mfrow=c(1,1))
 #' data(ABIDE_aal116_timeseries)
 #' data(aal116coordinates)
 #' layout = cbind(aal116coordinates$x.mni + 90,
 #' aal116coordinates$y.mni+126, aal116coordinates$z.mni+72)
-#' result = jeek(X = ABIDE_aal116_timeseries,0.25,
-#' covType = "kendall",parallel = TRUE)
+#' # result = jeek(X = ABIDE_aal116_timeseries,0.25,
+#' # covType = "kendall",parallel = FALSE)
+#' # for demonstration purpose only, for estimation from ABIDE dataset
+#' # please run the above commented code or run demo(brain)
+#' result = simulation(p=116, s = 0.001, ss = 0.001, n = c(1,1))$simulatedgraphs
+#' class(result) = "simule"
 #' plotbrain(result, type = "task", neighbouroption = "task",
 #' subID = NULL, index = NULL, layout = layout)
-#' }
 #' @method plotbrain jeek
 #' @export
 #' @export plotbrain.jeek

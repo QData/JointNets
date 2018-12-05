@@ -21,11 +21,10 @@ calculate BIC score for JointNets method
 not working with DIFFEE and DIFFEEK (difference estimation)
 }
 \examples{
-\dontrun{
+library(JointNets)
 simulateresult = simulation(p = 20,  n = c(100,100))
-result = simule(simulateresult$simulatedsamples, 0.2, 0.5, covType = "cov", TRUE)
+result = simule(simulateresult$simulatedsamples, 0.2, 0.5, covType = "cov", FALSE)
 BIC(simulateresult$simulatedsamples,result)
-}
 }
 \author{
 Zhaoyang Wang (Author), Zhaoyang Wang (maintainer) \email{zw4dn@virginia.edu}

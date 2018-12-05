@@ -13,6 +13,13 @@ GUI version of JointNets plot (input from the global environment)
 please refer to plot.simule, plot.wsimule and etc for details in plotting.
 value -1 for subID and index corresponds to NUL value
 }
+\examples{
+library(JointNets)
+if(interactive()){
+plot_gui()
+shiny::stopApp()
+}
+}
 \author{
 Zhaoyang Wang (Author), Zhaoyang Wang (maintainer) \email{zw4dn@virginia.edu}
 }

@@ -81,13 +81,11 @@ please see our paper:
 if labels are provided in the datalist as column names, result will contain labels (to be plotted)
 }
 \examples{
-\dontrun{
 library(JointNets)
 data(exampleData)
 result = wsimule(X = exampleData , lambda = 0.1, epsilon = 0.45,
 W = matrix(1,20,20), covType = "cov", FALSE)
 plot(result)
-}
 }
 \references{
 Beilun Wang, Ritambhara Singh, Yanjun Qi (2017).  A constrained

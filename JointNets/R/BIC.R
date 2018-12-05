@@ -6,11 +6,11 @@
 #' @export
 #' @details not working with DIFFEE and DIFFEEK (difference estimation)
 #' @examples
-#' \dontrun{
+#' library(JointNets)
 #' simulateresult = simulation(p = 20,  n = c(100,100))
-#' result = simule(simulateresult$simulatedsamples, 0.2, 0.5, covType = "cov", TRUE)
+#' result = simule(simulateresult$simulatedsamples, 0.2, 0.5, covType = "cov", FALSE)
 #' BIC(simulateresult$simulatedsamples,result)
-#' }
+
 BIC <- function(datalist, result){
   K = length(datalist)
   covs = list()
@@ -24,12 +24,12 @@ BIC <- function(datalist, result){
   return(BIC_matrix(covs,graphs,n,p))
 }
 
-#' function to calculate BIC score of a list of estimated precision matrices
-#' @param covs   -- a list of empirical covariance matrices
-#' @param graphs -- a list of estimated precision matrices
-#' @param n      -- total number of samples (total number of samples from all lists)
-#' @param p      -- number of features
-#' @return BIC score
+## function to calculate BIC score of a list of estimated precision matrices
+## @param covs   -- a list of empirical covariance matrices
+## @param graphs -- a list of estimated precision matrices
+## @param n      -- total number of samples (total number of samples from all lists)
+## @param p      -- number of features
+## @return BIC score
 BIC_matrix <- function(covs, graphs, n, p){
   N = length(covs)
   bic = 0

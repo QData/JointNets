@@ -93,12 +93,11 @@ diffee.backwardMap <-function(covMatrix, thre = "soft"){
 #' @import pcaPP
 #' @details if labels are provided in the datalist as column names, result will contain labels (to be plotted)
 #' @examples
-#' \dontrun{
 #' library(JointNets)
 #' data(exampleData)
 #' result = diffee(exampleData[[1]], exampleData[[2]], 0.45)
 #' plot(result)
-#' }
+
 diffee <- function(C, D, lambda = 0.05, covType = "cov", thre = "soft"){
 
     if (is.data.frame(C)){

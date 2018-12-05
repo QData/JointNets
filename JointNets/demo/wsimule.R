@@ -1,7 +1,7 @@
 library(JointNets)
 
 graphics.off()
-par(ask = F)
+par(ask = FALSE)
 par(mfrow = c(1, 1))
 
 readline(prompt = "Press [enter] to continue to cancer demo with 2 tasks (not v. pcr) and 26 features (26 cancer types) ")

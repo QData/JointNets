@@ -1,7 +1,7 @@
 library(JointNets)
 
 graphics.off()
-par(ask = F)
+par(ask = FALSE)
 par(mfrow = c(1, 1))
 
 

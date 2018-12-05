@@ -20,12 +20,11 @@ F1 scores (F1 score for each context and the shared part (for simule and wsimule
 Compute F1 score for JointNets result
 }
 \examples{
-\dontrun{
+library(JointNets)
 simulationresult = simulation(p = 20,  n = c(100,100))
 truth = simulationresult$simulatedgraphs
-result = simule(simulationresult$simulatedsamples, 0.2, 0.5, covType = "cov", TRUE)
+result = simule(simulationresult$simulatedsamples, 0.2, 0.5, covType = "cov", FALSE)
 F1(result,truth)
-}
 }
 \author{
 Zhaoyang Wang (Author), Zhaoyang Wang (maintainer) \email{zw4dn@virginia.edu}

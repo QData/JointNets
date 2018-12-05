@@ -52,12 +52,10 @@ the function aims to provide users the flexibility to explore and visualize the 
 generated from simule
 }
 \examples{
-\dontrun{
 library(JointNets)
 data(exampleData)
 result = simule(X = exampleData , lambda = 0.1, epsilon = 0.45, covType = "cov", FALSE)
-graph = returngraph.simule(result)
-}
+graph = returngraph(result)
 }
 \author{
 Beilun Wang, Zhaoyang Wang (Author), Zhaoyang Wang (maintainer) \email{zw4dn@virginia.edu}

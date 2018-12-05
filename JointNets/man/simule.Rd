@@ -75,12 +75,10 @@ further details, please see our paper:
 if labels are provided in the datalist as column names, result will contain labels (to be plotted)
 }
 \examples{
-\dontrun{
 library(JointNets)
 data(exampleData)
-result = simule(X = exampleData , lambda = 0.1, epsilon = 0.45, covType = "cov", TRUE)
+result = simule(X = exampleData , lambda = 0.1, epsilon = 0.45, covType = "cov", FALSE)
 plot(result)
-}
 }
 \references{
 Beilun Wang, Ritambhara Singh, Yanjun Qi (2017).  A constrained

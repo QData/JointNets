@@ -3,13 +3,13 @@ Package: JointNets
 Version: 1.0.0
 Date: 2018-11-29
 Encoding: UTF-8
-Title: High Dimensional Gaussian Graphical Model Estimation, Visualization and Evaluation
+Title: JointNets: Sparse Gaussian Graphical Model Estimation, Visualization and Evaluation
 Authors@R: c(person("Beilun", "Wang", role = c("aut"), email = "bw4mw@virginia.edu"), person("Yanjun", "Qi", role = "aut", email = "yanjun@virginia.edu"),person("Zhaoyang", "Wang", role = c("aut","cre"), email = "zw4dn@virginia.edu"))
 Author: Beilun Wang [aut], Yanjun Qi [aut], Zhaoyang Wang [aut, cre]
 Maintainer: Zhaoyang Wang <zw4dn@virginia.edu>
 Depends: R (>= 3.0.0), lpSolve, pcaPP, igraph, parallel
 Imports: MASS, brainR, misc3d, oro.nifti, shiny, rgl, methods
-Description: A set of tools for performing sparse Gaussian graphical model estimation from high dimensional dataset. It contains a general purpose visualization function as well as a specialized function for 3d brain network. Simulation and evaluation modules are available. It also contains a GUI built in shiny for easy graph visualization.
+Description: A set of tools for performing sparse Gaussian graphical model (joint, multiple and difference) estimation from high dimensional dataset. It contains a general purpose visualization function as well as a specialized function for 3d brain network. Simulation and evaluation modules are available. It also contains a simple GUI built in shiny for easy graph visualization. Methods include SIMULE (Wang B et al. (2017) <doi:10.1007/s10994-017-5635-7>), WSIMULE (Singh C et al. (2017) <arXiv:1709.04090v2>), DIFFEE (Wang B et al. (2018) <arXiv:1710.11223>), FASJEM (Wang B et al. (2018) <arXiv:1702.02715v3>), JEEK (Wang B et al. (2018) <arXiv:1806.00548>) and DIFFEEK (Wang B et al, under final review for publication).
 License: GPL-2
 URL: https://github.com/QData/JointNets
 BugReports: https://github.com/QData/JointNets

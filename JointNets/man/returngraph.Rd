@@ -23,12 +23,10 @@ the function aims to provide users the flexibility to explore and visualize the 
 generated from jointnet
 }
 \examples{
-\dontrun{
 library(JointNets)
 data(exampleData)
-result = jeek(X = exampleData, 0.3, covType = "cov", parallel = TRUE)
+result = jeek(X = exampleData, 0.3, covType = "cov", parallel = FALSE)
 graph = returngraph(result)
-}
 }
 \author{
 Beilun Wang, Zhaoyang Wang (Author), Zhaoyang Wang (maintainer) \email{zw4dn@virginia.edu}
