@@ -183,14 +183,14 @@ result = simule(
 )
 ```
 
-Then simple run `plot` on `result`. It will plot all graphs from the joint estimation with a descriptive title as well as color legend to distinguish between different contents/tasks.
+Then simply run `plot` on `result`. It will plot all graphs from the joint estimation with a descriptive title as well as color legend to distinguish between different contents/tasks.
 ``` r
 plot(result)
 ```
 
 
 
-`plot` extends `plot.igraph` from the [igraph](https://cran.r-project.org/web/packages/igraph/index.htmlpackage) package
+`plot` extends `plot.igraph` from the [igraph](https://cran.r-project.org/web/packages/igraph/index.html) package
 and there are a lot of options to view and manipulate the graph visualization.
 
 For example:
