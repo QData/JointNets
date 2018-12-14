@@ -45,25 +45,24 @@ install.packages('JointNets', dependencies=TRUE)
 library(JointNets)
 ```
 
-2. From the GitHub repo.
-You need to first install the [devtools](https://cran.r-project.org/web/packages/devtools/index.html) package
-``` r
-install.packages("devtools")
-```
+2. From the GitHub repo. You need to first install the [devtools](https://cran.r-project.org/web/packages/devtools/index.html) package
 
-  Load the devtools package
+    ``` r
+    install.packages("devtools")
+    ```
 
-  ``` r
-  library(devtools)
-  ```
+    Load the devtools package
 
-  Install from Github
+    ``` r
+    library(devtools)
+    ```
 
-  ``` r
-  install_github('QData/JointNets')
-  library(JointNets)
-  ```
+    Install from Github
 
+    ``` r
+    install_github('QData/JointNets')
+    library(JointNets)
+    ```
 # Usage
 
 ## Estimation
