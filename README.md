@@ -40,10 +40,10 @@ Table of Contents
 
 # Installation
 1. From CRAN (Not yet available):
-``` r
-install.packages('JointNets', dependencies=TRUE)
-library(JointNets)
-```
+    ``` r
+    install.packages('JointNets', dependencies=TRUE)
+    library(JointNets)
+    ```
 
 2. From the GitHub repo. You need to first install the [devtools](https://cran.r-project.org/web/packages/devtools/index.html) package
 
