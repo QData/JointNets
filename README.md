@@ -20,14 +20,14 @@ Table of Contents
     - [Estimation](#Estimation)
         - [Methods](#Methods)
         - [Dataset](#Dataset)
-        - [Joint Estimation](#Joint Estimation)
-        - [Difference Estimation](#Difference Estimation)
+        - [Joint Estimation](#Joint-Estimation)
+        - [Difference Estimation](#Difference-Estimation)
     - [Visualization](#Visualization)
         - [plot](#plot)
         - [plotbrain](#plotbrain)
         - [Demo](#Demo)
-        - [Sample plots](#Sample plots)
-    - [Simulation and Evaluation](#Simulation and Evaluation)
+        - [Sample plots](#Sample-plots)
+    - [Simulation and Evaluation](#Simulation-and-Evaluation)
         - [Simulation](#Simulation)
         - [Evaluation](#Evaluation)
             - [F1](#F1)      
@@ -36,7 +36,7 @@ Table of Contents
             - [Demo](#Demo)
     - [GUI](#GUI)
 - [License](#License)
-- [Getting Help](#Getting Help)
+- [Getting Help](#Getting-Help)
 
 # Installation
 1. From CRAN (Not yet available):
@@ -314,7 +314,7 @@ To invoke the GUI:
 ``` r
 plot_gui()
 ```
-<img src="JN_GUI.png" width="1000">
+<img src="JN_GUI.PNG" width="1000">
 
 For more details on how to use `plot_gui`, please try:
 ``` r
