@@ -1,6 +1,6 @@
 # JointNets
 
-[JointNets](https://github.com/QData/JointNets) is an end-to-end R package for various sparse high-dimensional Gaussian graphical model estimation, visualization, simulation and evaluation.
+[JointNets](https://github.com/QData/JointNets) is an end-to-end R package for sparse high-dimensional Gaussian graphical model estimation, visualization, simulation and evaluation.
 
 It contains the following estimators:
 [SIMULE](https://link.springer.com/article/10.1007%2Fs10994-017-5635-7),
@@ -50,15 +50,19 @@ You need to first install the [devtools](https://cran.r-project.org/web/packages
 ``` r
 install.packages("devtools")
 ```
-Load the devtools package
-``` r
-library(devtools)
-```
-Install from Github
-``` r
-install_github('QData/JointNets')
-library(JointNets)
-```
+
+  Load the devtools package
+
+  ``` r
+  library(devtools)
+  ```
+
+  Install from Github
+
+  ``` r
+  install_github('QData/JointNets')
+  library(JointNets)
+  ```
 
 # Usage
 
