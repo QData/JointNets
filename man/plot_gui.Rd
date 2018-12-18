@@ -17,7 +17,6 @@ value -1 for subID and index corresponds to NUL value
 library(JointNets)
 if(interactive()){
 plot_gui()
-shiny::stopApp()
 }
 }
 \author{

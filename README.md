@@ -39,7 +39,7 @@ Table of Contents
 - [Getting Help](#Getting-Help)
 
 # Installation
-1. From CRAN (Not yet available):
+1. From CRAN (Under manual inspection from CRAN):
     ``` r
     install.packages('JointNets', dependencies=TRUE)
     library(JointNets)
@@ -60,9 +60,10 @@ Table of Contents
     Install from Github
 
     ``` r
-    install_github('QData/JointNets')
+    install_github('QData/JointNets', dependencies = TRUE)
     library(JointNets)
     ```
+
 # Usage
 
 ## Estimation

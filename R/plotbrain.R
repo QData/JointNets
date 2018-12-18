@@ -15,15 +15,15 @@
 #' data(aal116coordinates)
 #' layout = cbind(aal116coordinates$x.mni + 90,
 #' aal116coordinates$y.mni+126, aal116coordinates$z.mni+72)
-#' # result = simule(ABIDE_aal116_timeseries, 0.2, 1, covType = "cov", FALSE)
-#' # plotbrain(result, type = "task", neighbouroption = "task",
-#' # subID = NULL, index = NULL, layout = layout)
-#' # for demonstration purpose only, for estimation from ABIDE dataset
-#' # please run the above commented code or run demo(brain)
 #' result = simulation(p=116, s = 0.001, ss = 0.001, n = c(1,1))$simulatedgraphs
 #' class(result) = "simule"
 #' plotbrain(result, type = "task", neighbouroption = "task",
+#' subID = NULL, index = NULL, layout = layout, hasbackground = FALSE)
+#' \donttest{
+#' result = simule(ABIDE_aal116_timeseries, 0.2, 1, covType = "cov", FALSE)
+#' plotbrain(result, type = "task", neighbouroption = "task",
 #' subID = NULL, index = NULL, layout = layout)
+#' }
 #' @import rgl
 #' @import brainR
 #' @import misc3d
@@ -60,6 +60,7 @@ plotbrain <- function(x, ...) {
 #' (zoom into one node or multiple nodes)
 #' @param hastitle determines whether the graph title is displayed or not (TRUE to display / FALSE to hide)
 #' @param haslegend determines whether the graph legend is displayed or not (TRUE to display / FALSE to hide)
+#' @param hasbackground determines whether the reference brain is plotted or not (TRUE to display / FALSE to hide)
 #' @param ... extra parameters passed to igraph::rglplot()
 #' @return 3d (rgl) brain network
 #' @details The function plots brain network using \code{\link{rglplot.igraph}}
@@ -72,13 +73,15 @@ plotbrain <- function(x, ...) {
 #' data(aal116coordinates)
 #' layout = cbind(aal116coordinates$x.mni + 90,
 #' aal116coordinates$y.mni+126, aal116coordinates$z.mni+72)
-#' # result = simule(ABIDE_aal116_timeseries, 0.2, 1, covType = "cov", FALSE)
-#' # for demonstration purpose only, for estimation from ABIDE dataset
-#' # please run the above commented code or run demo(brain)
 #' result = simulation(p=116, s = 0.001, ss = 0.001, n = c(1,1))$simulatedgraphs
 #' class(result) = "simule"
 #' plotbrain(result, type = "task", neighbouroption = "task",
+#' subID = NULL, index = NULL, layout = layout, hasbackground = FALSE)
+#' \donttest{
+#' result = simule(ABIDE_aal116_timeseries, 0.2, 1, covType = "cov", FALSE)
+#' plotbrain(result, type = "task", neighbouroption = "task",
 #' subID = NULL, index = NULL, layout = layout)
+#' }
 #' @method plotbrain simule
 #' @export
 #' @export plotbrain.simule
@@ -90,6 +93,7 @@ plotbrain.simule <-
            index = NULL,
            hastitle = TRUE,
            haslegend = TRUE,
+           hasbackground = TRUE,
            ...)
   {
     plotbrain_joint(x,
@@ -99,6 +103,7 @@ plotbrain.simule <-
                     index,
                     hastitle,
                     haslegend,
+                    hasbackground,
                     ...)
 
   }
@@ -131,6 +136,7 @@ plotbrain.simule <-
 #' (zoom into one node or multiple nodes)
 #' @param hastitle determines whether the graph title is displayed or not (TRUE to display / FALSE to hide)
 #' @param haslegend determines whether the graph legend is displayed or not (TRUE to display / FALSE to hide)
+#' @param hasbackground determines whether the reference brain is plotted or not (TRUE to display / FALSE to hide)
 #' @param ... extra parameters passed to igraph::rglplot()
 #' @return 3d (rgl) brain network
 #' @details The function plots brain network using \code{\link{rglplot.igraph}}
@@ -143,14 +149,16 @@ plotbrain.simule <-
 #' data(aal116coordinates)
 #' layout = cbind(aal116coordinates$x.mni + 90,
 #' aal116coordinates$y.mni+126, aal116coordinates$z.mni+72)
-#' # result = wsimule(ABIDE_aal116_timeseries, 0.2, 1,
-#' # W = matrix(1,116,116), covType = "cov", FALSE)
-#' # for demonstration purpose only, for estimation from ABIDE dataset
-#' # please run the above commented code or run demo(brain)
 #' result = simulation(p=116, s = 0.001, ss = 0.001, n = c(1,1))$simulatedgraphs
 #' class(result) = "simule"
 #' plotbrain(result, type = "task", neighbouroption = "task",
+#' subID = NULL, index = NULL, layout = layout, hasbackground = FALSE)
+#' \donttest{
+#' result = wsimule(ABIDE_aal116_timeseries, 0.2, 1,
+#' W = matrix(1,116,116), covType = "cov", FALSE)
+#' plotbrain(result, type = "task", neighbouroption = "task",
 #' subID = NULL, index = NULL, layout = layout)
+#' }
 #' @method plotbrain wsimule
 #' @export
 #' @export plotbrain.wsimule
@@ -162,6 +170,7 @@ plotbrain.wsimule <-
            index = NULL,
            hastitle = TRUE,
            haslegend = TRUE,
+           hasbackground = TRUE,
            ...)
   {
     plotbrain_joint(x,
@@ -171,6 +180,7 @@ plotbrain.wsimule <-
                     index,
                     hastitle,
                     haslegend,
+                    hasbackground,
                     ...)
 
   }
@@ -201,6 +211,7 @@ plotbrain.wsimule <-
 #' (zoom into one node or multiple nodes)
 #' @param hastitle determines whether the graph title is displayed or not (TRUE to display / FALSE to hide)
 #' @param haslegend determines whether the graph legend is displayed or not (TRUE to display / FALSE to hide)
+#' @param hasbackground determines whether the reference brain is plotted or not (TRUE to display / FALSE to hide)
 #' @param ... extra parameters passed to igraph::rglplot()
 #' @return 3d (rgl) brain network
 #' @details The function plots brain network using \code{\link{rglplot.igraph}}
@@ -213,14 +224,16 @@ plotbrain.wsimule <-
 #' data(aal116coordinates)
 #' layout = cbind(aal116coordinates$x.mni + 90,
 #' aal116coordinates$y.mni+126, aal116coordinates$z.mni+72)
-#' # result = fasjem(X = ABIDE_aal116_timeseries,
-#' # method = "fasjem-g", 0.001, 0.1, 0.1, 0.05, 20)
-#' # for demonstration purpose only, for estimation from ABIDE dataset
-#' # please run the above commented code or run demo(brain)
 #' result = simulation(p=116, s = 0.001, ss = 0.001, n = c(1,1))$simulatedgraphs
 #' class(result) = "simule"
 #' plotbrain(result, type = "task", neighbouroption = "task",
+#' subID = NULL, index = NULL, layout = layout, hasbackground = FALSE)
+#' \donttest{
+#' result = fasjem(X = ABIDE_aal116_timeseries,
+#' method = "fasjem-g", 0.001, 0.1, 0.1, 0.05, 20)
+#' plotbrain(result, type = "task", neighbouroption = "task",
 #' subID = NULL, index = NULL, layout = layout)
+#' }
 #' @method plotbrain fasjem
 #' @export
 #' @export plotbrain.fasjem
@@ -232,6 +245,7 @@ plotbrain.fasjem <-
            index = NULL,
            hastitle = TRUE,
            haslegend = TRUE,
+           hasbackground = TRUE,
            ...)
   {
     plotbrain_joint(x,
@@ -241,6 +255,7 @@ plotbrain.fasjem <-
                     index,
                     hastitle,
                     haslegend,
+                    hasbackground,
                     ...)
 
   }
@@ -260,6 +275,7 @@ plotbrain.fasjem <-
 #' This parameter could either be an integer or vector of integers representing node ids
 #' @param hastitle determines whether the graph title is displayed or not (TRUE to display / FALSE to hide)
 #' @param haslegend not used
+#' @param hasbackground determines whether the reference brain is plotted or not (TRUE to display / FALSE to hide)
 #' @param ... extra parameters passed to igraph::rglplot()
 #' @return 3d (rgl) brain network
 #' @details The function plots brain network using \code{\link{rglplot.igraph}}
@@ -272,14 +288,16 @@ plotbrain.fasjem <-
 #' data(aal116coordinates)
 #' layout = cbind(aal116coordinates$x.mni + 90,
 #' aal116coordinates$y.mni+126, aal116coordinates$z.mni+72)
-#' # result = diffee(ABIDE_aal116_timeseries[[1]],
-#' # ABIDE_aal116_timeseries[[2]], 0.001)
-#' # for demonstration purpose only, for estimation from ABIDE dataset
-#' # please run the above commented code or run demo(brain)
 #' result = simulation(p=116, s = 0.001, ss = 0.001, n = c(1,1))$simulatedgraphs
 #' class(result) = "simule"
 #' plotbrain(result, type = "task", neighbouroption = "task",
+#' subID = NULL, index = NULL, layout = layout, hasbackground = FALSE)
+#' \donttest{
+#' result = diffee(ABIDE_aal116_timeseries[[1]],
+#' ABIDE_aal116_timeseries[[2]], 0.001)
+#' plotbrain(result, type = "task", neighbouroption = "task",
 #' subID = NULL, index = NULL, layout = layout)
+#' }
 #' @method plotbrain diffee
 #' @export
 #' @export plotbrain.diffee
@@ -290,6 +308,7 @@ plotbrain.diffee <- function(x,
                              index = NULL,
                              hastitle = TRUE,
                              haslegend = TRUE,
+                             hasbackground = TRUE,
                              ...) {
   plotbrain_joint(x,
                   type,
@@ -298,6 +317,7 @@ plotbrain.diffee <- function(x,
                   index,
                   hastitle,
                   haslegend = FALSE,
+                  hasbackground,
                   ...)
 }
 
@@ -317,6 +337,7 @@ plotbrain.diffee <- function(x,
 #' This parameter could either be an integer or vector of integers representing node ids
 #' @param hastitle determines whether the graph title is displayed or not (TRUE to display / FALSE to hide)
 #' @param haslegend not used
+#' @param hasbackground determines whether the reference brain is plotted or not (TRUE to display / FALSE to hide)
 #' @param ... extra parameters passed to igraph::rglplot()
 #' @return 3d (rgl) brain network
 #' @details The function plots brain network using \code{\link{rglplot.igraph}}
@@ -329,14 +350,16 @@ plotbrain.diffee <- function(x,
 #' data(aal116coordinates)
 #' layout = cbind(aal116coordinates$x.mni + 90,
 #' aal116coordinates$y.mni+126, aal116coordinates$z.mni+72)
-#' # result = diffeek(ABIDE_aal116_timeseries[[1]], ABIDE_aal116_timeseries[[2]],
-#' # W = matrix(1,116,116), g = 0,epsilon = 0.1, lambda = 0.001)
-#' # for demonstration purpose only, for estimation from ABIDE dataset
-#' # please run the above commented code or run demo(brain)
 #' result = simulation(p=116, s = 0.001, ss = 0.001, n = c(1,1))$simulatedgraphs
 #' class(result) = "simule"
 #' plotbrain(result, type = "task", neighbouroption = "task",
+#' subID = NULL, index = NULL, layout = layout, hasbackground = FALSE)
+#' \donttest{
+#' result = diffeek(ABIDE_aal116_timeseries[[1]], ABIDE_aal116_timeseries[[2]],
+#' W = matrix(1,116,116), g = 0,epsilon = 0.1, lambda = 0.001)
+#' plotbrain(result, type = "task", neighbouroption = "task",
 #' subID = NULL, index = NULL, layout = layout)
+#' }
 #' @method plotbrain diffeek
 #' @export
 #' @export plotbrain.diffeek
@@ -347,6 +370,7 @@ plotbrain.diffeek <- function(x,
                               index = NULL,
                               hastitle = TRUE,
                               haslegend = TRUE,
+                              hasbackground = TRUE,
                               ...) {
   plotbrain_joint(x,
                   type,
@@ -355,6 +379,7 @@ plotbrain.diffeek <- function(x,
                   index,
                   hastitle,
                   haslegend = FALSE,
+                  hasbackground,
                   ...)
 }
 
@@ -385,6 +410,7 @@ plotbrain.diffeek <- function(x,
 #' (zoom into one node or multiple nodes)
 #' @param hastitle determines whether the graph title is displayed or not (TRUE to display / FALSE to hide)
 #' @param haslegend determines whether the graph legend is displayed or not (TRUE to display / FALSE to hide)
+#' @param hasbackground determines whether the reference brain is plotted or not (TRUE to display / FALSE to hide)
 #' @param ... extra parameters passed to igraph::rglplot()
 #' @return 3d (rgl) brain network
 #' @details The function plots brain network using \code{\link{rglplot.igraph}}
@@ -397,14 +423,16 @@ plotbrain.diffeek <- function(x,
 #' data(aal116coordinates)
 #' layout = cbind(aal116coordinates$x.mni + 90,
 #' aal116coordinates$y.mni+126, aal116coordinates$z.mni+72)
-#' # result = jeek(X = ABIDE_aal116_timeseries,0.25,
-#' # covType = "kendall",parallel = FALSE)
-#' # for demonstration purpose only, for estimation from ABIDE dataset
-#' # please run the above commented code or run demo(brain)
 #' result = simulation(p=116, s = 0.001, ss = 0.001, n = c(1,1))$simulatedgraphs
 #' class(result) = "simule"
 #' plotbrain(result, type = "task", neighbouroption = "task",
+#' subID = NULL, index = NULL, layout = layout, hasbackground = FALSE)
+#' \donttest{
+#' result = jeek(X = ABIDE_aal116_timeseries,0.25,
+#' covType = "kendall",parallel = FALSE)
+#' plotbrain(result, type = "task", neighbouroption = "task",
 #' subID = NULL, index = NULL, layout = layout)
+#' }
 #' @method plotbrain jeek
 #' @export
 #' @export plotbrain.jeek
@@ -415,6 +443,7 @@ plotbrain.jeek <- function(x,
                            index = NULL,
                            hastitle = TRUE,
                            haslegend = TRUE,
+                           hasbackground = TRUE,
                            ...) {
   plotbrain_joint(x,
                   type,
@@ -423,6 +452,7 @@ plotbrain.jeek <- function(x,
                   index,
                   hastitle,
                   haslegend,
+                  hasbackground,
                   ...)
 }
 
@@ -449,6 +479,7 @@ plotbrain.jeek <- function(x,
 #' (zoom into one node or multiple nodes)
 #' @param hastitle determines whether the graph title is displayed or not (TRUE to display / FALSE to hide)
 #' @param haslegend determines whether the graph legend is displayed or not (TRUE to display / FALSE to hide)
+#' @param hasbackground determines whether the reference brain is plotted or not (TRUE to display / FALSE to hide)
 #' @param ... extra parameters passed to igraph::rglplot() and level in misc::contour3d()
 #' @return 3d (rgl) brain network
 #' @import methods
@@ -460,6 +491,7 @@ plotbrain_joint <-
            index = NULL,
            hastitle = TRUE,
            haslegend = TRUE,
+           hasbackground = TRUE,
            ...) {
     args = list(...)
     subID = unique(subID)
@@ -498,6 +530,7 @@ plotbrain_joint <-
     #rgl::open3d()
     rgl::par3d(windowRect = c(100, 100, 612, 612))
     ### display background brain (refer to multipleRegion_plot from brainKCCA package)
+    if (hasbackground){
     misc3d::contour3d(
       oro.nifti::readNIfTI(
         system.file("MNI152_T1_1mm_brain.nii.gz", package = "brainR"),
@@ -509,7 +542,7 @@ plotbrain_joint <-
       add = FALSE,
       rescale = FALSE
     )
-
+    }
     #vertex.label
     #vertex.color
     #vertex.label = label,

@@ -69,7 +69,6 @@ app = shiny::shinyApp(ui = ui, server = server)
 #' library(JointNets)
 #' if(interactive()){
 #' plot_gui()
-#' shiny::stopApp()
 #' }
 plot_gui <- function(){
 

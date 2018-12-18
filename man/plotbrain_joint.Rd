@@ -6,7 +6,7 @@
 \usage{
 plotbrain_joint(x, type = "task", neighbouroption = "task",
   subID = NULL, index = NULL, hastitle = TRUE, haslegend = TRUE,
-  ...)
+  hasbackground = TRUE, ...)
 }
 \arguments{
 \item{x}{output generated from JointNets Methods}
@@ -43,6 +43,8 @@ This parameter could either be an integer or vector of integers representing nod
 \item{hastitle}{determines whether the graph title is displayed or not (TRUE to display / FALSE to hide)}
 
 \item{haslegend}{determines whether the graph legend is displayed or not (TRUE to display / FALSE to hide)}
+
+\item{hasbackground}{determines whether the reference brain is plotted or not (TRUE to display / FALSE to hide)}
 
 \item{...}{extra parameters passed to igraph::rglplot() and level in misc::contour3d()}
 }

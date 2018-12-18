@@ -6,7 +6,7 @@
 \usage{
 \method{plotbrain}{diffee}(x, type = "task", neighbouroption = "task",
   subID = NULL, index = NULL, hastitle = TRUE, haslegend = TRUE,
-  ...)
+  hasbackground = TRUE, ...)
 }
 \arguments{
 \item{x}{output generated from diffee function (diffee class)}
@@ -29,6 +29,8 @@ This parameter could either be an integer or vector of integers representing nod
 
 \item{haslegend}{not used}
 
+\item{hasbackground}{determines whether the reference brain is plotted or not (TRUE to display / FALSE to hide)}
+
 \item{...}{extra parameters passed to igraph::rglplot()}
 }
 \value{
@@ -49,14 +51,16 @@ data(ABIDE_aal116_timeseries)
 data(aal116coordinates)
 layout = cbind(aal116coordinates$x.mni + 90,
 aal116coordinates$y.mni+126, aal116coordinates$z.mni+72)
-# result = diffee(ABIDE_aal116_timeseries[[1]],
-# ABIDE_aal116_timeseries[[2]], 0.001)
-# for demonstration purpose only, for estimation from ABIDE dataset
-# please run the above commented code or run demo(brain)
 result = simulation(p=116, s = 0.001, ss = 0.001, n = c(1,1))$simulatedgraphs
 class(result) = "simule"
 plotbrain(result, type = "task", neighbouroption = "task",
+subID = NULL, index = NULL, layout = layout, hasbackground = FALSE)
+\donttest{
+result = diffee(ABIDE_aal116_timeseries[[1]],
+ABIDE_aal116_timeseries[[2]], 0.001)
+plotbrain(result, type = "task", neighbouroption = "task",
 subID = NULL, index = NULL, layout = layout)
+}
 }
 \author{
 Zhaoyang Wang (Author), Zhaoyang Wang (maintainer) \email{zw4dn@virginia.edu}

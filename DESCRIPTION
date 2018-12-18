@@ -1,7 +1,7 @@
 Roxygen: list(markdown = TRUE)
 Package: JointNets
 Version: 1.0.0
-Date: 2018-11-29
+Date: 2018-12-16
 Encoding: UTF-8
 Title: Sparse Gaussian Graphical Model Estimation, Visualization and Evaluation
 Authors@R: c(person("Beilun", "Wang", role = c("aut"), email = "bw4mw@virginia.edu"), person("Yanjun", "Qi", role = "aut", email = "yanjun@virginia.edu"),person("Zhaoyang", "Wang", role = c("aut","cre"), email = "zw4dn@virginia.edu"))
