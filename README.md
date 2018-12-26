@@ -39,7 +39,7 @@ Table of Contents
 - [Getting Help](#Getting-Help)
 
 # Installation
-1. From CRAN (Under manual inspection from CRAN):
+1. From CRAN
     ``` r
     install.packages('JointNets', dependencies=TRUE)
     library(JointNets)
