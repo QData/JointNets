@@ -80,6 +80,7 @@ simule.linprogSPar <- function(i, Sigma, lambda)
 ##' represents data directly) or use (when X elements are symmetric
 ##' representing correlation matrices) the kendall's tau correlation matrices
 ##' as input to the simule algorithm.
+##' @param intertwined indicate whether to use intertwined covariance matrix
 ##' @param parallel A boolean. This parameter decides if the package will use
 ##' the multithreading architecture or not.
 ##' @return \item{$graphs}{A list of the estimated inverse
@@ -100,34 +101,18 @@ simule.linprogSPar <- function(i, Sigma, lambda)
 ##' data(exampleData)
 ##' result = simule(X = exampleData , lambda = 0.1, epsilon = 0.45, covType = "cov", FALSE)
 ##' plot(result)
-simule <- function(X,  lambda, epsilon = 1, covType = "cov",parallel = FALSE)
+simule <- function(X, lambda, epsilon = 1, covType = "cov", intertwined = FALSE, parallel = FALSE)
   {
 
-    if (is.data.frame(X[[1]])){
-      for (i in 1:(length(X))){
-        X[[i]] = as.matrix(X[[i]])
-      }
-    }
-    #get number of tasks
     N = length(X)
-    #get the cov/cor matrices
-    if (isSymmetric(X[[1]]) == FALSE){
-      try(if (covType %in% c("cov","kendall") == FALSE)
-        stop("The cov/cor type you specifies is not include in this package.
-             Please use your own function to obtain the list of cov/cor and use them as the input of simule()"))
-      if (covType == "cov")
-      {
-        for (i in 1:N){
-          X[[i]] = stats::cov(X[[i]])
-
-        }
-      }
-      if (covType == "kendall"){
-        for(i in 1:N){
-          X[[i]] = cor.fk(X[[i]])
-        }
-      }
+    for (i in 1:N){
+    X[[i]] = compute_cov(X[[i]],covType)
     }
+
+    if (intertwined){
+      X = intertwined(X,covType = covType)
+    }
+
     # initialize the parameters
     Graphs = list()
     p = ncol(X[[1]])

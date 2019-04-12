@@ -73,6 +73,16 @@ maketitle.simulation <- function(x,
   maketitle_joint(x,type,subID,index,neighbouroption,graphlabel)
 }
 
+maketitle.jgl <- function(x,
+                           type = "task",
+                           subID = NULL,
+                           index = NULL,
+                           neighbouroption = "task",
+                           graphlabel = NULL,
+                           ...) {
+  maketitle_joint(x,type,subID,index,neighbouroption,graphlabel)
+}
+
 
 maketitle_difference <-
   function(x,

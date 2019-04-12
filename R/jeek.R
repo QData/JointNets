@@ -107,6 +107,7 @@ jeek.linprogSPar <- function(i, W, B, lambda){
 #' represents data directly) or use (when X elements are symmetric representing
 #' correlation matrices) the kendall's tau correlation matrices as input to the
 #' JEEK algorithm.
+#' @param intertwined indicate whether to use intertwined covariance matrix
 #' @param parallel A boolean. This parameter decides if the package will use
 #' the multithreading architecture or not.
 #' @return \item{$graphs}{A list of the estimated inverse covariance/correlation
@@ -126,27 +127,15 @@ jeek.linprogSPar <- function(i, W, B, lambda){
 #' result = jeek(X = exampleData, 0.3, covType = "cov", parallel = FALSE)
 #' plot(result)
 
-jeek <- function(X, lambda, W = NA, covType = "cov", parallel = FALSE) {
+jeek <- function(X, lambda, W = NA, covType = "cov",  intertwined = FALSE, parallel = FALSE) {
   #decide if they dataframe or not
-  if (is.data.frame(X[[1]])){
-    for (i in 1:(length(X))){
-      X[[i]] = as.matrix(X[[i]])
-    }
+  N = length(X)
+  for (i in 1:N){
+    X[[i]] = compute_cov(X[[i]],covType)
   }
-  K = length(X)
-  if (!isSymmetric(X[[1]])){
-    try(if (covType %in% c("cov","kendall") == FALSE) stop("The cov/cor type you specifies is not include in this package. Please use your own function to obtain the list of cov/cor and use them as the input of simule()"))
-    if (covType == "cov")
-    {
-      for (i in 1:K){
-        X[[i]] = stats::cov(X[[i]])
-      }
-    }
-    if (covType == "kendall"){
-      for(i in 1:K){
-        X[[i]] = cor.fk(X[[i]])
-      }
-    }
+
+  if (intertwined){
+    X = intertwined(X,covType = covType)
   }
 
   # get key parameters

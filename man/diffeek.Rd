@@ -7,7 +7,7 @@ Sparse Structure Change of High Dimensional of Sparse Changes
 in High-Dimensional Gaussian Graphical Models}
 \usage{
 diffeek(C, D, W, g, epsilon = 1, lambda = 0.05, covType = "cov",
-  thre = "soft")
+  intertwined = FALSE, thre = "soft")
 }
 \arguments{
 \item{C}{A input matrix for the 'control' group. It can be data matrix or
@@ -43,6 +43,8 @@ Graphical models. This option assumes that we calculate (when input X
 represents data directly) or use (when X elements are symmetric representing
 correlation matrices) the kendall's tau correlation matrices as input to the
 simule algorithm.}
+
+\item{intertwined}{indicate whether to use intertwined covariance matrix}
 
 \item{thre}{A parameter to decide which threshold function to use for
 \eqn{T_v}. If thre = "soft", it means that we choose soft-threshold function

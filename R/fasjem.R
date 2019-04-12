@@ -186,20 +186,12 @@ fasjem <-
            gamma = 0.1,
            rho = 0.05,
            iterMax = 10) {
-    if (is.data.frame(X[[1]])) {
-      for (i in 1:(length(X))) {
-        X[[i]] = as.matrix(X[[i]])
-      }
+
+    N = length(X)
+    for (i in 1:N){
+      X[[i]] = compute_cov(X[[i]],"cov")
     }
 
-    #get number of tasks
-    N = length(X)
-    #get the cov/cor matrices
-    if (isSymmetric(X[[1]]) == FALSE) {
-      for (i in 1:N) {
-        X[[i]] = stats::cov(X[[i]])
-      }
-    }
 
     tmp = array(0, dim = c(dim(X[[1]])[1], dim(X[[1]])[2], length(X)))
     for (i in 1:length(X)) {

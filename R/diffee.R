@@ -79,6 +79,7 @@ diffee.backwardMap <-function(covMatrix, thre = "soft"){
 #' represents data directly) or use (when X elements are symmetric representing
 #' correlation matrices) the kendall's tau correlation matrices as input to the
 #' simule algorithm.
+#' @param intertwined indicate whether to use intertwined covariance matrix
 #' @param thre A parameter to decide which threshold function to use for
 #' \eqn{T_v}. If thre = "soft", it means that we choose soft-threshold function
 #' as \eqn{T_v}. If thre = "hard", it means that we choose hard-threshold
@@ -98,45 +99,15 @@ diffee.backwardMap <-function(covMatrix, thre = "soft"){
 #' result = diffee(exampleData[[1]], exampleData[[2]], 0.45)
 #' plot(result)
 
-diffee <- function(C, D, lambda = 0.05, covType = "cov", thre = "soft"){
+diffee <- function(C, D, lambda = 0.05, covType = "cov", intertwined = FALSE, thre = "soft"){
 
-    if (is.data.frame(C)){
-      C = as.matrix(C)
-    }
+    covX = compute_cov(C,covType)
+    covY = compute_cov(D,covType)
 
-    if (is.data.frame(D)){
-      D = as.matrix(D)
-    }
-    if (covType == "cov") {
-      if (isSymmetric(C) == FALSE){
-        covX = stats::cov(C)
-      }
-      else{
-        covX = C
-      }
-
-      if (isSymmetric(D) == FALSE){
-        covY = stats::cov(D)
-      }
-      else{
-        covY = D
-      }
-    }
-
-    if (covType == "kendall") {
-      if (isSymmetric(C) == FALSE){
-        covX = cor.fk(C)
-      }
-      else{
-        covX = C
-      }
-
-      if (isSymmetric(D) == FALSE){
-        covY = cor.fk(D)
-      }
-      else{
-        covY = D
-      }
+    if (intertwined){
+      temp = intertwined(list(covX,covY),covType = covType)
+      covX = temp[[1]]
+      covY = temp[[2]]
     }
 
     backX = diffee.backwardMap(covX, thre)

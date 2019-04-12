@@ -6,7 +6,8 @@
 Gaussian or Nonparanormal Graphical Models
 Estimate multiple, related sparse Gaussian or Nonparanormal graphical}
 \usage{
-simule(X, lambda, epsilon = 1, covType = "cov", parallel = FALSE)
+simule(X, lambda, epsilon = 1, covType = "cov", intertwined = FALSE,
+  parallel = FALSE)
 }
 \arguments{
 \item{X}{A List of input matrices. They can be data matrices or
@@ -38,6 +39,8 @@ Graphical models. This option assumes that we calculate (when input X
 represents data directly) or use (when X elements are symmetric
 representing correlation matrices) the kendall's tau correlation matrices
 as input to the simule algorithm.}
+
+\item{intertwined}{indicate whether to use intertwined covariance matrix}
 
 \item{parallel}{A boolean. This parameter decides if the package will use
 the multithreading architecture or not.}

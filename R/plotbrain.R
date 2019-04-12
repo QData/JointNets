@@ -456,6 +456,63 @@ plotbrain.jeek <- function(x,
                   ...)
 }
 
+
+#' plot 3d brain network from jgl result
+#'
+#' This function plots 3d brain network from jgl result
+#' @author Zhaoyang Wang (Author), Zhaoyang Wang (maintainer) \email{zw4dn@virginia.edu}
+#' @param x output generated from jgl function (jgl class)
+#' @param type type of graph. There are four options:
+#' * "task" (graph for each task (including shared part) specified further by subID (task number))
+#' * "share" (shared graph for all tasks)
+#' * "taskspecific" (graph for each task specific graph (excluding shared part)
+#' specified further by subID (task number) )
+#' * "neighbour" (zoom into nodes in the graph specified further by neighbouroptoin, subID (task number)
+#' and index (node id))
+#' @param neighbouroption determines what type of graph to zoom into when parameter **"type"** is **"neighbour"**. There are two options:
+#' * "task" (zoom into graph for each task (including shared part))
+#' * "taskspecific" (zoom into graph for each task specific (excluding shared part))
+#' @param subID selects which task to display. There are four options:
+#' * 0 (only allowed when
+#' **"type"** is **"task"** or **"type"** is **"neighbour"** and **"neighbouroption"** is **"task"**) (selects share graph)
+#' * positive task number (selects that particular task)
+#' * a vector of task number (selects multiple tasks)
+#' * NULL (selects all tasks (all graphs))
+#' @param index determines which node(s) to zoom into when parameter **"type"** is **"neighbour"**.
+#' This parameter could either be an integer or vector of integers representing node ids
+#' (zoom into one node or multiple nodes)
+#' @param hastitle determines whether the graph title is displayed or not (TRUE to display / FALSE to hide)
+#' @param haslegend determines whether the graph legend is displayed or not (TRUE to display / FALSE to hide)
+#' @param hasbackground determines whether the reference brain is plotted or not (TRUE to display / FALSE to hide)
+#' @param ... extra parameters passed to igraph::rglplot()
+#' @return 3d (rgl) brain network
+#' @details The function plots brain network using \code{\link{rglplot.igraph}}
+#' @method plotbrain jgl
+#' @export
+#' @export plotbrain.jgl
+plotbrain.jgl <-
+  function(x,
+           type = "task",
+           neighbouroption = "task",
+           subID = NULL,
+           index = NULL,
+           hastitle = TRUE,
+           haslegend = TRUE,
+           hasbackground = TRUE,
+           ...)
+  {
+    plotbrain_joint(x,
+                    type,
+                    neighbouroption,
+                    subID,
+                    index,
+                    hastitle,
+                    haslegend,
+                    hasbackground,
+                    ...)
+
+  }
+
 #' plot 3d brain network
 #' @param x output generated from JointNets Methods
 #' @param type type of graph. There are four options:

@@ -5,7 +5,8 @@
 \title{A Fast and Scalable Joint Estimator for Integrating Additional Knowledge in
 Learning Multiple Related Sparse Gaussian Graphical Models}
 \usage{
-jeek(X, lambda, W = NA, covType = "cov", parallel = FALSE)
+jeek(X, lambda, W = NA, covType = "cov", intertwined = FALSE,
+  parallel = FALSE)
 }
 \arguments{
 \item{X}{A List of input matrices. They can be data matrices or
@@ -36,6 +37,8 @@ Graphical models. This option assumes that we calculate (when input X
 represents data directly) or use (when X elements are symmetric representing
 correlation matrices) the kendall's tau correlation matrices as input to the
 JEEK algorithm.}
+
+\item{intertwined}{indicate whether to use intertwined covariance matrix}
 
 \item{parallel}{A boolean. This parameter decides if the package will use
 the multithreading architecture or not.}
