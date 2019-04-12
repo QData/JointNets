@@ -51,35 +51,38 @@ QDA <- function(result, data, training_data){
   label = -1
   max_prob = -10000000000;
   num_training_data = 0
+
   for (i in 1:num_graphs){
     num_training_data = num_training_data + dim(training_data[[i]])[1]
   }
 
   for (i in 1:num_graphs){
     prob1 = log(dim(training_data[[i]])[1]/num_training_data)
-    prob2 = - (0.5 * t(apply(training_data[[i]], 2, mean))  %*% result$graphs[[i]] %*% apply(training_data[[i]], 2, mean))[1,1]
-    prob3 =  (t(data) %*% result$graphs[[i]] %*% apply(training_data[[i]], 2, mean))[1,1]
-    prob4 = - (0.5 * t(data) %*% result$graphs[[i]] %*% data)[1,1]
-    prob5 = 0
-    if (det(cov(training_data[[i]])) > 0){
-      prob5 = - 0.5 * log(det(cov(training_data[[i]])))
-    }
+    mean_vector = apply(training_data[[i]], 2, mean)
+    precision_matrix = result$graphs[[i]]
+    prob2 = -(0.5 * t(mean_vector)  %*% precision_matrix %*% mean_vector) [1,1]
+    prob3 =  (t(data) %*% precision_matrix %*% mean_vector) [1,1]
+    prob4 = - (0.5 * t(data) %*% precision_matrix %*% data) [1,1]
+
+    # use inverse of precision matrix as covariance matrix?
+    prob5 = - 0.5 * log(det(inv(precision_matrix)))
 
     prob = prob1 + prob2 + prob3 + prob4 + prob5
-    #print(prob)
+
     if (prob > max_prob){
       max_prob = prob
       label = i
     }
   }
+
   return(label)
 }
 
-#QDA(testgraph,testing[[1]][1,],training)
-### evaluate accuracy rate for data_list
+
 evaluate_QDA <- function(result, data_list, training_data){
   num_data = 0
   num_wrong = 0
+
   for (i in 1:length(data_list)){
     num_data = num_data + dim(data_list[[i]])[1]
   }
