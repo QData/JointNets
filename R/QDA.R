@@ -1,4 +1,19 @@
-QDA_diffee_eval <- function(train, valid, lambda_range,v_seeking_length){
+#'graphical model model evaluation using QDA as a classifier
+#'@param train a list of training data
+#'@param valid a list of validation data
+#'@param test a list of test data
+#'@param lambda_range a vector of lambda values to train to given method, eg c(0.1,0.2,0.3)
+#'@param v_seeking_length second hyperparameter length, default to 10
+#'@param method name of the method to be evaluated
+#'@param ... optional parameters passed to your method from JointNets package
+#'@return covriance matrix / kendall tau correlation matrix
+#' @export
+#' @import JGL
+
+QDA_eval <- function(train, valid, test, lambda_range, v_seeking_length = 10,method = "diffee",...){
+  if (length(train) > 2){
+    stop("QDA current only support binary classification")
+  }
   result_acc_diffee = matrix(0,v_seeking_length,length(lambda_range))
   #print(dim(result_acc_diffee))
   i = 0
@@ -11,7 +26,38 @@ QDA_diffee_eval <- function(train, valid, lambda_range,v_seeking_length){
     i = i + 1
     mu = apply(train[[1]], 2, mean)
     #cat("mu is ", mu, "\n")
-    delta = diffee(train[[1]],train[[2]],lambda,covType = "cov")$graphs[[1]]
+    p = nrow(train[[1]])
+    delta = matrix(0,p,p)
+
+    if (method == "diffee"){
+      delta = diffee(train[[1]],train[[2]],lambda,covType = "cov",...)$graphs[[1]]
+    }
+    else if (method == "diffeek"){
+      delta = diffeek(train[[1]],train[[2]],lambda = lambda,covType = "cov",...)$graphs[[1]]
+    }
+    else if (method = "simule"){
+      temp = simule(train,lambda,...)
+      delta = temp$graphs[[1]] - temp$graphs[[2]]
+    }
+    else if (method = "wsimule"){
+      temp = wsimule(train,lambda,...)
+      delta = temp$graphs[[1]] - temp$graphs[[2]]
+    }
+    else if (method = "fasjem"){
+      temp = fasjem(train,lambda = lambda,...)
+      delta = temp$graphs[[1]] - temp$graphs[[2]]
+    }
+    else if (method = "jeek"){
+      temp = jeek(train,lambda = lambda,...)
+      delta = temp$graphs[[1]] - temp$graphs[[2]]
+    }
+    else if (method = "jgl"){
+      temp = jgl(train,lambda1 = lambda, lambda2 = 1, ...)
+      delta = temp$graphs[[1]] - temp$graphs[[2]]
+    }
+    else {
+      stop("please specify a correct method")
+    }
     #cat("delta is ", delta, "\n")
     values1 = apply(valid[[1]],1,function(x,delta,mu) t(x - mu) %*% delta %*% (x - mu), delta = delta, mu = mu)
     values2 = apply(valid[[2]],1,function(x,delta,mu) t(x - mu) %*% delta %*% (x - mu), delta = delta, mu = mu)
@@ -41,11 +87,64 @@ QDA_diffee_eval <- function(train, valid, lambda_range,v_seeking_length){
     }
     j = 0
   }
-  return(list("accuracy matrix" = result_acc_diffee,"best accuracy" = best_acc,
+
+
+  best_test_acc = QDA(train,test,best_lambda,best_v,method)
+
+  return(list("accuracy matrix" = result_acc_diffee,"best valid accuracy" = best_acc,
+              "best test accuracy" = best_test_acc,
               "best lambda" = best_lambda, "best v" = best_v))
 }
 
 
+compute_delta <-function(train,lambda,method = "diffee",...){
+  if (method == "diffee"){
+    delta = diffee(train[[1]],train[[2]],lambda,covType = "cov",...)$graphs[[1]]
+  }
+  else if (method == "diffeek"){
+    delta = diffeek(train[[1]],train[[2]],lambda = lambda,covType = "cov",...)$graphs[[1]]
+  }
+  else if (method = "simule"){
+    temp = simule(train,lambda,...)
+    delta = temp$graphs[[1]] - temp$graphs[[2]]
+  }
+  else if (method = "wsimule"){
+    temp = wsimule(train,lambda,...)
+    delta = temp$graphs[[1]] - temp$graphs[[2]]
+  }
+  else if (method = "fasjem"){
+    temp = fasjem(train,lambda = lambda,...)
+    delta = temp$graphs[[1]] - temp$graphs[[2]]
+  }
+  else if (method = "jeek"){
+    temp = jeek(train,lambda = lambda,...)
+    delta = temp$graphs[[1]] - temp$graphs[[2]]
+  }
+  else if (method = "jgl"){
+    temp = jgl(train,lambda1 = lambda, lambda2 = 1, ...)
+    delta = temp$graphs[[1]] - temp$graphs[[2]]
+  }
+  else {
+    stop("please specify a correct method")
+  }
+}
+
+QDA <- function(train,test,lambda,v, method = "diffee"){
+  mu = apply(train[[1]], 2, mean)
+  #cat("mu is ", mu, "\n")
+  p = nrow(train[[1]])
+  delta = matrix(0,p,p)
+  delta = compute_delta(train,lambda,method,...)
+  values1 = apply(test[[1]],1,function(x,delta,mu) t(x - mu) %*% delta %*% (x - mu), delta = delta, mu = mu)
+  values2 = apply(test[[2]],1,function(x,delta,mu) t(x - mu) %*% delta %*% (x - mu), delta = delta, mu = mu)
+  right = sum(values1 > v, na.rm = TRUE) + sum(values2 < v, na.rm = TRUE)
+  best_test_accuracy = right/(length(values1) + length(values1))
+  return (best_test_accuracy)
+}
+
+
+#### commented block
+if (FALSE){
 QDA <- function(result, data, training_data){
   num_graphs = length(result$graphs)
   label = -1
@@ -98,3 +197,4 @@ evaluate_QDA <- function(result, data_list, training_data){
   return(accuracy_rate)
 }
 
+}
