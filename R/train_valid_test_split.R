@@ -4,11 +4,15 @@
 #' @param seed seed number
 #' @return a list of train,validation and test datalist
 #' @export
+#' @examples
+#' library(JointNets)
+#' data("nip_37_data")
+#’ split = train_valid_test_split(nip_37_data,c(0.8,0.1,0.1),10000)
 train_valid_test_split <- function(datalist, ratio, seed){
   set.seed(seed)
   num_context = length(datalist)
   train_list = rep(list(0),num_context)
-  validation_list = rep(list(0),num_context)
+  valid_list = rep(list(0),num_context)
   test_list = rep(list(0),num_context)
   for (i in 1: num_context){
     assignment = sample(1:3, size = nrow(datalist[[i]]),

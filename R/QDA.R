@@ -1,3 +1,17 @@
+QDA <- function(train,test,lambda,v, method = "diffee",...){
+  mu = apply(train[[1]], 2, mean)
+  #cat("mu is ", mu, "\n")
+  p = nrow(train[[1]])
+  delta = matrix(0,p,p)
+  delta = compute_delta(train,lambda,method,...)
+  values1 = apply(test[[1]],1,function(x,delta,mu) t(x - mu) %*% delta %*% (x - mu), delta = delta, mu = mu)
+  values2 = apply(test[[2]],1,function(x,delta,mu) t(x - mu) %*% delta %*% (x - mu), delta = delta, mu = mu)
+  right = sum(values1 > v, na.rm = TRUE) + sum(values2 < v, na.rm = TRUE)
+  best_test_accuracy = right/(length(values1) + length(values1))
+  return (best_test_accuracy)
+}
+
+
 #'graphical model model evaluation using QDA as a classifier
 #'@param train a list of training data
 #'@param valid a list of validation data
@@ -7,8 +21,19 @@
 #'@param method name of the method to be evaluated
 #'@param ... optional parameters passed to your method from JointNets package
 #'@return covriance matrix / kendall tau correlation matrix
-#' @export
-#' @import JGL
+#'@export
+#'@import JGL
+#'@examples
+#'library(JointNets)
+#'data("nip_37_data")
+#'split = train_valid_test_split(nip_37_data,c(0.8,0.1,0.1),10000)
+#'train = split[["train"]]
+#'valid = split[["valid"]]
+#'test = split[["test"]]
+#'v_seeking_length = 2
+#'lambda_range = seq(0.5,1, length.out = 2)
+#'result = QDA_eval(train,valid,test,lambda_range, v_seeking_length, method = "diffee")
+#'result[["best test accuracy"]]
 
 QDA_eval <- function(train, valid, test, lambda_range, v_seeking_length = 10,method = "diffee",...){
   if (length(train) > 2){
@@ -30,28 +55,28 @@ QDA_eval <- function(train, valid, test, lambda_range, v_seeking_length = 10,met
     delta = matrix(0,p,p)
 
     if (method == "diffee"){
-      delta = diffee(train[[1]],train[[2]],lambda,covType = "cov",...)$graphs[[1]]
+      delta = diffee(train[[1]],train[[2]],lambda,...)$graphs[[1]]
     }
     else if (method == "diffeek"){
       delta = diffeek(train[[1]],train[[2]],lambda = lambda,covType = "cov",...)$graphs[[1]]
     }
-    else if (method = "simule"){
+    else if (method == "simule"){
       temp = simule(train,lambda,...)
       delta = temp$graphs[[1]] - temp$graphs[[2]]
     }
-    else if (method = "wsimule"){
+    else if (method == "wsimule"){
       temp = wsimule(train,lambda,...)
       delta = temp$graphs[[1]] - temp$graphs[[2]]
     }
-    else if (method = "fasjem"){
+    else if (method == "fasjem"){
       temp = fasjem(train,lambda = lambda,...)
       delta = temp$graphs[[1]] - temp$graphs[[2]]
     }
-    else if (method = "jeek"){
+    else if (method == "jeek"){
       temp = jeek(train,lambda = lambda,...)
       delta = temp$graphs[[1]] - temp$graphs[[2]]
     }
-    else if (method = "jgl"){
+    else if (method == "jgl"){
       temp = jgl(train,lambda1 = lambda, lambda2 = 1, ...)
       delta = temp$graphs[[1]] - temp$graphs[[2]]
     }
@@ -104,23 +129,23 @@ compute_delta <-function(train,lambda,method = "diffee",...){
   else if (method == "diffeek"){
     delta = diffeek(train[[1]],train[[2]],lambda = lambda,covType = "cov",...)$graphs[[1]]
   }
-  else if (method = "simule"){
+  else if (method == "simule"){
     temp = simule(train,lambda,...)
     delta = temp$graphs[[1]] - temp$graphs[[2]]
   }
-  else if (method = "wsimule"){
+  else if (method == "wsimule"){
     temp = wsimule(train,lambda,...)
     delta = temp$graphs[[1]] - temp$graphs[[2]]
   }
-  else if (method = "fasjem"){
+  else if (method == "fasjem"){
     temp = fasjem(train,lambda = lambda,...)
     delta = temp$graphs[[1]] - temp$graphs[[2]]
   }
-  else if (method = "jeek"){
+  else if (method == "jeek"){
     temp = jeek(train,lambda = lambda,...)
     delta = temp$graphs[[1]] - temp$graphs[[2]]
   }
-  else if (method = "jgl"){
+  else if (method == "jgl"){
     temp = jgl(train,lambda1 = lambda, lambda2 = 1, ...)
     delta = temp$graphs[[1]] - temp$graphs[[2]]
   }
@@ -129,18 +154,6 @@ compute_delta <-function(train,lambda,method = "diffee",...){
   }
 }
 
-QDA <- function(train,test,lambda,v, method = "diffee"){
-  mu = apply(train[[1]], 2, mean)
-  #cat("mu is ", mu, "\n")
-  p = nrow(train[[1]])
-  delta = matrix(0,p,p)
-  delta = compute_delta(train,lambda,method,...)
-  values1 = apply(test[[1]],1,function(x,delta,mu) t(x - mu) %*% delta %*% (x - mu), delta = delta, mu = mu)
-  values2 = apply(test[[2]],1,function(x,delta,mu) t(x - mu) %*% delta %*% (x - mu), delta = delta, mu = mu)
-  right = sum(values1 > v, na.rm = TRUE) + sum(values2 < v, na.rm = TRUE)
-  best_test_accuracy = right/(length(values1) + length(values1))
-  return (best_test_accuracy)
-}
 
 
 #### commented block

@@ -118,6 +118,27 @@ AUC <- function(simulationresult, gm_method = "simule", lambdas, ...){
     auc = AUC_generic(c(fPM,0),c(tPM,0)) ## compute AUC score
   }
 
+  ## fix lambda2 to 1
+  if (gm_method == "jgl"){
+    for(i in 2:range){ ## run jeek against multiple lambdas
+      lambda = lambdas[i-1] ## lambda for the run
+      result = jgl(X, lambda1 = lambda, lambda2 = 1, ...) ## run jeek
+      for (j in 1:length(result$graphs)){ ## obtain predition stats sum over all contexts
+        test = abs(result$graphs[[j]]) > 0
+        real = abs(simulationresult$simulatedgraphs$graphs[[j]]) > 0
+        tP[i] = tP[i] + sum(test & real)
+        tN[i] = tN[i] + sum((test == 0) & (real == 0))
+        fP[i] = fP[i] + sum((test == 1) & (real == 0))
+        fN[i] = fN[i] + sum((test == 0) & (real == 1))
+      }
+
+      ## calculate stat for lambda slot i
+      tPM[i] = tP[i] / (tP[i] + fN[i])
+      fPM[i] = fP[i] / (fP[i] + tN[i])
+    }
+    auc = AUC_generic(c(fPM,0),c(tPM,0)) ## compute AUC score
+  }
+
   if (gm_method == "diffee"){
     for(i in 2:range){ ## run diffee against multiple lambdas
       lambda = lambdas[i-1] ## lambda for the run

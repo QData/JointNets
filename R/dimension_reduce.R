@@ -2,8 +2,11 @@
 #' @param datalist a datalist of high dimensionality
 #' @return a datalist of reduced dimensionality
 #' @export
+#' @examples
+#' library(JointNets)
+#' data(exampleData)
+#' reduction = dimension_reduce(exampleData)
 dimension_reduce <- function(datalist){
-
   ## min number of n across all contexts
   min_n = min(do.call(rbind,lapply(datalist, dim))[,1])
   p = dim(datalist[[1]])[2]

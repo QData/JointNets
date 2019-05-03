@@ -9,7 +9,7 @@ readline(prompt = "Press [enter] to continue to cancer demo with 2 tasks (not v.
 data(cancer)
 cancerlist = list(as.matrix(cancer[[1]][which(cancer[[2]] == "not"), ]),
                   as.matrix(cancer[[1]][which(cancer[[2]] == "pcr"), ]))
-result = wsimule(cancerlist, 0.2, 1, W = matrix(1,26,26), covType = "cov", TRUE)
+result = wsimule(cancerlist, 0.2, 1, W = matrix(1,26,26), covType = "cov")
 label = colnames(cancer[[1]])
 graph = returngraph(result)
 layout = layout_nicely(graph, dim = 2)
@@ -71,10 +71,9 @@ readline(prompt = "Press [enter] to continue to NIPS word count demo with 2 task
 
 data(nip_37_data)
 label = colnames(nip_37_data[[1]])
-result = wsimule(nip_37_data, lambda = 0.13, epsilon = 0.5, W = matrix(1,37,37) , covType = "kendall", parallel = TRUE)
+result = wsimule(nip_37_data, lambda = 0.13, epsilon = 0.5, W = matrix(1,37,37) , covType = "kendall")
 graph = returngraph(result)
 layout = layout_nicely(graph, dim = 2)
-
 
 readline(prompt = "Press [enter] to display four plots showing all graphs, shared graph, task specific 1 and task specific 2")
 
@@ -133,7 +132,7 @@ readline(prompt = "Press [enter] to continue to synthetic Gaussian data demo wit
 
 
 data(exampleData)
-result = wsimule(X = exampleData , lambda = 0.1, epsilon = 0.45, W = matrix(1,20,20), covType = "cov", TRUE)
+result = wsimule(X = exampleData , lambda = 0.1, epsilon = 0.45, W = matrix(1,20,20), covType = "cov")
 graph = returngraph(result)
 layout = layout_nicely(graph, dim = 2)
 label = NULL

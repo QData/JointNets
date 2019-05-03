@@ -126,7 +126,6 @@ jeek.linprogSPar <- function(i, W, B, lambda){
 #' data(exampleData)
 #' result = jeek(X = exampleData, 0.3, covType = "cov", parallel = FALSE)
 #' plot(result)
-
 jeek <- function(X, lambda, W = NA, covType = "cov",  intertwined = FALSE, parallel = FALSE) {
   #decide if they dataframe or not
   N = length(X)
@@ -140,6 +139,7 @@ jeek <- function(X, lambda, W = NA, covType = "cov",  intertwined = FALSE, paral
 
   # get key parameters
   p = dim(X[[1]])[2]
+  K = length(X)
   B = array(0, dim = c(p, p, K))
   weight = array(1, dim = c(p, p, (K + 1)))
   xt = array(0, dim = c(p, p, (K + 1)))

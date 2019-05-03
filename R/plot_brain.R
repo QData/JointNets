@@ -3,7 +3,7 @@
 #' This function plots 3d brain network from JointNets result
 #' @author Zhaoyang Wang (Author), Zhaoyang Wang (maintainer) \email{zw4dn@virginia.edu}
 #' @param x output generated from any one of the JointNets functions (simule,wsimule,jeek,fasjem,diffee,diffeek)
-#' @param ... additional arguments, please see \code{\link{plotbrain.simule}}, \code{\link{plotbrain.wsimule}} and etc for details
+#' @param ... additional arguments, please see \code{\link{plot_brain.simule}}, \code{\link{plot_brain.wsimule}} and etc for details
 #' @return 3d (rgl) brain network
 #' @details The function plots brain network using \code{\link{rglplot.igraph}}
 #' @examples
@@ -17,11 +17,11 @@
 #' aal116coordinates$y.mni+126, aal116coordinates$z.mni+72)
 #' result = simulation(p=116, s = 0.001, ss = 0.001, n = c(1,1))$simulatedgraphs
 #' class(result) = "simule"
-#' plotbrain(result, type = "task", neighbouroption = "task",
+#' plot_brain(result, type = "task", neighbouroption = "task",
 #' subID = NULL, index = NULL, layout = layout, hasbackground = FALSE)
 #' \donttest{
 #' result = simule(ABIDE_aal116_timeseries, 0.2, 1, covType = "cov", FALSE)
-#' plotbrain(result, type = "task", neighbouroption = "task",
+#' plot_brain(result, type = "task", neighbouroption = "task",
 #' subID = NULL, index = NULL, layout = layout)
 #' }
 #' @import rgl
@@ -29,8 +29,8 @@
 #' @import misc3d
 #' @import oro.nifti
 #' @export
-plotbrain <- function(x, ...) {
-  UseMethod("plotbrain", x)
+plot_brain <- function(x, ...) {
+  UseMethod("plot_brain", x)
 }
 
 
@@ -75,17 +75,17 @@ plotbrain <- function(x, ...) {
 #' aal116coordinates$y.mni+126, aal116coordinates$z.mni+72)
 #' result = simulation(p=116, s = 0.001, ss = 0.001, n = c(1,1))$simulatedgraphs
 #' class(result) = "simule"
-#' plotbrain(result, type = "task", neighbouroption = "task",
+#' plot_brain(result, type = "task", neighbouroption = "task",
 #' subID = NULL, index = NULL, layout = layout, hasbackground = FALSE)
 #' \donttest{
 #' result = simule(ABIDE_aal116_timeseries, 0.2, 1, covType = "cov", FALSE)
-#' plotbrain(result, type = "task", neighbouroption = "task",
+#' plot_brain(result, type = "task", neighbouroption = "task",
 #' subID = NULL, index = NULL, layout = layout)
 #' }
-#' @method plotbrain simule
+#' @method plot_brain simule
 #' @export
-#' @export plotbrain.simule
-plotbrain.simule <-
+#' @export plot_brain.simule
+plot_brain.simule <-
   function(x,
            type = "task",
            neighbouroption = "task",
@@ -96,7 +96,7 @@ plotbrain.simule <-
            hasbackground = TRUE,
            ...)
   {
-    plotbrain_joint(x,
+    plot_brain_joint(x,
                     type,
                     neighbouroption,
                     subID,
@@ -151,18 +151,18 @@ plotbrain.simule <-
 #' aal116coordinates$y.mni+126, aal116coordinates$z.mni+72)
 #' result = simulation(p=116, s = 0.001, ss = 0.001, n = c(1,1))$simulatedgraphs
 #' class(result) = "simule"
-#' plotbrain(result, type = "task", neighbouroption = "task",
+#' plot_brain(result, type = "task", neighbouroption = "task",
 #' subID = NULL, index = NULL, layout = layout, hasbackground = FALSE)
 #' \donttest{
 #' result = wsimule(ABIDE_aal116_timeseries, 0.2, 1,
 #' W = matrix(1,116,116), covType = "cov", FALSE)
-#' plotbrain(result, type = "task", neighbouroption = "task",
+#' plot_brain(result, type = "task", neighbouroption = "task",
 #' subID = NULL, index = NULL, layout = layout)
 #' }
-#' @method plotbrain wsimule
+#' @method plot_brain wsimule
 #' @export
-#' @export plotbrain.wsimule
-plotbrain.wsimule <-
+#' @export plot_brain.wsimule
+plot_brain.wsimule <-
   function(x,
            type = "task",
            neighbouroption = "task",
@@ -173,7 +173,7 @@ plotbrain.wsimule <-
            hasbackground = TRUE,
            ...)
   {
-    plotbrain_joint(x,
+    plot_brain_joint(x,
                     type,
                     neighbouroption,
                     subID,
@@ -226,18 +226,18 @@ plotbrain.wsimule <-
 #' aal116coordinates$y.mni+126, aal116coordinates$z.mni+72)
 #' result = simulation(p=116, s = 0.001, ss = 0.001, n = c(1,1))$simulatedgraphs
 #' class(result) = "simule"
-#' plotbrain(result, type = "task", neighbouroption = "task",
+#' plot_brain(result, type = "task", neighbouroption = "task",
 #' subID = NULL, index = NULL, layout = layout, hasbackground = FALSE)
 #' \donttest{
 #' result = fasjem(X = ABIDE_aal116_timeseries,
 #' method = "fasjem-g", 0.001, 0.1, 0.1, 0.05, 20)
-#' plotbrain(result, type = "task", neighbouroption = "task",
+#' plot_brain(result, type = "task", neighbouroption = "task",
 #' subID = NULL, index = NULL, layout = layout)
 #' }
-#' @method plotbrain fasjem
+#' @method plot_brain fasjem
 #' @export
-#' @export plotbrain.fasjem
-plotbrain.fasjem <-
+#' @export plot_brain.fasjem
+plot_brain.fasjem <-
   function(x,
            type = "task",
            neighbouroption = "task",
@@ -248,7 +248,7 @@ plotbrain.fasjem <-
            hasbackground = TRUE,
            ...)
   {
-    plotbrain_joint(x,
+    plot_brain_joint(x,
                     type,
                     neighbouroption,
                     subID,
@@ -290,18 +290,18 @@ plotbrain.fasjem <-
 #' aal116coordinates$y.mni+126, aal116coordinates$z.mni+72)
 #' result = simulation(p=116, s = 0.001, ss = 0.001, n = c(1,1))$simulatedgraphs
 #' class(result) = "simule"
-#' plotbrain(result, type = "task", neighbouroption = "task",
+#' plot_brain(result, type = "task", neighbouroption = "task",
 #' subID = NULL, index = NULL, layout = layout, hasbackground = FALSE)
 #' \donttest{
 #' result = diffee(ABIDE_aal116_timeseries[[1]],
 #' ABIDE_aal116_timeseries[[2]], 0.001)
-#' plotbrain(result, type = "task", neighbouroption = "task",
+#' plot_brain(result, type = "task", neighbouroption = "task",
 #' subID = NULL, index = NULL, layout = layout)
 #' }
-#' @method plotbrain diffee
+#' @method plot_brain diffee
 #' @export
-#' @export plotbrain.diffee
-plotbrain.diffee <- function(x,
+#' @export plot_brain.diffee
+plot_brain.diffee <- function(x,
                              type = "task",
                              neighbouroption = "task",
                              subID = NULL,
@@ -310,7 +310,7 @@ plotbrain.diffee <- function(x,
                              haslegend = TRUE,
                              hasbackground = TRUE,
                              ...) {
-  plotbrain_joint(x,
+  plot_brain_joint(x,
                   type,
                   neighbouroption,
                   subID,
@@ -352,18 +352,18 @@ plotbrain.diffee <- function(x,
 #' aal116coordinates$y.mni+126, aal116coordinates$z.mni+72)
 #' result = simulation(p=116, s = 0.001, ss = 0.001, n = c(1,1))$simulatedgraphs
 #' class(result) = "simule"
-#' plotbrain(result, type = "task", neighbouroption = "task",
+#' plot_brain(result, type = "task", neighbouroption = "task",
 #' subID = NULL, index = NULL, layout = layout, hasbackground = FALSE)
 #' \donttest{
 #' result = diffeek(ABIDE_aal116_timeseries[[1]], ABIDE_aal116_timeseries[[2]],
 #' W = matrix(1,116,116), g = 0,epsilon = 0.1, lambda = 0.001)
-#' plotbrain(result, type = "task", neighbouroption = "task",
+#' plot_brain(result, type = "task", neighbouroption = "task",
 #' subID = NULL, index = NULL, layout = layout)
 #' }
-#' @method plotbrain diffeek
+#' @method plot_brain diffeek
 #' @export
-#' @export plotbrain.diffeek
-plotbrain.diffeek <- function(x,
+#' @export plot_brain.diffeek
+plot_brain.diffeek <- function(x,
                               type = "task",
                               neighbouroption = "task",
                               subID = NULL,
@@ -372,7 +372,7 @@ plotbrain.diffeek <- function(x,
                               haslegend = TRUE,
                               hasbackground = TRUE,
                               ...) {
-  plotbrain_joint(x,
+  plot_brain_joint(x,
                   type,
                   neighbouroption,
                   subID,
@@ -425,18 +425,18 @@ plotbrain.diffeek <- function(x,
 #' aal116coordinates$y.mni+126, aal116coordinates$z.mni+72)
 #' result = simulation(p=116, s = 0.001, ss = 0.001, n = c(1,1))$simulatedgraphs
 #' class(result) = "simule"
-#' plotbrain(result, type = "task", neighbouroption = "task",
+#' plot_brain(result, type = "task", neighbouroption = "task",
 #' subID = NULL, index = NULL, layout = layout, hasbackground = FALSE)
 #' \donttest{
 #' result = jeek(X = ABIDE_aal116_timeseries,0.25,
 #' covType = "kendall",parallel = FALSE)
-#' plotbrain(result, type = "task", neighbouroption = "task",
+#' plot_brain(result, type = "task", neighbouroption = "task",
 #' subID = NULL, index = NULL, layout = layout)
 #' }
-#' @method plotbrain jeek
+#' @method plot_brain jeek
 #' @export
-#' @export plotbrain.jeek
-plotbrain.jeek <- function(x,
+#' @export plot_brain.jeek
+plot_brain.jeek <- function(x,
                            type = "task",
                            neighbouroption = "task",
                            subID = NULL,
@@ -445,7 +445,7 @@ plotbrain.jeek <- function(x,
                            haslegend = TRUE,
                            hasbackground = TRUE,
                            ...) {
-  plotbrain_joint(x,
+  plot_brain_joint(x,
                   type,
                   neighbouroption,
                   subID,
@@ -487,10 +487,28 @@ plotbrain.jeek <- function(x,
 #' @param ... extra parameters passed to igraph::rglplot()
 #' @return 3d (rgl) brain network
 #' @details The function plots brain network using \code{\link{rglplot.igraph}}
-#' @method plotbrain jgl
+#' @method plot_brain jgl
 #' @export
-#' @export plotbrain.jgl
-plotbrain.jgl <-
+#' @export plot_brain.jgl
+#' @examples
+#' library(JointNets)
+#' graphics.off()
+#' par(ask=FALSE)
+#' par(mfrow=c(1,1))
+#' data(ABIDE_aal116_timeseries)
+#' data(aal116coordinates)
+#' layout = cbind(aal116coordinates$x.mni + 90,
+#' aal116coordinates$y.mni+126, aal116coordinates$z.mni+72)
+#' result = simulation(p=116, s = 0.001, ss = 0.001, n = c(1,1))$simulatedgraphs
+#' class(result) = "jgl"
+#' plot_brain(result, type = "task", neighbouroption = "task",
+#' subID = NULL, index = NULL, layout = layout, hasbackground = FALSE)
+#' \donttest{
+#' result = jgl(ABIDE_aal116_timeseries, 0.2, 1)
+#' plot_brain(result, type = "task", neighbouroption = "task",
+#' subID = NULL, index = NULL, layout = layout)
+#' }
+plot_brain.jgl <-
   function(x,
            type = "task",
            neighbouroption = "task",
@@ -501,7 +519,7 @@ plotbrain.jgl <-
            hasbackground = TRUE,
            ...)
   {
-    plotbrain_joint(x,
+    plot_brain_joint(x,
                     type,
                     neighbouroption,
                     subID,
@@ -540,7 +558,7 @@ plotbrain.jgl <-
 #' @param ... extra parameters passed to igraph::rglplot() and level in misc::contour3d()
 #' @return 3d (rgl) brain network
 #' @import methods
-plotbrain_joint <-
+plot_brain_joint <-
   function(x,
            type = "task",
            neighbouroption = "task",

@@ -428,6 +428,11 @@ plot.diffeek <-
 #' @export
 #' @export plot.jgl
 #' @import igraph
+#' @examples
+#' library(JointNets)
+#' data(exampleData)
+#' result = jgl(cancerlist,0.1,0.5)
+#' plot(result)
 plot.jgl <-
   function(x,
            type = "task",

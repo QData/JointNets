@@ -3,13 +3,12 @@
 #'@param lambda1 The tuning parameter for the graphical lasso penalty.
 #'@param lambda2 The tuning parameter for the fused or group lasso penalty.
 #'@param ... optional parameters passed to JGL() from "JGL" package
-#'@return covriance matrix / kendall tau correlation matrix
-#' @export
-#' @import JGL
+#'@return a list of estimated precision matrix
+#'@export
+#'@import JGL
 jgl <- function(X, lambda1, lambda2, ...){
-  library(JGL)
   result = JGL(Y=X,lambda1 = lambda1, lambda2 = lambda2, return.whole.theta = TRUE, ...)
-  out = list(graphs = result$theta, share = NULL)
+  out = list(graphs = result$theta , share = NULL)
   class(out) = "jgl"
   ## fix the name issue
   out = add_name_to_out(out,X)

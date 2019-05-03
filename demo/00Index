@@ -7,5 +7,6 @@ diffeek  A brief demo for diffeek algorithm  including data from cancer, simulat
 brain    A demo for simule on ABIDE dataset partitioned by AAL116 atlas
 evaluation A demo for using the simulation and evalution module for all methods in JointNets
 jgl      A brief demo for JGL algorithm including data from cancer, simnulated gaussian and word count
-QDA      A demo for using QDA to perform binary classification
+classification A demo for using QDA to perform binary classification
 end_to_end A demo for demonstrating the end to end capability of the package
+microarray A demo for simule on high dimensional microarray data with dimension reduction

@@ -16,7 +16,7 @@ jgl(X, lambda1, lambda2, ...)
 \item{...}{optional parameters passed to JGL() from "JGL" package}
 }
 \value{
-covriance matrix / kendall tau correlation matrix
+a list of estimated precision matrix
 }
 \description{
 wrapper for function JGL

@@ -71,7 +71,6 @@ app = shiny::shinyApp(ui = ui, server = server)
 #' plot_gui()
 #' }
 plot_gui <- function(){
-
   shiny::runApp(app)
 }
 

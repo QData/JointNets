@@ -59,6 +59,12 @@ when only the jgl result is provided, the function will plot all graphs with def
 User can specify multiple subID and multiple index to zoom in multiple nodes on multiple graphs
 Each graph will include a descriptive title and legend to indicate correspondence between edge color and task.
 }
+\examples{
+library(JointNets)
+data(exampleData)
+result = jgl(cancerlist,0.1,0.5)
+plot(result)
+}
 \author{
 Beilun Wang, Zhaoyang Wang (Author), Zhaoyang Wang (maintainer) \email{zw4dn@virginia.edu}
 }

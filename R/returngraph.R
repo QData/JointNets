@@ -365,6 +365,11 @@ returngraph.diffeek <-
 #' generated from jgl
 #' @export
 #' @import igraph
+#' @examples
+#' library(JointNets)
+#' data(exampleData)
+#' result = jgl(X = exampleData , lambda1 = 1, lambda2 = 1)
+#' graph = returngraph(result)
 returngraph.jgl <-
   function(x,
            type = "task",

@@ -10,12 +10,11 @@ data(cancer)
 cancerlist = list(as.matrix(cancer[[1]][which(cancer[[2]] == "not"), ]),
                   as.matrix(cancer[[1]][which(cancer[[2]] == "pcr"), ]))
 
-result = jgl(cancerlist,1,1)
-
+result = jgl(cancerlist,0.1,0.5)
 label = colnames(cancer[[1]])
 graph = returngraph(result)
 layout = layout_nicely(graph, dim = 2)
-
+#plot(result)
 
 readline(prompt = "Press [enter] to display four plots showing all graphs, shared graph, task specific 1 and task specific 2")
 
@@ -73,10 +72,9 @@ readline(prompt = "Press [enter] to continue to NIPS word count demo with 2 task
 
 data(nip_37_data)
 label = colnames(nip_37_data[[1]])
-result = jgl(nip_37_data,1,1)
+result = jgl(nip_37_data,0.8,0.1)
 graph = returngraph(result)
 layout = layout_nicely(graph, dim = 2)
-
 
 readline(prompt = "Press [enter] to display four plots showing all graphs, shared graph, task specific 1 and task specific 2")
 
@@ -135,7 +133,7 @@ readline(prompt = "Press [enter] to continue to synthetic Gaussian data demo wit
 
 
 data(exampleData)
-result = jgl(exampleData,1,1)
+result = jgl(exampleData,0.1,0.01)
 graph = returngraph(result)
 layout = layout_nicely(graph, dim = 2)
 label = NULL

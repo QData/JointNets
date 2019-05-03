@@ -9,7 +9,7 @@ readline(prompt = "Press [enter] to continue to cancer demo with 2 tasks (not v.
 data(cancer)
 cancerlist = list(as.matrix(cancer[[1]][which(cancer[[2]] == "not"), ]),
                   as.matrix(cancer[[1]][which(cancer[[2]] == "pcr"), ]))
-result = simule(cancerlist, 0.2, 1, covType = "cov", TRUE)
+result = simule(cancerlist, 0.2, 1, covType = "cov")
 label = colnames(cancer[[1]])
 graph = returngraph(result)
 layout = layout_nicely(graph, dim = 2)
@@ -75,8 +75,7 @@ result = simule(
   nip_37_data,
   lambda = 0.13,
   epsilon = 0.5,
-  covType = "kendall",
-  parallel = TRUE
+  covType = "kendall"
 )
 graph = returngraph(result)
 layout = layout_nicely(graph, dim = 2)
@@ -143,8 +142,7 @@ result = simule(
   X = exampleData ,
   lambda = 0.1,
   epsilon = 0.45,
-  covType = "cov",
-  TRUE
+  covType = "cov"
 )
 graph = returngraph(result)
 layout = layout_nicely(graph, dim = 2)
