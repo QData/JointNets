@@ -19,3 +19,7 @@ a list of train,validation and test datalist
 \description{
 split a datalist to train,validation and test
 }
+\examples{
+library(JointNets)
+data("nip_37_data")
+}

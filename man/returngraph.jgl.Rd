@@ -51,6 +51,12 @@ This function can return an igraph object from jgl result for user to work with 
 the function aims to provide users the flexibility to explore and visualize the graph on their own
 generated from jgl
 }
+\examples{
+library(JointNets)
+data(exampleData)
+result = jgl(X = exampleData , lambda1 = 1, lambda2 = 1)
+graph = returngraph(result)
+}
 \author{
 Beilun Wang, Zhaoyang Wang (Author), Zhaoyang Wang (maintainer) \email{zw4dn@virginia.edu}
 }
