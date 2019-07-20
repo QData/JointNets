@@ -1,6 +1,7 @@
 #' reduce the dimensionality of the datalist if needed
 #' @param datalist a datalist of high dimensionality
 #' @return a datalist of reduced dimensionality
+#' @importFrom stats sd
 #' @export
 #' @examples
 #' library(JointNets)

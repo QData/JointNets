@@ -54,27 +54,6 @@ AUC <- function(simulationresult, gm_method = "simule", lambdas, ...){
     auc = AUC_generic(c(fPM,0),c(tPM,0)) ## compute AUC score
   }
 
-  if (gm_method == "fasjem"){
-    for(i in 2:range){ ## run fasjem against multiple lambdas
-      lambda = lambdas[i-1] ## lambda for the run
-      result = fasjem(X, lambda = lambda, ...) ## run fasjem
-
-      for (j in 1:length(result$graphs)){ ## obtain predition stats sum over all contexts
-        test = abs(result$graphs[[j]]) > 0
-        real = abs(simulationresult$simulatedgraphs$graphs[[j]]) > 0
-        tP[i] = tP[i] + sum(test & real)
-        tN[i] = tN[i] + sum((test == 0) & (real == 0))
-        fP[i] = fP[i] + sum((test == 1) & (real == 0))
-        fN[i] = fN[i] + sum((test == 0) & (real == 1))
-      }
-
-      ## calculate stat for lambda slot i
-      tPM[i] = tP[i] / (tP[i] + fN[i])
-      fPM[i] = fP[i] / (fP[i] + tN[i])
-    }
-    auc = AUC_generic(c(fPM,0),c(tPM,0)) ## compute AUC score
-  }
-
   if (gm_method == "wsimule"){
     for(i in 2:range){ ## run wsimule against multiple lambdas
       lambda = lambdas[i-1] ## lambda for the run
@@ -159,12 +138,10 @@ AUC <- function(simulationresult, gm_method = "simule", lambdas, ...){
     auc = AUC_generic(c(fPM,0),c(tPM,0)) ## compute AUC score
   }
 
-
-
-  if (gm_method == "diffeek"){
-    for(i in 2:range){ ## run diffeek against multiple lambdas
+  if (gm_method == "kdiffnet"){
+    for(i in 2:range){ ## run diffee against multiple lambdas
       lambda = lambdas[i-1] ## lambda for the run
-      result = diffeek(C = X[[1]], D = X[[2]], lambda = lambda, ...) ## run diffee
+      result = kdiffnet(X[[1]],X[[2]], lambda = lambda, ...) ## run kdiffnet
       real = abs(simulationresult$simulatedgraphs$graphs[[1]] -
                    simulationresult$simulatedgraphs$graphs[[2]] ) > 0
       test = abs(result$graphs[[1]]) > 0
@@ -178,6 +155,7 @@ AUC <- function(simulationresult, gm_method = "simule", lambdas, ...){
       fPM[i] = fP[i] / (fP[i] + tN[i])
     }
     auc = AUC_generic(c(fPM,0),c(tPM,0)) ## compute AUC score
+
   }
 
   out$auc = auc

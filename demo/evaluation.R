@@ -52,27 +52,6 @@ result = wsimule(simulationresult$simulatedsamples , lambda = 0.1, epsilon = 0.4
 }
 
 
-readline(prompt = "Press [enter] to view fasjem evaluation")
-
-simulationresult = simulation(n=c(100,100,100))
-AUC_result = AUC(simulationresult,
-                 gm_method = "fasjem",
-                 lambdas = seq(0.1,2,0.05))
-truth = simulationresult$simulatedgraphs
-result = fasjem(X = simulationresult$simulatedsamples, method = "fasjem-g", 0.5, 0.1, 0.1, 0.05, 10)
-
-{
-  cat(paste("AUC score: ", AUC_result$auc))
-  cat("\n")
-  cat("F1 score graphs: ")
-  cat(F1(result,truth)$graphs)
-  cat("\n")
-  cat(paste("BIC score: ", BIC(simulationresult$simulatedsamples,result)))
-  plot(AUC_result$fPM,AUC_result$tPM, xlab = "False Positive Rate", ylab = "True Positive Rate", main = "ROC")
-  lines(AUC_result$fPM[order(AUC_result$fPM)], AUC_result$tPM[order(AUC_result$fPM)], xlim=range(AUC_result$fPM), ylim=range(AUC_result$tPM))
-}
-
-
 readline(prompt = "Press [enter] to view jeek evaluation")
 simulationresult = simulation(n=c(100,100,100))
 AUC_result = AUC(simulationresult,
@@ -116,14 +95,14 @@ result = diffee(simulationresult$simulatedsamples[[1]], simulationresult$simulat
   lines(AUC_result$fPM[order(AUC_result$fPM)], AUC_result$tPM[order(AUC_result$fPM)], xlim=range(AUC_result$fPM), ylim=range(AUC_result$tPM))
 }
 
-readline(prompt = "Press [enter] to view diffeek evaluation")
+readline(prompt = "Press [enter] to view kdiffnet evaluation")
 simulationresult = simulation(n=c(100,100))
 AUC_result = AUC(simulationresult,
-                 gm_method = "diffeek",
+                 gm_method = "kdiffnet",
                  lambdas = seq(0.1,2,0.05)
-                 , W = matrix(1,20,20), g = 0)
+                 , W = matrix(1,20,20), g = rep(0,20))
 truth = simulationresult$simulatedgraphs
-result = diffeek(exampleData[[1]], exampleData[[2]], W = matrix(1,20,20), g = rep(0,20),
+result = kdiffnet(exampleData[[1]], exampleData[[2]], W = matrix(1,20,20), g = rep(0,20),
                  epsilon = 0.2, lambda = 0.4,covType = "cov")
 {
   cat(paste("AUC score: ", AUC_result$auc))
@@ -134,6 +113,5 @@ result = diffeek(exampleData[[1]], exampleData[[2]], W = matrix(1,20,20), g = re
   plot(AUC_result$fPM,AUC_result$tPM, xlab = "False Positive Rate", ylab = "True Positive Rate", main = "ROC")
   lines(AUC_result$fPM[order(AUC_result$fPM)], AUC_result$tPM[order(AUC_result$fPM)], xlim=range(AUC_result$fPM), ylim=range(AUC_result$tPM))
 }
-
 
 

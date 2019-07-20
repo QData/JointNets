@@ -38,7 +38,7 @@ diffee.backwardMap <-function(covMatrix, thre = "soft"){
 
 
 #' Fast and Scalable Learning of Sparse Changes in High-Dimensional Gaussian
-#' Graphical Model Structure
+#' Graphical Model
 #'
 #' Estimate DIFFerential networks via an Elementary Estimator under a
 #' high-dimensional situation. Please run demo(diffee) to learn the basics.
@@ -84,8 +84,8 @@ diffee.backwardMap <-function(covMatrix, thre = "soft"){
 #' \eqn{T_v}. If thre = "soft", it means that we choose soft-threshold function
 #' as \eqn{T_v}. If thre = "hard", it means that we choose hard-threshold
 #' function as \eqn{T_v}.
-#' @return \item{diffNet}{A matrix of the estimated sparse changes between two
-#' Gaussian Graphical Models}
+#' @return \item{$graphs}{A matrix of the estimated sparse changes between two
+#' Gaussian Graphical Models} \item{$share}{null}
 #' @author Beilun Wang
 #' @references Beilun Wang, Arshdeep Sekhon, Yanjun Qi (2018). Fast and
 #' Scalable Learning of Sparse Changes in High-Dimensional Gaussian Graphical

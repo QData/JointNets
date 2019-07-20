@@ -2,9 +2,9 @@
 #'
 #' This function returns an igraph object from jointnet result for user to work with directly
 #' @author Beilun Wang, Zhaoyang Wang (Author), Zhaoyang Wang (maintainer) \email{zw4dn@virginia.edu}
-#' @param x output generated from any one of the jointnet functions (simule,wsimule,jeek,fasjem,diffee)
+#' @param x output generated from any one of the jointnet functions
 #' @param ... additional arguments, see \code{\link{returngraph.simule}}, \code{\link{returngraph.wsimule}},
-#' \code{\link{returngraph.diffee}}, \code{\link{returngraph.fasjem}}, \code{\link{returngraph.jeek}} for details.
+#' \code{\link{returngraph.diffee}}, \code{\link{returngraph.jeek}} for details.
 #' @return an igraph object of graph / subgraph from jointnet result specified by user input
 #' @details the function aims to provide users the flexibility to explore and visualize the graph on their own
 #' generated from jointnet
@@ -17,7 +17,6 @@
 returngraph <- function(x, ...) {
   UseMethod("returngraph", x)
 }
-
 
 #' return igraph object from jeek result specified by user input
 #'
@@ -158,57 +157,12 @@ returngraph.wsimule <-
 
   }
 
-#' return igraph object from fasjem result specified by user input
-#'
-#' This function can return an igraph object from fasjem result for user to work with directly
-#' @author Beilun Wang, Zhaoyang Wang (Author), Zhaoyang Wang (maintainer) \email{zw4dn@virginia.edu}
-#' @param x output generated from fasjem function (fasjem class)
-#' @param type type of graph. There are four options:
-#' * "task" (graph for each task (including shared part) specified further by subID (task number))
-#' * "share" (shared graph for all tasks)
-#' * "taskspecific" (graph for each task specific graph (excluding shared part)
-#' specified further by subID (task number) )
-#' * "neighbour" (zoom into nodes in the graph specified further by neighbouroptoin, subID (task number)
-#' and index (node id))
-#' @param neighbouroption determines what type of graph to zoom into when parameter **"type"** is **"neighbour"**. There are two options:
-#' * "task" (zoom into graph for each task (including shared part))
-#' * "taskspecific" (zoom into graph for each task specific (excluding shared part))
-#' @param subID selects which task to display. There are four options:
-#' * 0 (only allowed when
-#' **"type"** is **"task"** or **"type"** is **"neighbour"** and **"neighbouroption"** is **"task"**) (selects share graph)
-#' * positive task number (selects that particular task)
-#' * a vector of task number (selects multiple tasks)
-#' * NULL (selects all tasks (all graphs))
-#' @param index determines which node(s) to zoom into when parameter **"type"** is **"neighbour"**.
-#' This parameter could either be an integer or vector of integers representing node ids
-#' (zoom into one node or multiple nodes)
-#' @param ... not used
-#' @return an igraph object of graph / subgraph from fasjem result specified by user input
-#' @details the function aims to provide users the flexibility to explore and visualize the graph on their own
-#' generated from fasjem
-#' @examples
-#' library(JointNets)
-#' data(exampleData)
-#' result = fasjem(X = exampleData, method = "fasjem-g", 0.5, 0.1, 0.1, 0.05, 10)
-#' graph = returngraph(result)
-#' @export
-#' @import igraph
-returngraph.fasjem <-
-  function(x,
-           type = "task",
-           neighbouroption = "task",
-           subID = NULL,
-           index = NULL,
-           ...) {
-    return(returngraph_jointnets(x, type, neighbouroption, subID, index))
-
-  }
 
 #' return igraph object from simulation result specified by user input
 #'
 #' This function can return an igraph object from simulation result for user to work with directly
 #' @author Beilun Wang, Zhaoyang Wang (Author), Zhaoyang Wang (maintainer) \email{zw4dn@virginia.edu}
-#' @param x output generated from fasjem function (fasjem class)
+#' @param x output generated from simulatino functino
 #' @param type type of graph. There are four options:
 #' * "task" (graph for each task (including shared part) specified further by subID (task number))
 #' * "share" (shared graph for all tasks)
@@ -229,7 +183,7 @@ returngraph.fasjem <-
 #' This parameter could either be an integer or vector of integers representing node ids
 #' (zoom into one node or multiple nodes)
 #' @param ... not used
-#' @return an igraph object of graph / subgraph from fasjem result specified by user input
+#' @return an igraph object of graph / subgraph from simulation result specified by user input
 #' @details the function aims to provide users the flexibility to explore and visualize the graph on their own
 #' generated from simulation
 #' @examples
@@ -292,11 +246,11 @@ returngraph.diffee <-
 
 
 
-#' return igraph object from diffee result specified by user input
+#' return igraph object from kdiffnet result specified by user input
 #'
-#' This function can return an igraph object from diffeek result for user to work with directly
+#' This function can return an igraph object from kdiffnet result for user to work with directly
 #' @author Beilun Wang, Zhaoyang Wang (Author), Zhaoyang Wang (maintainer) \email{zw4dn@virginia.edu}
-#' @param x output generated from diffeek function (diffeek class)
+#' @param x output generated from kdiffnet function (kdiffnet class)
 #' @param type type of graph. There are two options:
 #' * "task" (difference graph)
 #' * "neighbour" (zoom into nodes in the difference graph specified further by parameter
@@ -307,26 +261,26 @@ returngraph.diffee <-
 #' This parameter could either be an integer or vector of integers representing node ids
 #' (zoom into one node or multiple nodes)
 #' @param ... unused
-#' @return an igraph object of graph / subgraph from diffee result specified by user input
+#' @return an igraph object of graph / subgraph from kdiffnet result specified by user input
 #' @details the function aims to provide users the flexibility to explore and visualize the graph own their own
-#' generated from diffee
+#' generated from kdiffnet
 #' @examples
 #' library(JointNets)
 #' data(exampleData)
-#' result = diffeek(exampleData[[1]], exampleData[[2]],
+#' result = kdiffnet(exampleData[[1]], exampleData[[2]],
 #' W = matrix(1,20,20), g = rep(0,20),epsilon = 0.2,
 #' lambda = 0.4,covType = "cov")
 #' graph = returngraph(result)
 #' @export
 #' @import igraph
-returngraph.diffeek <-
+returngraph.kdiffnet <-
   function(x,
            type = "task",
            neighbouroption = "task",
            subID = NULL,
            index = NULL,
            ...) {
-    ### diffeek only has difference graph
+    ### kdiffnet only has difference graph
     if (!(type == "task" |
           type == "neighbour")) {
       stop("please specify a correct type")

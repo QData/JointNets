@@ -4,13 +4,12 @@
 #' @param result result generated from datalist using the same JointNets method
 #' @return BIC score
 #' @export
-#' @details not working with DIFFEE and DIFFEEK (difference estimation)
+#' @details not working with DIFFEE and kdiffnet (difference estimation)
 #' @examples
 #' library(JointNets)
 #' simulateresult = simulation(p = 20,  n = c(100,100))
 #' result = simule(simulateresult$simulatedsamples, 0.2, 0.5, covType = "cov", FALSE)
 #' BIC(simulateresult$simulatedsamples,result)
-
 BIC <- function(datalist, result){
   K = length(datalist)
   covs = list()

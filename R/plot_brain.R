@@ -2,7 +2,7 @@
 #'
 #' This function plots 3d brain network from JointNets result
 #' @author Zhaoyang Wang (Author), Zhaoyang Wang (maintainer) \email{zw4dn@virginia.edu}
-#' @param x output generated from any one of the JointNets functions (simule,wsimule,jeek,fasjem,diffee,diffeek)
+#' @param x output generated from any one of the JointNets functions
 #' @param ... additional arguments, please see \code{\link{plot_brain.simule}}, \code{\link{plot_brain.wsimule}} and etc for details
 #' @return 3d (rgl) brain network
 #' @details The function plots brain network using \code{\link{rglplot.igraph}}
@@ -185,80 +185,7 @@ plot_brain.wsimule <-
 
   }
 
-#' plot 3d brain network from fasjem result
-#'
-#' This function plots 3d brain network from fasjem result
-#' @author Zhaoyang Wang (Author), Zhaoyang Wang (maintainer) \email{zw4dn@virginia.edu}
-#' @param x output generated from fasjem function (fasjem class)
-#' @param type type of graph. There are four options:
-#' * "task" (graph for each task (including shared part) specified further by subID (task number))
-#' * "share" (shared graph for all tasks)
-#' * "taskspecific" (graph for each task specific graph (excluding shared part)
-#' specified further by subID (task number) )
-#' * "neighbour" (zoom into nodes in the graph specified further by neighbouroptoin, subID (task number)
-#' and index (node id))
-#' @param neighbouroption determines what type of graph to zoom into when parameter **"type"** is **"neighbour"**. There are two options:
-#' * "task" (zoom into graph for each task (including shared part))
-#' * "taskspecific" (zoom into graph for each task specific (excluding shared part))
-#' @param subID selects which task to display. There are four options:
-#' * 0 (only allowed when
-#' **"type"** is **"task"** or **"type"** is **"neighbour"** and **"neighbouroption"** is **"task"**) (selects share graph)
-#' * positive task number (selects that particular task)
-#' * a vector of task number (selects multiple tasks)
-#' * NULL (selects all tasks (all graphs))
-#' @param index determines which node(s) to zoom into when parameter **"type"** is **"neighbour"**.
-#' This parameter could either be an integer or vector of integers representing node ids
-#' (zoom into one node or multiple nodes)
-#' @param hastitle determines whether the graph title is displayed or not (TRUE to display / FALSE to hide)
-#' @param haslegend determines whether the graph legend is displayed or not (TRUE to display / FALSE to hide)
-#' @param hasbackground determines whether the reference brain is plotted or not (TRUE to display / FALSE to hide)
-#' @param ... extra parameters passed to igraph::rglplot()
-#' @return 3d (rgl) brain network
-#' @details The function plots brain network using \code{\link{rglplot.igraph}}
-#' @examples
-#' library(JointNets)
-#' graphics.off()
-#' par(ask=FALSE)
-#' par(mfrow=c(1,1))
-#' data(ABIDE_aal116_timeseries)
-#' data(aal116coordinates)
-#' layout = cbind(aal116coordinates$x.mni + 90,
-#' aal116coordinates$y.mni+126, aal116coordinates$z.mni+72)
-#' result = simulation(p=116, s = 0.001, ss = 0.001, n = c(1,1))$simulatedgraphs
-#' class(result) = "simule"
-#' plot_brain(result, type = "task", neighbouroption = "task",
-#' subID = NULL, index = NULL, layout = layout, hasbackground = FALSE)
-#' \donttest{
-#' result = fasjem(X = ABIDE_aal116_timeseries,
-#' method = "fasjem-g", 0.001, 0.1, 0.1, 0.05, 20)
-#' plot_brain(result, type = "task", neighbouroption = "task",
-#' subID = NULL, index = NULL, layout = layout)
-#' }
-#' @method plot_brain fasjem
-#' @export
-#' @export plot_brain.fasjem
-plot_brain.fasjem <-
-  function(x,
-           type = "task",
-           neighbouroption = "task",
-           subID = NULL,
-           index = NULL,
-           hastitle = TRUE,
-           haslegend = TRUE,
-           hasbackground = TRUE,
-           ...)
-  {
-    plot_brain_joint(x,
-                    type,
-                    neighbouroption,
-                    subID,
-                    index,
-                    hastitle,
-                    haslegend,
-                    hasbackground,
-                    ...)
 
-  }
 
 #' plot 3d brain network from diffee result
 #'
@@ -322,11 +249,11 @@ plot_brain.diffee <- function(x,
 }
 
 
-#' plot 3d brain network from diffeek result
+#' plot 3d brain network from kdiffnet result
 #'
-#' This function plots 3d brain network from diffeek result
+#' This function plots 3d brain network from kdiffnet result
 #' @author Zhaoyang Wang (Author), Zhaoyang Wang (maintainer) \email{zw4dn@virginia.edu}
-#' @param x output generated from diffeek function (diffeek class)
+#' @param x output generated from kdiffnet function (kdiffnet class)
 #' @param type type of graph. There are two options:
 #' * "task" (difference graph)
 #' * "neighbour" (zoom into nodes in the difference graph specified further by parameter
@@ -355,15 +282,15 @@ plot_brain.diffee <- function(x,
 #' plot_brain(result, type = "task", neighbouroption = "task",
 #' subID = NULL, index = NULL, layout = layout, hasbackground = FALSE)
 #' \donttest{
-#' result = diffeek(ABIDE_aal116_timeseries[[1]], ABIDE_aal116_timeseries[[2]],
-#' W = matrix(1,116,116), g = 0,epsilon = 0.1, lambda = 0.001)
+#' result = kdiffnet(ABIDE_aal116_timeseries[[1]], ABIDE_aal116_timeseries[[2]],
+#' W = matrix(1,116,116), g = rep(0,116), epsilon = 0.1, lambda = 0.001)
 #' plot_brain(result, type = "task", neighbouroption = "task",
 #' subID = NULL, index = NULL, layout = layout)
 #' }
-#' @method plot_brain diffeek
+#' @method plot_brain kdiffnet
 #' @export
-#' @export plot_brain.diffeek
-plot_brain.diffeek <- function(x,
+#' @export plot_brain.kdiffnet
+plot_brain.kdiffnet <- function(x,
                               type = "task",
                               neighbouroption = "task",
                               subID = NULL,

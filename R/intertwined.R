@@ -1,6 +1,7 @@
-#' calculate intertwined covariance matrix
-#' @param X a list of covariance matrix
-#' @return intertwined covariance matrices
+## calculate intertwined covariance matrix
+## @param X a list of covariance matrix
+## @param covType = "cov"
+## @return intertwined covariance matrices
 intertwined <- function(X,covType = "cov"){
   if (covType == "cov"){
     cov.mean = cov(do.call(rbind, X))

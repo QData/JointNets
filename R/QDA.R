@@ -34,7 +34,6 @@ QDA <- function(train,test,lambda,v, method = "diffee",...){
 #'lambda_range = seq(0.5,1, length.out = 2)
 #'result = QDA_eval(train,valid,test,lambda_range, v_seeking_length, method = "diffee")
 #'result[["best test accuracy"]]
-
 QDA_eval <- function(train, valid, test, lambda_range, v_seeking_length = 10,method = "diffee",...){
   if (length(train) > 2){
     stop("QDA current only support binary classification")
@@ -57,19 +56,12 @@ QDA_eval <- function(train, valid, test, lambda_range, v_seeking_length = 10,met
     if (method == "diffee"){
       delta = diffee(train[[1]],train[[2]],lambda,...)$graphs[[1]]
     }
-    else if (method == "diffeek"){
-      delta = diffeek(train[[1]],train[[2]],lambda = lambda,covType = "cov",...)$graphs[[1]]
-    }
     else if (method == "simule"){
       temp = simule(train,lambda,...)
       delta = temp$graphs[[1]] - temp$graphs[[2]]
     }
     else if (method == "wsimule"){
       temp = wsimule(train,lambda,...)
-      delta = temp$graphs[[1]] - temp$graphs[[2]]
-    }
-    else if (method == "fasjem"){
-      temp = fasjem(train,lambda = lambda,...)
       delta = temp$graphs[[1]] - temp$graphs[[2]]
     }
     else if (method == "jeek"){
@@ -79,6 +71,9 @@ QDA_eval <- function(train, valid, test, lambda_range, v_seeking_length = 10,met
     else if (method == "jgl"){
       temp = jgl(train,lambda1 = lambda, lambda2 = 1, ...)
       delta = temp$graphs[[1]] - temp$graphs[[2]]
+    }
+    else if (method == "kdiffnet"){
+      delta = kdiffnet(train[[1]],train[[2]],lambda = lambda,...)$graphs[[1]]
     }
     else {
       stop("please specify a correct method")
@@ -126,8 +121,8 @@ compute_delta <-function(train,lambda,method = "diffee",...){
   if (method == "diffee"){
     delta = diffee(train[[1]],train[[2]],lambda,covType = "cov",...)$graphs[[1]]
   }
-  else if (method == "diffeek"){
-    delta = diffeek(train[[1]],train[[2]],lambda = lambda,covType = "cov",...)$graphs[[1]]
+  else if (method == "kdiffnet"){
+    delta = kdiffnet(train[[1]],train[[2]],lambda = lambda, covType = "cov",...)$graphs[[1]]
   }
   else if (method == "simule"){
     temp = simule(train,lambda,...)
@@ -135,10 +130,6 @@ compute_delta <-function(train,lambda,method = "diffee",...){
   }
   else if (method == "wsimule"){
     temp = wsimule(train,lambda,...)
-    delta = temp$graphs[[1]] - temp$graphs[[2]]
-  }
-  else if (method == "fasjem"){
-    temp = fasjem(train,lambda = lambda,...)
     delta = temp$graphs[[1]] - temp$graphs[[2]]
   }
   else if (method == "jeek"){

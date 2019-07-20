@@ -18,7 +18,7 @@ BIC score
 calculate BIC score for JointNets method
 }
 \details{
-not working with DIFFEE and DIFFEEK (difference estimation)
+not working with DIFFEE and kdiffnet (difference estimation)
 }
 \examples{
 library(JointNets)

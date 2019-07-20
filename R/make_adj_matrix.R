@@ -1,4 +1,3 @@
-
 ## method to make adjancey matrix for outputs from different methods
 ## @export
 ## @param x result from JointNet methods

@@ -112,36 +112,7 @@ F1.jeek <-
 
   }
 
-#' computes F1 score for jointnet result
-#' @param result output generated from any one of the jointnet algorithms
-#' @param simulatedgraphs $simulatedgraphs from function simulation()
-#' @param ... unused
-#' @method F1 fasjem
-#' @export
-#' @export F1.fasjem
-#' @examples
-#' library(JointNets)
-#' simulationresult = simulation(p = 20,  n = c(100,100))
-#' truth = simulationresult$simulatedgraphs
-#' result = fasjem(simulationresult$simulatedsamples, method = "fasjem-g", 2, 0.1, 0.1, 0.05, 20)
-#' F1(result,truth)
 
-F1.fasjem <-
-  function(result,
-           simulatedgraphs,
-           ...)
-  {
-    K = length(simulatedgraphs$graphs)
-    simulatedgraphs = make_adj_matrix(simulatedgraphs,TRUE)
-    result = make_adj_matrix(result,TRUE)
-    f1 = c()
-    for (i in 1:K) {
-      f1[i] = F1_single(simulatedgraphs[[i]],result[[i]])
-    }
-    out = list(graphs = f1)
-    return(out)
-
-  }
 
 #' computes F1 score for jointnet result
 #' @param result output generated from any one of the jointnet algorithms
@@ -175,20 +146,20 @@ F1.diffee <-
 #' @param result output generated from any one of the jointnet algorithms
 #' @param simulatedgraphs $simulatedgraphs from function simulation()
 #' @param ... unused
-#' @method F1 diffeek
+#' @method F1 kdiffnet
 #' @export
-#' @export F1.diffeek
+#' @export F1.kdiffnet
 #' @examples
 #' library(JointNets)
 #' simulationresult = simulation(p = 20,  n = c(100,100))
 #' truth = simulationresult$simulatedgraphs
-#' result = diffeek(simulationresult$simulatedsamples[[1]],
+#' result = kdiffnet(simulationresult$simulatedsamples[[1]],
 #' simulationresult$simulatedsamples[[2]],
 #' W = matrix(1,20,20), g = rep(0,20),epsilon = 0.2,
 #' lambda = 0.4,covType = "cov")
 #' F1(result,truth)
 
-F1.diffeek <-
+F1.kdiffnet <-
   function(result,
            simulatedgraphs,
            ...)

@@ -7,7 +7,7 @@
 plot_brain(x, ...)
 }
 \arguments{
-\item{x}{output generated from any one of the JointNets functions (simule,wsimule,jeek,fasjem,diffee,diffeek)}
+\item{x}{output generated from any one of the JointNets functions}
 
 \item{...}{additional arguments, please see \code{\link{plot_brain.simule}}, \code{\link{plot_brain.wsimule}} and etc for details}
 }

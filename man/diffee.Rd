@@ -3,7 +3,7 @@
 \name{diffee}
 \alias{diffee}
 \title{Fast and Scalable Learning of Sparse Changes in High-Dimensional Gaussian
-Graphical Model Structure}
+Graphical Model}
 \usage{
 diffee(C, D, lambda = 0.05, covType = "cov", intertwined = FALSE,
   thre = "soft")
@@ -44,8 +44,8 @@ as \eqn{T_v}. If thre = "hard", it means that we choose hard-threshold
 function as \eqn{T_v}.}
 }
 \value{
-\item{diffNet}{A matrix of the estimated sparse changes between two
-Gaussian Graphical Models}
+\item{$graphs}{A matrix of the estimated sparse changes between two
+Gaussian Graphical Models} \item{$share}{null}
 }
 \description{
 Estimate DIFFerential networks via an Elementary Estimator under a

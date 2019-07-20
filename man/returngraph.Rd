@@ -7,10 +7,10 @@
 returngraph(x, ...)
 }
 \arguments{
-\item{x}{output generated from any one of the jointnet functions (simule,wsimule,jeek,fasjem,diffee)}
+\item{x}{output generated from any one of the jointnet functions}
 
 \item{...}{additional arguments, see \code{\link{returngraph.simule}}, \code{\link{returngraph.wsimule}},
-\code{\link{returngraph.diffee}}, \code{\link{returngraph.fasjem}}, \code{\link{returngraph.jeek}} for details.}
+\code{\link{returngraph.diffee}}, \code{\link{returngraph.jeek}} for details.}
 }
 \value{
 an igraph object of graph / subgraph from jointnet result specified by user input

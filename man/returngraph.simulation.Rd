@@ -8,7 +8,7 @@
   neighbouroption = "task", subID = NULL, index = NULL, ...)
 }
 \arguments{
-\item{x}{output generated from fasjem function (fasjem class)}
+\item{x}{output generated from simulatino functino}
 
 \item{type}{type of graph. There are four options:
 \itemize{
@@ -42,7 +42,7 @@ This parameter could either be an integer or vector of integers representing nod
 \item{...}{not used}
 }
 \value{
-an igraph object of graph / subgraph from fasjem result specified by user input
+an igraph object of graph / subgraph from simulation result specified by user input
 }
 \description{
 This function can return an igraph object from simulation result for user to work with directly
