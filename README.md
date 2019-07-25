@@ -1,15 +1,15 @@
 # JointNets
 
-[JointNets](https://github.com/QData/JointNets) is an end-to-end R package for sparse high-dimensional Gaussian graphical model estimation, visualization, simulation and evaluation.
+[JointNets](https://github.com/QData/JointNets) is an end-to-end R package for An end-to-end package for learning multiple sparse Gaussian graphical models and nonparanormal models from Heterogeneous Data with Additional Knowledge. This package supports joint estimation, visualization, simulation and evaluation.
+
 
 It contains the following estimators:
 [SIMULE](https://link.springer.com/article/10.1007%2Fs10994-017-5635-7),
 [WSIMULE](https://arxiv.org/abs/1709.04090),
-[FASJEM](https://arxiv.org/abs/1702.02715),
 [JEEK](https://arxiv.org/abs/1806.00548),
 [DIFFEE](https://arxiv.org/abs/1710.11223)
 and
-DIFFEEK.
+[kDiffNet](). 
 
 
 Table of Contents
