@@ -146,13 +146,13 @@ kdiffnet.g2 <- function(x, a, lambda,g) {
 #' @param D A input matrix for the 'disease' group. It can be data matrix or
 #' covariance matrix. If D is a symmetric matrix, the matrices are assumed to
 #' be covariance matrix.
-#' @param W =======================
-#' @param g =======================
+#' @param W known edge level additional knowledge. It is a square matrix of dimension p X p where p is the input dimension.
+#' @param g known node level additional knowledge. It is a vector of dimension 1 X p where p is the input dimension, each entry indicating membership of node to a group, 0 for a node belonging to no group. For example, in a dataset with dimension=3,g=c(0,1,1) indicates node 1 belongs to no group, and node 2 and node 3 belong to group index 1.
 #' @param epsilon A positive number. The hyperparameter controls the sparsity level of the
 #' groups in g of the difference matrix
 #' @param lambda A positive number. The hyperparameter controls the sparsity level of the difference matrix
-#' @param knowledgeType ===========
-#' @param gamma ===========
+#' @param knowledgeType "EV": if use overlapping node and edge level additional knowledge,"E": if only edge level additional knowledge or "V": only group level knowledge
+#' @param gamma : A positive number. This hyperparameter is used in calculating each proximity during optimization
 #' @param covType A parameter to decide which Graphical model we choose to
 #' estimate from the input data.
 #'
@@ -173,8 +173,8 @@ kdiffnet.g2 <- function(x, a, lambda,g) {
 #' \eqn{T_v}. If thre = "soft", it means that we choose soft-threshold function
 #' as \eqn{T_v}. If thre = "hard", it means that we choose hard-threshold
 #' function as \eqn{T_v}.
-#' @param rho ============
-#' @param iterMax ============
+#' @param rho A positive number. This hyperparameter controls the learning rate of the proximal gradient method.
+#' @param iterMax An integer. The max number of iterations in the optimization of the proximal algorithm
 #' @return \item{$graphs}{A matrix of the estimated sparse changes between two
 #' Gaussian Graphical Models} \item{$share}{null}
 #' @author Arshdeep Sekhon

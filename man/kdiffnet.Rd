@@ -19,18 +19,18 @@ be covariance matrix.}
 covariance matrix. If D is a symmetric matrix, the matrices are assumed to
 be covariance matrix.}
 
-\item{W}{=======================}
+\item{W}{known edge level additional knowledge. It is a square matrix of dimension p X p where p is the input dimension.}
 
-\item{g}{=======================}
+\item{g}{known node level additional knowledge. It is a vector of dimension 1 X p where p is the input dimension, each entry indicating membership of node to a group, 0 for a node belonging to no group. For example, in a dataset with dimension=3,g=c(0,1,1) indicates node 1 belongs to no group, and node 2 and node 3 belong to group index 1.}
 
 \item{epsilon}{A positive number. The hyperparameter controls the sparsity level of the
 groups in g of the difference matrix}
 
 \item{lambda}{A positive number. The hyperparameter controls the sparsity level of the difference matrix}
 
-\item{knowledgeType}{===========}
+\item{knowledgeType}{"EV": if use overlapping node and edge level additional knowledge,"E": if only edge level additional knowledge or "V": only group level knowledge}
 
-\item{gamma}{===========}
+\item{gamma}{: A positive number. This hyperparameter is used in calculating each proximity during optimization}
 
 \item{covType}{A parameter to decide which Graphical model we choose to
 estimate from the input data.
@@ -54,9 +54,9 @@ simule algorithm.}
 as \eqn{T_v}. If thre = "hard", it means that we choose hard-threshold
 function as \eqn{T_v}.}
 
-\item{rho}{============}
+\item{rho}{A positive number. This hyperparameter controls the learning rate of the proximal gradient method.}
 
-\item{iterMax}{============}
+\item{iterMax}{An integer. The max number of iterations in the optimization of the proximal algorithm}
 }
 \value{
 \item{$graphs}{A matrix of the estimated sparse changes between two

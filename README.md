@@ -45,7 +45,7 @@ Table of Contents
     library(JointNets)
     ```
 
-2. From the GitHub repo. You need to first install the [devtools](https://cran.r-project.org/web/packages/devtools/index.html) package
+2. From the GitHub repo. You need to first install the [devtools](https://CRAN.R-project.org/package=devtools) package
 
     ``` r
     install.packages("devtools")
@@ -194,7 +194,7 @@ plot(result)
 
 
 
-`plot` extends `plot.igraph` from the [igraph](https://cran.r-project.org/web/packages/igraph/index.html) package
+`plot` extends `plot.igraph` from the [igraph](https://CRAN.R-project.org/package=igraph) package
 and there are a lot of options to view and manipulate the graph visualization.
 
 For example:

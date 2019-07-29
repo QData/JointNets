@@ -36,6 +36,32 @@ plot(result,layout = layout)
 plot(truth, subID = 0, layout = layout)
 ```
 
+```{r simule visualization}
+data(nip_37_data)
+label = colnames(nip_37_data[[1]])
+result = simule(
+  nip_37_data,
+  lambda = 0.13,
+  epsilon = 0.5,
+  covType = "kendall"
+)
+graph = returngraph(result)
+layout = layout_nicely(graph, dim = 2)
+par(mfrow = c(1, 1))
+plot(result, type = "task", layout = layout)
+  plot(result, type = "share", layout = layout)
+  plot(result,
+       type = "taskspecific",
+       subID = 1,
+       layout = layout)
+  plot(result,
+       type = "taskspecific",
+       subID = 2,
+       layout = layout)
+
+```
+
+
 ```{r demo}
 plot_gui()
 ```

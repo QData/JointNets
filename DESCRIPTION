@@ -3,10 +3,10 @@ Package: JointNets
 Version: 2.0.0
 Date: 2019-7-20
 Encoding: UTF-8
-Title: End-to-end Sparse Gaussian Graphical Model Simulation, Estimation, Visualization, Evaluation and Application
+Title: End-to-End Sparse Gaussian Graphical Model Simulation, Estimation, Visualization, Evaluation and Application
 Authors@R: c(person("Beilun", "Wang", role = c("aut"), email = "bw4mw@virginia.edu"), person("Yanjun", "Qi", role = c("aut"), email = "yanjun@virginia.edu"),person("Zhaoyang", "Wang", role = c("aut"), email = "zw4dn@virginia.edu"), person("Arshdeep", "Sekhon", role = c("aut","cre"), email = "as5cu@virginia.edu"))
-Author: Beilun Wang [aut], Yanjun Qi [aut,cre], Zhaoyang Wang [aut], Arshdeep Sekhon [aut, cre]
-Maintainer: Arshdeep Sekhon <as5cu@virginia.edu>, Yanjun Qi <yq2h@virginia.edu>
+Author: Beilun Wang [aut], Yanjun Qi [aut], Zhaoyang Wang [aut], Arshdeep Sekhon [aut, cre]
+Maintainer: Arshdeep Sekhon <as5cu@virginia.edu>
 Depends: R (>= 3.4.4), lpSolve, pcaPP, igraph, parallel, JGL
 Imports: MASS, brainR, misc3d, oro.nifti, shiny, rgl, methods
 Description: An end-to-end package for sparse Gaussian graphical models. It is able to simulate multiple related graphs as well as produce samples drawn from them. Multiple state-of-the-art sparse Gaussian graphical model estimators are included to both multiple and difference estimation. Graph visualization is available in 2D as well as 3D, designed specifically for brain. Moreover, a set of evaluation metrics are integrated for easy exploration with model validity. Finally, classification using graphical model is achieved with Quadratic Discriminant Analysis. The package comes with multiple demos with datasets from various fields. Methods references: SIMULE (Wang B et al. (2017) <doi:10.1007/s10994-017-5635-7>), WSIMULE (Singh C et al. (2017) <arXiv:1709.04090v2>), DIFFEE (Wang B et al. (2018) <arXiv:1710.11223>), JEEK (Wang B et al. (2018) <arXiv:1806.00548>), JGL(Danaher P et al. (2012) <arXiv:1111.0324>) and kdiffnet (Sekhon A et al, under review for publication).
