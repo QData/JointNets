@@ -325,10 +325,7 @@ For more details on how to use `plot_gui`, please try:
 ?plot_gui
 ```
 
-# License
-GNU GPL version 2
 
 # Getting Help
-For bug reports, requests and help, please contact zw4dn@virginia.edu.
 
-You can also [open an issue](https://github.com/QData/JointNets/issues) here on GitHub.
+Please [open an issue](https://github.com/QData/JointNets/issues) here on GitHub.
